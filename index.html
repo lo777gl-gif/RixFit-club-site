@@ -1,9 +1,118 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nuraly Auyelkhan, SE-2534">
+    <meta name="author" content="Muratov Anuar, SE-2534" />
+    <meta name="author" content="Yeren Edige, SE-2534">
+    <meta name="description" content="Main web page of RixFit Fitness">
+    <title>RixFit Fitness Club - Главная</title>
+</head>
+<body>
+
+    <header>
+        <h1>RixFit Fitness</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Main page</a></li>
+            <li><a href="trainers.html">Trainers and Programs</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="rules.html">Rules</a></li>
+            <li><a href="gymEquipment.html">Gym Equipment Guide</a></li>
+            <li><a href="colophon.html">Colophon</a></li>
+            <li><a href="nutrition.html">Nutrition and Supplements</a></li>
+
+        </ul>
+    </nav>
+
+    <main>
+        <section id="about">
+            <h2>About Our Fitness Center</h2>
+            <article>
+                <h3>Your Journey to a Healthier Lifestyle Starts Here</h3>
+                <p>
+                    Welcome to our fitness hub. We provide <strong>state-of-the-art equipment</strong>, personalized training programs, and a supportive community to help you achieve your goals. Whether you want to build strength or improve endurance, <mark>our expert coaches</mark> will guide you every step of the way. Start transforming your life <em>today</em>!
+                </p>
+                <figure>
+                    <img src="images/RixFit main page img.jpg" alt="Modern gym interior with professional treadmills and weight lifting area close-up">
+                    <figcaption>Our spacious cardio and strength training zone equipped with great machines.</figcaption>
+                </figure>
+                
+                <!-- "div" was used because We need to group the elements for future alignment and there is no semantic meaning here -->
+                <div>
+                    <span>Join thousands of satisfied resident who have already changed their lives with us.</span>
+                </div>
+            </article>
+        </section>
+
+        <section id="booking">
+            <h2>Book a Training Session</h2>
+            <!-- Form doesn't work, because it has no server part -->
+            <form action="#" method="GET">
+                <fieldset>
+                    <legend>Application Form</legend>
+                    
+                    <label for="userName">Name:</label>
+                    <input type="text" id="userName" name="userName" placeholder="Marat Maratovich" required>
+                    <br>
+
+                    <label for="userEmail">Email:</label>
+                    <input type="email" id="userEmail" name="userEmail" required>
+                    <br>
+
+                    <label for="userPhone">Phone:</label>
+                    <input type="tel" id="userPhone" name="userPhone">
+                    <br>
+
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age">
+                    <br>
+
+                    <label for="date">First Training Date:</label>
+                    <input type="date" id="date" name="date">
+                    <br>
+
+                    Select Gender:
+                    <label for="male">Male</label>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="female">Female</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <br><br>
+
+                    <label for="goal">Goal:</label>
+                    <select id="goal" name="goal">
+                        <option value="lose_weight">Weight Loss</option>
+                        <option value="gain_muscle">Muscle Gain</option>
+                    </select>
+                    <br>
+
+                    <label for="comments">Additional Comments:</label>
+                    <textarea id="comments" name="comments" rows="4" cols="30"></textarea>
+                    <br>
+
+                    <label for="agree">I agree to the club rules:</label>
+                    <input type="checkbox" id="agree" name="agree" required>
+                    <br>
+
+                    <button type="submit">Submit</button>
+                    <button type="reset">Clear Form</button>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <h2>Contacts</h2>
+            <address>
+                <p>Address: Turan Avenue 37/9, 1st floor</p>
+                <p>Telephone number: <a href="tel:+77754385471">+77754385471</a></p>
+                <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+            </address>
+        <p>&copy; 2026 RixFit Fitness Club.</p>
+    </footer>
+</body>
 </html>
