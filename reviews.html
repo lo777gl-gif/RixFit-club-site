@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Authors: Nuraly Auyelkhan, Muratov Anuar, Yeren Edige from group SE-2534 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nuraly Auyelkhan, SE-2534">
+    <meta name="author" content="Muratov Anuar, SE-2534">
+    <meta name="author" content="Yeren Edige, SE-2534">
+    <meta name="description" content="Public rating context and a feedback form for RixFit Fitness Club in Astana">
+    <title>RixFit — Reviews</title>
+</head>
+<body id="top">
+
+    <header>
+        <h1>RixFit Fitness Club</h1>
+        <p>Reviews and visitor feedback</p>
+    </header>
+
+    <nav aria-label="Main navigation">
+        <ul>
+            <li><a href="index.html">Main page</a></li>
+            <li><a href="trainers.html">Trainers and Programs</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="rules.html">Rules</a></li>
+            <li><a href="gymEquipment.html">Gym Equipment Guide</a></li>
+            <li><a href="nutrition.html">Nutrition and Supplements</a></li>
+            <li><a href="colophon.html">Colophon</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="overview">
+            <h2>How to read this page</h2>
+            <p>
+                This page separates public directory information from first-hand feedback. RixFit Fitness Club is listed at Turan Avenue 37/9 in Astana, on the first floor. The public listing describes the place as a fitness club with a gym, a swimming pool, and personal and group training. These facts should be checked again in person before the final submission because directory details can change.
+            </p>
+            <aside>
+                <h3>On this page</h3>
+                <ul>
+                    <li><a href="#rating">Public rating snapshot</a></li>
+                    <li><a href="#quote">Collected visitor quote</a></li>
+                    <li><a href="#feedback">Feedback form</a></li>
+                </ul>
+            </aside>
+        </section>
+
+        <hr>
+
+        <section id="rating">
+            <h2>Public rating snapshot</h2>
+            <article>
+                <h3>RixFit on a public map listing</h3>
+                <div id="ratingSummary">
+                    <!-- This div groups the rating and its source note without creating another heading-based section. -->
+                    <p><strong>4.6 <span>/ 5</span></strong> from the rating count shown on the public listing.</p>
+                    <!-- This span keeps the unit beside the number because it has no meaning as a separate block. -->
+                    <p><small>Source to verify before submission: <a href="https://2gis.kz/astana/search/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0%20%D1%82%D1%83%D1%80%D0%B0%D0%BD%20%D1%84%D0%B8%D1%82%D0%BD%D0%B5%D1%81" target="_blank" rel="noopener noreferrer">RixFit in 2GIS search results</a>.</small></p>
+                    <p><cite>RixFit public map listing</cite> is the source label for the snapshot above.</p>
+                </div>
+                <figure>
+                    <img src="images/RixFitMainPage.jpg" alt="Cardio and strength training area inside the RixFit gym">
+                    <figcaption>The gym area shown in the project’s existing photograph.</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <section id="quote">
+            <h2>Visitor reviews</h2>
+            <article>
+                <h3>What members notice first</h3>
+                <p><small>Reviews for this project.</small></p>
+                <blockquote>
+                    The gym is easy to navigate, and I like that I can finish a strength session with a swim. The staff explained the equipment without making the first visit feel complicated.
+                </blockquote>
+                <p><cite>Sample review by Amina K., 6 September 2026</cite></p>
+                <p>In this sample, the visitor describes the club as <q>easy to navigate</q>, which points to the importance of clear zones and friendly introductions.</p>
+                <article>
+                    <h3>Three short ratings</h3>
+                    <ul>
+                        <li><strong>Equipment:</strong> 5/5 — the machines are varied enough for a balanced weekly routine.</li>
+                        <li><strong>Pool:</strong> 4/5 — a useful recovery option after a gym session.</li>
+                        <li><strong>Atmosphere:</strong> 5/5 — calm during the early morning sample visit.</li>
+                    </ul>
+                </article>
+                <figure>
+                    <img src="images/Pool1.jpg" alt="Indoor swimming pool at RixFit Fitness Club">
+                    <figcaption>An existing project photograph of the pool area.</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <section id="feedback">
+            <h2>Leave feedback</h2>
+            <article>
+                <h3>Visitor feedback form</h3>
+                <!-- The form has no server behind it yet, only the required HTML controls. -->
+                <form action="#" method="get">
+                    <fieldset>
+                        <legend>Tell us about your visit</legend>
+
+                        <label for="visitorName">Name:</label>
+                        <input type="text" id="visitorName" name="visitorName" placeholder="Your name" required>
+                        <br>
+
+                        <label for="visitorEmail">Email:</label>
+                        <input type="email" id="visitorEmail" name="visitorEmail" placeholder="name@example.com" required>
+                        <br>
+
+                        <label for="visitorPhone">Phone:</label>
+                        <input type="tel" id="visitorPhone" name="visitorPhone" placeholder="+7 700 000 00 00">
+                        <br>
+
+                        <label for="visitCount">Number of visits:</label>
+                        <input type="number" id="visitCount" name="visitCount" min="1" placeholder="1">
+                        <br>
+
+                        <label for="visitDate">Date of visit:</label>
+                        <input type="date" id="visitDate" name="visitDate">
+                        <br>
+
+                        <span>What did you use?</span>
+                        <label for="gym">Gym</label>
+                        <input type="radio" id="gym" name="area" value="gym">
+                        <label for="pool">Pool</label>
+                        <input type="radio" id="pool" name="area" value="pool">
+                        <br>
+
+                        <label for="visitType">Visit type:</label>
+                        <select id="visitType" name="visitType">
+                            <option value="single">Single visit</option>
+                            <option value="membership">Membership visit</option>
+                            <option value="training">Training session</option>
+                        </select>
+                        <br>
+
+                        <label for="feedbackText">Your feedback:</label>
+                        <textarea id="feedbackText" name="feedbackText" rows="5" cols="40" placeholder="Write your own verified notes here"></textarea>
+                        <br>
+
+                        <label for="permission">I agree that this feedback may be quoted on this student project:</label>
+                        <input type="checkbox" id="permission" name="permission" required>
+                        <br>
+
+                        <button type="submit">Send feedback</button>
+                        <button type="reset">Clear form</button>
+                    </fieldset>
+                </form>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <h2>Contacts</h2>
+        <address>
+            <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
+            <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
+            <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+        </address>
+        <p>&copy; 2026 RixFit Fitness Club &amp; student project.</p>
+        <p><a href="#top">Back to the top</a> &ndash; review page &hellip;</p>
+    </footer>
+</body>
+</html>
