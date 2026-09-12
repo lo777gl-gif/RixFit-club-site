@@ -10,7 +10,7 @@
     <title>RixFit - Services</title>
   </head>
   <body>
-    <header>RixFit Fitness</header>
+    <header><p>RixFit Fitness</p></header>
 
     <!--Navigation will be the same across all pages so it is best to keep them as a separate section here-->
     <nav>
@@ -105,7 +105,7 @@
       </thead>
       <tbody>
         <tr>
-        <td>Opening Hours</td>
+        <th scope="row">Opening Hours</th>
           <td>
             Workdays 07:00 - 23:00
             <br>
@@ -113,18 +113,32 @@
           </td>
         </tr>
         <tr>
-          <td>Swimming Pools</td>
+          <th scope="row">Swimming Pools</th>
           <td>Adult Pool
                 <br>
               Kids Pool
           </td>
         </tr>
         <tr>
-          <td>Saunas</td>
+          <th scope="row">Saunas</th>
           <td>Turkish Hammam, Vaporarium, Infrared Sauna</td>
         </tr>
       </tbody>
       </table>
+      <form method="get" action="#">
+        <!--This form won't send any data because server-side handling will be added later on.-->
+        <fieldset>
+          <legend>
+            Plan Visiting RixFit
+          </legend>
+          <label for="visitor-name">Name</label>
+          <input type="text" id="visitor-name" name="visitor-name" placeholder="Enter your name:" required>
+          <label for="tel">Number</label>
+          <input type="tel" id="tel" name="tel" placeholder="Enter your phone number:" required>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email:" required>
+        </fieldset>
+      </form>
     </main>
     <footer>
       <h2>Contacts</h2>
