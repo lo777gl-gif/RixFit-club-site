@@ -4,7 +4,7 @@ Web Technologies 1 Project.
 The Real RixFit has no real own web Site, Address: **Turan Avenue 37/9**.
 
 ## Authors
-* **Auyelkhan Nuraly, Yeren Yedige, Anuar Muratov** — `index.html`, `colophon.html`
+* **Auyelkhan Nuraly, Yeren Yedige, Anuar Muratov From SE-2534** — `index.html`, `colophon.html`
 * **Auyelkhan Nuraly** — `programs-and-trainers.html`, `rules.html`
 * **Yeren Yedige** — `gym-equipment.html`, `reviews.html`
 * **Anuar Muratov** — `nutrition-and-supplements.html`, `services.html`
