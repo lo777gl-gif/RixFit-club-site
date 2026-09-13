@@ -28,6 +28,21 @@
     </nav>
 
     <main>
+        <p><b>Please read before your first visit.</b> Quick links: <a href="#club-rules">gym rules</a> and <a href="#swimming-pool-rules">pool rules</a> below.</p>
+
+        <figure>
+            <!-- figure+figcaption used because this image and its caption describe one another and should stay together as a single unit, unlike a standalone img -->
+            <img src="images/gym-floor.webp" alt="RixFit gym floor with properly re-racked dumbbells" width="400">
+            <figcaption>Proper re-racking on the RixFit gym floor.</figcaption>
+        
+        </figure>
+
+        <aside aria-label="Membership tip">
+            <h2>Membership Tip</h2>
+            <!-- aside chosen instead of a plain paragraph because this tip is tangential to the rules text below and can be read on its own -->
+            <p>Renew your locker rental at least <mark>3 days</mark> before it expires &mdash; spots are limited. Members holding an <abbr title="Annual Unlimited Pass">AUP</abbr> get priority renewal.</p>
+        </aside>
+
         <section id="club-rules">
             <h2>Club Rules &amp; Regulations</h2>
 
@@ -43,7 +58,13 @@
             <article>
                 <h3>2. Gym Floor Etiquette</h3>
                 <ul>
-                    <li>Always re-rack dumbbells, weight plates, and barbells to their designated storage racks immediately after use.</li>
+                    <li>Always re-rack dumbbells, weight plates, and barbells to their designated storage racks immediately after use, specifically:
+                        <ul>
+                            <li>Dumbbells &ndash; return to the numbered rack by weight</li>
+                            <li>Weight plates &ndash; stack by size on the plate tree</li>
+                            <li>Barbells &ndash; place on the barbell rack, never leaning against walls</li>
+                        </ul>
+                    </li>
                     <li>Do not drop weights, dumbbells, or barbells onto bare floors or non-lifting platforms.</li>
                     <li>Wipe down machine touchpoints and leather pads with disinfectant wipes after completing your sets.</li>
                     <li>Share equipment between sets during peak hours and avoid occupying stations solely to use personal mobile devices.</li>
@@ -53,16 +74,17 @@
             <article>
                 <h3>3. Health &amp; Safety</h3>
                 <ul>
-                    <li>Assess workout intensity according to your physical capabilities; use spotters or ask an on-duty instructor when lifting heavy loads.</li>
+                    <li>Assess workout intensity according to your <i>physical capabilities</i>; use spotters or ask an on-duty instructor when lifting heavy loads.</li>
                     <li>Access to facilities is strictly prohibited for individuals under the influence of alcohol, drugs, or showing symptoms of infectious illnesses.</li>
-                    <li>In case of an injury or sudden health issue, notify the floor supervisor or front desk staff immediately.</li>
+                    <li>In case of an injury or sudden health issue, notify the floor supervisor or front desk staff <em>immediately</em>.</li>
                 </ul>
             </article>
 
             <article>
                 <h3>4. Locker Rooms &amp; Belongings</h3>
                 <ul>
-                    <li>Store personal items in locked lockers during your visit. The club is not responsible for unattended valuables.</li>
+                    <!-- span used only as a generic inline wrapper for a phrase that will get a visual style later; no inline semantic tag (em/strong/mark) fits since it is not stress, importance, or highlighting -->
+                    <li>Store personal items in locked lockers during your visit. The club is not responsible for <span>unattended valuables</span>.</li>
                     <li>Lockers must be cleared before the club closes; overnight storage is not allowed unless a long-term locker rental is active.</li>
                     <li>Photography and video recording inside locker rooms and shower areas are strictly prohibited.</li>
                 </ul>
@@ -71,15 +93,21 @@
             <article>
                 <h3>5. Membership &amp; Access Policy</h3>
                 <ul>
-                    <li>Entry requires presenting a valid personal membership card. Passes are non-transferable.</li>
+                    <li>Entry requires presenting a valid personal membership <abbr title="Identification">ID</abbr> card. Passes are non-transferable.</li>
                     <li>Workouts must conclude, and training zones must be vacated at least 15 minutes before the facility's closing time.</li>
+                    <li>Members are limited to one guest pass per month<sup>*</sup>.</li>
                 </ul>
+                <p><small>* Guest passes must be arranged with the front desk at least 24 hours in advance.</small></p>
             </article>
         </section>
 
+        <hr>
+        <!-- hr marks a real thematic shift here, from gym-floor rules to pool rules, not just a visual line -->
+
         <section id="swimming-pool-rules">
             <h2>Swimming Pool Rules &amp; Regulations</h2>
-            <ol>
+            <p>Pool water (H<sub>2</sub>O) is tested twice daily for chlorine and pH levels.</p>
+            <ol type="I">
                 <li>Entry into the pool area is strictly permitted only in pool slides or flip-flops.</li>
                 <li>Access to the pool is permitted only in swimwear or swim trunks (no other clothing is allowed).</li>
                 <li>A swim cap is mandatory &ndash; sauna hats or disposable plastic caps are strictly prohibited.</li>
@@ -89,6 +117,16 @@
                 <li>Diving or jumping into the pool from the edge is strictly prohibited.</li>
                 <li>In the event of a rule violation, the management reserves the right to deny access to the pool.</li>
             </ol>
+        </section>
+
+        <section id="glossary">
+            <h2>Glossary of Terms</h2>
+            <dl>
+                <dt>Peak hours</dt>
+                <dd>06:00-09:00 and 18:00-21:00, when the gym floor is busiest.</dd>
+                <dt>Long-term locker rental</dt>
+                <dd>A paid monthly subscription that lets a member keep the same locker overnight instead of clearing it daily.</dd>
+            </dl>
         </section>
     </main>
     

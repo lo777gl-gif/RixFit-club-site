@@ -43,26 +43,35 @@
             </ul>
 
             <h3>Special Offers &amp; Rates</h3>
-            <ul>
-                <li>
-                <article>
-                    <h4>12-Month Unlimited Pass (Promo)</h4>
-                    <p>Price: 179,000 KZT</p>
-                </article>
-                </li>
-                <li>
-                <article>
-                    <h4>6-Month Couple Unlimited Pass</h4>
-                    <p>Price: 150,000 KZT</p>
-                </article>
-                </li>
-                <li>
-                <article>
-                    <h4>12-Month Unlimited Pass (Standard)</h4>
-                    <p>Price: 250,000 KZT</p>
-                </article>
-                </li>
-            </ul> <br>
+            <!-- table used instead of a list because pass name, duration, and price form genuinely tabular data with meaningful columns and rows -->
+            <table>
+                <caption>RixFit Pass Prices (2026)</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Pass</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Price, KZT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">12-Month Unlimited (Promo)</th>
+                        <td>12 months</td>
+                        <td>179,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6-Month Couple Unlimited</th>
+                        <td>6 months</td>
+                        <td>150,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12-Month Unlimited (Standard)</th>
+                        <td>12 months</td>
+                        <td>250,000</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
         </section> 
 
         <!-- Gym Trainers Section -->
@@ -72,28 +81,33 @@
             <!-- Vera -->
             <article>
             <img src="images/GymCoach(1).jpeg" alt="Vera - Gym Instructor" width="250">
-            <h3>Vera</h3>
-            <p><strong>Role:</strong> Gym Instructor | MSMK in Powerlifting</p>
+            <h4>Vera</h4>
+            <p><strong>Role:</strong> Gym Instructor | <abbr title="International Master of Sports">MSMK</abbr> in Powerlifting</p>
             <p>
                 Vera is a gym instructor and an International Master of Sports (MSMK) in powerlifting. With her elite lifting background, she specializes in strength conditioning, proper lifting mechanics, and muscle hypertrophy.
             </p>
+            <!-- div groups an icon and a short label as one certification badge; span is inline-only and section/article would be wrong here since this isn't standalone content, just a small UI unit -->
+            <div class="cert-badge">
+                <img src="images/badge-msmk.png" alt="" width="32">
+                International Master of Sports
+            </div>
             </article>
 
             <!-- Ulan -->
             <article>
             <img src="images/GymCoach(2).jpeg" alt="Ulan - Gym Trainer"  width="250">
-            <h3>Ulan</h3>
-            <p><strong>Role:</strong> Certified Gym Trainer | KMS in Hand-to-Hand Combat</p>
+            <h4>Ulan</h4>
+            <p><strong>Role:</strong> Certified Gym Trainer | <abbr title="Candidate for Master of Sports">KMS</abbr> in Hand-to-Hand Combat</p>
             <p>
-                Ulan is a certified gym trainer who holds the title of Candidate for Master of Sports (KMS) in hand-to-hand combat. His martial arts foundation allows him to integrate functional strength, agility, and dynamic endurance into training sessions.
+                Ulan is a certified gym trainer who holds the title of Candidate for Master of Sports (KMS) in hand-to-hand combat. His martial arts foundation allows him to integrate functional strength, agility, and dynamic endurance into training sessions. He often tells clients, <q>strength without control is just noise</q>.
             </p>
             </article>
 
             <!-- Chingis -->
             <article>
             <img src="images/GymCoach(3).jpeg" alt="Chingis - Gym Trainer"  width="250">
-            <h3>Chingis</h3>
-            <p><strong>Role:</strong> Certified Gym Trainer (NASM USA) | MS in Judo</p>
+            <h4>Chingis</h4>
+            <p><strong>Role:</strong> Certified Gym Trainer (<abbr title="National Academy of Sports Medicine">NASM</abbr> USA) | MS in Judo</p>
             <p>
                 Chingis is certified by the National Academy of Sports Medicine (NASM, USA) and brings over 20 years of athletic coaching experience. As a Master of Sports in judo, he pairs deep sports science knowledge with comprehensive functional training.
             </p>
@@ -102,7 +116,7 @@
             <!-- Dmitriy (Gym) -->
             <article>
             <img src="images/GymCoach(4).jpeg" alt="Dmitriy - Gym Trainer"  width="250">
-            <h3>Dmitriy</h3>
+            <h4>Dmitriy</h4>
             <p><strong>Role:</strong> Certified Gym Trainer | MS in Cross-Country Skiing</p>
             <p>
                 Dmitriy is a certified gym instructor, a Master of Sports in cross-country skiing, and a 3rd-rank polyathlon athlete. He specializes in aerobic capacity, endurance building, and balanced full-body conditioning.
@@ -112,12 +126,12 @@
 
         <!-- Pool & Aquatic Trainers Section -->
         <section>
-            <h2>Swimming &amp; Aquatics Coaches</h2>
+            <h3>Swimming &amp; Aquatics Coaches</h3>
 
             <!-- Dmitriy (Pool) -->
             <article>
             <img src="images/PoolTrainer(1).jpeg" alt="Dmitriy - Swimming Coach"  width="250">
-            <h3>Dmitriy</h3>
+            <h4>Dmitriy</h4>
             <p><strong>Role:</strong> Certified Swimming Coach | Multi-time Champion of RK</p>
             <p>
                 Dmitriy is a certified swimming instructor and a multiple-time champion of the Republic of Kazakhstan with a degree in pedagogy. He implements a structured, pedagogical approach to stroke development and athletic water conditioning.
@@ -127,7 +141,7 @@
             <!-- Sergey Mikhailovich -->
             <article>
             <img src="images/PoolTrainer(2).jpeg" alt="Sergey Mikhailovich - Swimming and Gym Coach" width="250">
-            <h3>Sergey Mikhailovich</h3>
+            <h4>Sergey Mikhailovich</h4>
             <p><strong>Role:</strong> Certified Swimming &amp; Gym Trainer | MS in Swimming</p>
             <p>
                 Sergey Mikhailovich is a certified swimming and gym instructor holding the title of Master of Sports in swimming and 1st Sports Rank in water polo. His deep aquatic background makes him an expert in stroke refinement, endurance, and aquatic conditioning.
@@ -137,7 +151,7 @@
             <!-- Sabina -->
             <article>
             <img src="images/PoolTrainer(3).jpeg" alt="Sabina - Water Polo & Swimming Instructor" width="250">
-            <h3>Sabina</h3>
+            <h4>Sabina</h4>
             <p><strong>Role:</strong> KMS in Water Polo | 3rd Rank in Swimming</p>
             <p>
                 Sabina is a Candidate for Master of Sports (KMS) in water polo and holds the 3rd Adult Rank in competitive swimming. She focuses on teaching fundamental swimming skills, water confidence, and dynamic aquatic movement for clients of various ages.
@@ -147,12 +161,87 @@
             <!-- Samat -->
             <article>
             <img src="images/PoolTrainer(4).jpeg" alt="Samat - Swimming Coach" width="250">
-            <h3>Samat</h3>
+            <h4>Samat</h4>
             <p><strong>Role:</strong> Certified Swimming Coach | 1st Rank in Swimming</p>
             <p>
                 Samat is a certified swimming coach holding a 1st Sports Rank in competitive swimming. He is dedicated to perfecting stroke technique, building aquatic endurance, and guiding clients toward their personal fitness goals in the pool.
             </p>
             </article>
+        </section>
+
+        <!-- Member testimonial -->
+        <section id="testimonials">
+            <h3>What Our Members Say</h3>
+            <blockquote cite="https://www.instagram.com/rixfitastana">
+                <p>Sergey Mikhailovich helped me shave two minutes off my 1500m time in just three months.</p>
+            </blockquote>
+            <p>&mdash; <cite>Aidana K.</cite>, RixFit member since 2025</p>
+            <!-- TODO: replace with a real quote, name and date you collected yourself, per assignment authenticity rules -->
+        </section>
+
+        <section id="book-trial">
+            <h3>Book a Free Trial Session</h3>
+            <!-- This form does not send data anywhere yet - there is no server behind it. Server-side handling comes later in the course. -->
+            <form method="post" action="#" aria-label="Trial session booking form">
+                <fieldset>
+                    <legend>Your details</legend>
+                    <p>
+                        <label for="full-name">Full name</label><br>
+                        <input type="text" id="full-name" name="full-name" placeholder="Aidana Serikova" required>
+                    </p>
+                    <p>
+                        <label for="email">Email</label><br>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </p>
+                    <p>
+                        <label for="phone">Phone</label><br>
+                        <input type="tel" id="phone" name="phone" placeholder="+7 700 000 00 00" required>
+                    </p>
+                    <p>
+                        <label for="age">Age</label><br>
+                        <input type="number" id="age" name="age" min="12" max="90" required>
+                    </p>
+                    <p>
+                        <label for="preferred-date">Preferred date</label><br>
+                        <input type="date" id="preferred-date" name="preferred-date" required>
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Trial preferences</legend>
+                    <p>
+                        Preferred area:
+                        <label><input type="radio" name="area" value="gym" checked> Gym &amp; Strength</label>
+                        <label><input type="radio" name="area" value="pool"> Pool &amp; Aquatics</label>
+                    </p>
+                    <p>
+                        <label for="trainer">Preferred trainer</label><br>
+                        <select id="trainer" name="trainer">
+                            <option value="any">No preference</option>
+                            <option value="vera">Vera</option>
+                            <option value="ulan">Ulan</option>
+                            <option value="chingis">Chingis</option>
+                            <option value="dmitriy-gym">Dmitriy (Gym)</option>
+                            <option value="dmitriy-pool">Dmitriy (Pool)</option>
+                            <option value="sergey">Sergey Mikhailovich</option>
+                            <option value="sabina">Sabina</option>
+                            <option value="samat">Samat</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label><input type="checkbox" name="newsletter" value="yes"> Send me news about promo passes</label>
+                    </p>
+                    <p>
+                        <label for="notes">Anything we should know?</label><br>
+                        <textarea id="notes" name="notes" placeholder="Injuries, goals, schedule constraints..."></textarea>
+                    </p>
+                </fieldset>
+
+                <p>
+                    <button type="submit">Book my trial</button>
+                    <button type="reset">Clear form</button>
+                </p>
+            </form>
         </section>
     </main>
     
