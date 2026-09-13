@@ -1,0 +1,339 @@
+Student name: Muratov Anuar
+
+services.html
+Line 1: <!doctype html>
+Line 2: <html lang="en">
+Line 4: <meta charset>
+Line 5: <meta name="viewport">
+Line 6: <meta name="description">
+Line 8: <meta name="author">
+Line 10: <title>
+Line 14: <header>
+Line 19: <nav>
+Line 20: <ul>
+Line 32: <main>
+Line 33: <h1>
+Line 194: <footer>
+Line 216: &copy;
+Line 56: <section>
+Line 58: <article>
+Line 107: <aside>
+Line 67: <figure>
+Line 69: <figcaption>
+Line 117: <table>
+Line 118: <caption>
+Line 119: <thead>
+Line 125: <tbody>
+Line 121: <th scope="col">
+Line 127: <th scope="row">
+Line 199: <a href="tel:">
+Line 200: <a href="mailto:">
+Line 38: <a href="#pool">
+Line 39: <a href="#sauna">
+Line 68: <img>
+Line 92: <img>
+Line 103: <img>
+Line 48: <strong>
+Line 78: <em>
+Line 77: <i>
+Line 81: <blockquote>
+Line 83: <q>
+Line 87: <cite>
+Line 115: <hr>
+Line 130: <br>
+Line 35: <div>
+Line 163: <span>
+Line 150: <form method="get" action="#">
+Line 152: <fieldset>
+Line 153: <legend>
+Line 156: <label>
+Line 157: <input type="text">
+Line 161: <input type="email">
+Line 159: <input type="tel">
+Line 164: <input type="number">
+Line 166: <input type="date">
+Line 170: <input type="radio">
+Line 187: <input type="checkbox">
+Line 174: <select>
+Line 175: <option>
+Line 181: <textarea>
+Line 157: required
+Line 157: placeholder
+Line 188: <button type="submit">
+Line 189: <button type="reset">
+Line 44: &amp;
+Line 87: &mdash;
+
+nutrition-and-supplements.html
+Line 1: <!doctype html>
+Line 2: <html lang="en">
+Line 4: <meta charset>
+Line 5: <meta name="viewport">
+Line 6: <meta name="description">
+Line 11: <meta name="author">
+Line 14: <title>
+Line 19: <header>
+Line 24: <nav>
+Line 25: <ul>
+Line 37: <main>
+Line 38: <h1>
+Line 210: <footer>
+Line 232: &copy;
+Line 189: <ul>
+Line 192: nested <ul>
+Line 171: <ol type="1">
+Line 142: <dl>
+Line 143: <dt>
+Line 144: <dd>
+Line 160: <a target="_blank" rel="noopener noreferrer">
+Line 43: <b>
+Line 185: <mark>
+Line 132: <small>
+Line 133: <sup>
+Line 150: <abbr title="Adenosine Triphosphate">
+Line 165: <abbr title="World Health Organization">
+Line 43: &#8376;
+
+
+Student name: Yeren Yedige
+
+gym-equipment.html
+Line 1: <!DOCTYPE html>
+Line 2: <html lang="en">
+Line 4: <meta charset>
+Line 5: <meta name="viewport">
+Line 8: <meta name="description">
+Line 7: <meta name="author">
+Line 9: <title>
+Line 13: <header>
+Line 17: <nav>
+Line 18: <ul>
+Line 30: <main>
+Line 14: <h1>
+Line 143: <footer>
+Line 165: &copy;
+Line 31: <section>
+Line 50: <article>
+Line 36: <aside>
+Line 85: <figure>
+Line 87: <figcaption>
+Line 52: <table>
+Line 53: <caption>
+Line 54: <thead>
+Line 61: <tbody>
+Line 56: <th scope="col">
+Line 63: <th scope="row">
+Line 104: <ul>
+Line 106: nested <ul>
+Line 96: <ol start="1">
+Line 127: <dl>
+Line 128: <dt>
+Line 129: <dd>
+Line 84: <a target="_blank" rel="noopener noreferrer">
+Line 148: <a href="tel:">
+Line 149: <a href="mailto:">
+Line 39: <a href="#inventory">
+Line 40: <a href="#sequence">
+Line 86: <img>
+Line 137: <strong>
+Line 135: <b>
+Line 135: <i>
+Line 136: <mark>
+Line 84: <small>
+Line 138: <sub>
+Line 138: <sup>
+Line 137: <abbr title="repetitions">
+Line 137: <abbr title="range of motion">
+Line 154: &amp;
+
+reviews.html
+Line 1: <!DOCTYPE html>
+Line 2: <html lang="en">
+Line 4: <meta charset>
+Line 7: <meta name="viewport">
+Line 8: <meta name="description">
+Line 6: <meta name="author">
+Line 9: <title>
+Line 13: <header>
+Line 17: <nav>
+Line 18: <ul>
+Line 30: <main>
+Line 14: <h1>
+Line 151: <footer>
+Line 173: &copy;
+Line 60: <img>
+Line 85: <img>
+Line 71: <blockquote>
+Line 75: <q>
+Line 57: <cite>
+Line 46: <hr>
+Line 102: <br>
+Line 52: <div>
+Line 54: <span>
+Line 96: <form method="get" action="#">
+Line 97: <fieldset>
+Line 98: <legend>
+Line 100: <label>
+Line 101: <input type="text">
+Line 105: <input type="email">
+Line 109: <input type="tel">
+Line 113: <input type="number">
+Line 117: <input type="date">
+Line 122: <input type="radio">
+Line 140: <input type="checkbox">
+Line 128: <select>
+Line 129: <option>
+Line 136: <textarea>
+Line 101: required
+Line 101: placeholder
+Line 143: <button type="submit">
+Line 144: <button type="reset">
+
+
+Student name: Nuraly Auyelkhan
+
+programs-and-trainers.html
+Line 1: <!DOCTYPE html>
+Line 2: <html lang="en">
+Line 4: <meta charset>
+Line 5: <meta name="viewport">
+Line 8: <meta name="description">
+Line 7: <meta name="author">
+Line 9: <title>
+Line 13: <header>
+Line 17: <nav>
+Line 18: <ul>
+Line 30: <main>
+Line 14: <h1>
+Line 249: <footer>
+Line 271: &copy;
+Line 36: <section>
+Line 82: <article>
+Line 47: <table>
+Line 48: <caption>
+Line 49: <thead>
+Line 56: <tbody>
+Line 51: <th scope="col">
+Line 58: <th scope="row">
+Line 175: <blockquote>
+Line 102: <q>
+Line 178: <cite>
+Line 85: <abbr title="International Master of Sports">
+Line 100: <abbr title="Candidate for Master of Sports">
+Line 254: <a href="tel:">
+Line 255: <a href="mailto:">
+Line 266: <a target="_blank" rel="noopener noreferrer">
+Line 83: <img>
+Line 98: <img>
+Line 108: <img>
+Line 85: <strong>
+Line 90: <div>
+Line 74: <br>
+Line 185: <form method="post" action="#">
+Line 186: <fieldset>
+Line 187: <legend>
+Line 189: <label for="full-name">
+Line 190: <input type="text">
+Line 194: <input type="email">
+Line 198: <input type="tel">
+Line 202: <input type="number">
+Line 206: <input type="date">
+Line 214: <input type="radio">
+Line 232: <input type="checkbox">
+Line 219: <select>
+Line 220: <option>
+Line 236: <textarea>
+Line 190: required
+Line 190: placeholder
+Line 241: <button type="submit">
+Line 242: <button type="reset">
+Line 9: &amp;
+Line 178: &mdash;
+
+rules.html
+Line 1: <!DOCTYPE html>
+Line 2: <html lang="en">
+Line 4: <meta charset>
+Line 5: <meta name="viewport">
+Line 8: <meta name="description">
+Line 7: <meta name="author">
+Line 9: <title>
+Line 13: <header>
+Line 17: <nav>
+Line 18: <ul>
+Line 30: <main>
+Line 14: <h1>
+Line 133: <footer>
+Line 155: &copy;
+Line 46: <section>
+Line 49: <article>
+Line 40: <aside>
+Line 33: <figure>
+Line 36: <figcaption>
+Line 110: <ol type="I">
+Line 62: nested <ul>
+Line 124: <dl>
+Line 125: <dt>
+Line 126: <dd>
+Line 138: <a href="tel:">
+Line 139: <a href="mailto:">
+Line 147: <a target="_blank" rel="noopener noreferrer">
+Line 31: <a href="#club-rules">
+Line 31: <a href="#swimming-pool-rules">
+Line 156: <a href="#top">
+Line 31: <b>
+Line 43: <mark>
+Line 77: <i>
+Line 79: <em>
+Line 100: <small>
+Line 98: <sup>
+Line 109: <sub>
+Line 43: <abbr title="Annual Unlimited Pass">
+Line 96: <abbr title="Identification">
+Line 104: <hr>
+Line 87: <span>
+Line 47: &amp;
+Line 63: &ndash;
+Line 43: &mdash;
+
+
+Student name: Nuraly Auyelkhan, Muratov Anuar, Yeren Yedige
+
+index.html
+Line 1: <!DOCTYPE html>
+Line 2: <html lang="en">
+Line 4: <meta charset>
+Line 5: <meta name="viewport">
+Line 10: <meta name="description">
+Line 7: <meta name="author">
+Line 8: <meta name="author">
+Line 9: <meta name="author">
+Line 11: <title>
+Line 15: <header>
+Line 19: <nav>
+Line 20: <ul>
+Line 32: <main>
+Line 16: <h1>
+Line 116: <footer>
+Line 138: &copy;
+
+colophon.html
+Line 1: <!DOCTYPE html>
+Line 2: <html lang="en">
+Line 4: <meta charset>
+Line 6: <meta name="viewport">
+Line 10: <meta name="description">
+Line 7: <meta name="author">
+Line 8: <meta name="author">
+Line 9: <meta name="author">
+Line 11: <title>
+Line 15: <header>
+Line 19: <nav>
+Line 20: <ul>
+Line 32: <main>
+Line 16: <h1>
+Line 82: <footer>
+Line 104: &copy;
+Line 54: <pre>
+Line 54: <code>
+Line 66: <kbd>
