@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Authors: Nuraly Auyelkhan from group SE-2534 -->
+    <meta name="author" content="Nuraly Auyelkhan">
+    <meta name="description" content="Register of RixFit Fitness">
+    <title>RixFit — Register</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>RixFit Fitness Club</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Main page</a></li>
+                <li><a href="login.html">Sign in</a></li>
+                <li><a href="register.html">Sign up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Register</h2>
+
+        <p id="message" style="display:none;"></p>
+
+        <form id="registerForm" method="post" action="/api/register">
+            <div>
+                <label for="username">User Name:</label><br>
+                <input type="text" id="username" name="username" required minlength="3">
+            </div>
+            <br>
+            <div>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <br>
+            <div>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required minlength="6">
+            </div>
+            <br>
+            <div>
+                <label for="confirmPassword">Confirm Password:</label><br>
+                <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+            </div>
+            <br>
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Already have an account?<a href="login.html">Sign in</a></p>
+    </main> <br> <br>
+
+    <footer>
+        <section id="contacts">
+            <h2>Contacts</h2>
+            <address>
+                <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
+                <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
+                <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+            </address>
+        </section>
+
+        <section id="socials">
+            <h3>Follow &amp; Message Us</h3>
+            <ul>
+                <li>
+                    <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
+                </li>
+            </ul>
+        </section>
+
+        <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
+        <p><a href="#top">Back to the top</a></p>
+    </footer>
+
+</body>
+
+</html>
