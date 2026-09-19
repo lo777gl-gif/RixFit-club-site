@@ -29,16 +29,12 @@
         <p id="message" style="display:none;"></p>
 
         <form id="loginForm" method="post" action="/api/login">
-            <div>
-                <label for="loginIdentifier">Username or Email:</label><br>
-                <input type="text" id="loginIdentifier" name="loginIdentifier" required>
-            </div>
+            <label for="loginIdentifier">Username or Email:</label><br>
+            <input type="text" id="loginIdentifier" name="loginIdentifier" required>
             <br>
-            <div>
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password" required minlength="6">
-            </div>
-            <br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required minlength="6">
+            <br><br>
             <button type="submit">Sign In</button>
         </form>
 
