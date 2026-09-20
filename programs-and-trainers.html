@@ -7,14 +7,16 @@
     <meta name="author" content="Nuraly Auyelkhan, SE-2534">
     <meta name="description" content="Trainers and Programs of RixFit Fitness">
     <title>RixFit — Trainers &amp; Programs</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/nuraly.css">
 </head>
 <body id="top">
 
-    <header>
-        <h1>RixFit Fitness Club</h1>
+    <header class="site-header">
+        <h1><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1>
 
         <nav aria-label="main-nav">
-            <ul>
+            <ul class="nav-list">
                 <li><a href="index.html">Main page</a></li>
                 <li><a href="programs-and-trainers.html">Programs and Trainers </a></li>
                 <li><a href="services.html">Services</a></li>
@@ -26,7 +28,7 @@
         </nav>
 
         <nav aria-label="auth-nav">
-            <ul>
+            <ul class="nav-list">
                 <li><a href="login.html">Sign in</a></li>
                 <li><a href="register.html">Sign up</a></li>
             </ul>
@@ -47,11 +49,11 @@
                 <li>Indoor swimming pool</li>
                 <li>3 types of saunas</li>
                 <li>Summer terrace lounge</li>
-            </ul>
+            </ul> <br>
 
             <h3>Special Offers &amp; Rates</h3>
             <!-- table used instead of a list because pass name, duration, and price form genuinely tabular data with meaningful columns and rows -->
-            <table>
+            <table class="price-table">
                 <caption>RixFit Pass Prices (2026)</caption>
                 <thead>
                     <tr>
@@ -81,12 +83,12 @@
             <br>
         </section> 
 
-        <!-- Gym Trainers Section -->
-        <section>
-            <h3>Gym &amp; Strength Coaches</h3>
+        <!-- Gym Trainers Section: flexbox container (see nuraly.css .coach-list) -->
+        <section class="coach-list">
+            <h3>Gym &amp; Strength Coaches</h3> 
 
             <!-- Vera -->
-            <article>
+            <article class="trainer-card">
             <img src="images/GymCoach(1).jpeg" alt="Vera - Gym Instructor" width="250">
             <h4>Vera</h4>
             <p><strong>Role:</strong> Gym Instructor | <abbr title="International Master of Sports">MSMK</abbr> in Powerlifting</p>
@@ -101,7 +103,7 @@
             </article>
 
             <!-- Ulan -->
-            <article>
+            <article class="trainer-card">
             <img src="images/GymCoach(2).jpeg" alt="Ulan - Gym Trainer"  width="250">
             <h4>Ulan</h4>
             <p><strong>Role:</strong> Certified Gym Trainer | <abbr title="Candidate for Master of Sports">KMS</abbr> in Hand-to-Hand Combat</p>
@@ -111,7 +113,7 @@
             </article>
 
             <!-- Chingis -->
-            <article>
+            <article class="trainer-card">
             <img src="images/GymCoach(3).jpeg" alt="Chingis - Gym Trainer"  width="250">
             <h4>Chingis</h4>
             <p><strong>Role:</strong> Certified Gym Trainer (<abbr title="National Academy of Sports Medicine">NASM</abbr> USA) | MS in Judo</p>
@@ -121,7 +123,7 @@
             </article>
 
             <!-- Dmitriy (Gym) -->
-            <article>
+            <article class="trainer-card">
             <img src="images/GymCoach(4).jpeg" alt="Dmitriy - Gym Trainer"  width="250">
             <h4>Dmitriy</h4>
             <p><strong>Role:</strong> Certified Gym Trainer | MS in Cross-Country Skiing</p>
@@ -131,12 +133,12 @@
             </article>
         </section>
 
-        <!-- Pool & Aquatic Trainers Section -->
-        <section>
+        <!-- Pool & Aquatic Trainers Section: CSS grid container (see nuraly.css .aqua-list) -->
+        <section class="aqua-list">
             <h3>Swimming &amp; Aquatics Coaches</h3>
 
             <!-- Dmitriy (Pool) -->
-            <article>
+            <article class="trainer-card">
             <img src="images/PoolTrainer(1).jpeg" alt="Dmitriy - Swimming Coach"  width="250">
             <h4>Dmitriy</h4>
             <p><strong>Role:</strong> Certified Swimming Coach | Multi-time Champion of RK</p>
@@ -146,7 +148,7 @@
             </article>
 
             <!-- Sergey Mikhailovich -->
-            <article>
+            <article class="trainer-card">
             <img src="images/PoolTrainer(2).jpeg" alt="Sergey Mikhailovich - Swimming and Gym Coach" width="250">
             <h4>Sergey Mikhailovich</h4>
             <p><strong>Role:</strong> Certified Swimming &amp; Gym Trainer | MS in Swimming</p>
@@ -156,7 +158,7 @@
             </article>
 
             <!-- Sabina -->
-            <article>
+            <article class="trainer-card">
             <img src="images/PoolTrainer(3).jpeg" alt="Sabina - Water Polo & Swimming Instructor" width="250">
             <h4>Sabina</h4>
             <p><strong>Role:</strong> KMS in Water Polo | 3rd Rank in Swimming</p>
@@ -166,7 +168,7 @@
             </article>
 
             <!-- Samat -->
-            <article>
+            <article class="trainer-card">
             <img src="images/PoolTrainer(4).jpeg" alt="Samat - Swimming Coach" width="250">
             <h4>Samat</h4>
             <p><strong>Role:</strong> Certified Swimming Coach | 1st Rank in Swimming</p>
@@ -245,8 +247,8 @@
                 </fieldset>
 
                 <p>
-                    <button type="submit">Book my trial</button>
-                    <button type="reset">Clear form</button>
+                    <button type="submit" class="btn btn-primary">Book my trial</button>
+                    <button type="reset" class="btn">Clear form</button>
                 </p>
             </form>
         </section>
@@ -259,13 +261,13 @@
             <address>
                 <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
                 <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
-                <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+                <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p> 
             </address>
-        </section>
+        </section> <br>
 
         <section id="socials">
             <h3>Follow &amp; Message Us</h3>
-            <ul>
+            <ul class="socials-list">
                 <li>
                     <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
                 </li>
@@ -273,10 +275,10 @@
                     <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
                 </li>
             </ul>
-        </section>
+        </section> <br>
 
         <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
-        <p><a href="#top">Back to the top</a></p>
+        <p><a href="#top" class="back-to-top">Back to the top</a></p>
     </footer>
 </body>
 </html>

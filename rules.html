@@ -7,14 +7,16 @@
     <meta name="author" content="Nuraly Auyelkhan, SE-2534">
     <meta name="description" content="Rules of RixFit Fitness">
     <title>RixFit — Rules</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/nuraly.css">
 </head>
 <body id="top">
 
-    <header>
-        <h1>RixFit Fitness Club</h1>
+    <header class="site-header">
+        <h1><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1>
 
         <nav aria-label="main-nav">
-            <ul>
+            <ul class="nav-list">
                 <li><a href="index.html">Main page</a></li>
                 <li><a href="programs-and-trainers.html">Programs and Trainers </a></li>
                 <li><a href="services.html">Services</a></li>
@@ -26,7 +28,7 @@
         </nav>
 
         <nav aria-label="auth-nav">
-            <ul>
+            <ul class="nav-list">
                 <li><a href="login.html">Sign in</a></li>
                 <li><a href="register.html">Sign up</a></li>
             </ul>
@@ -35,16 +37,16 @@
     </header>
 
     <main>
-        <p><b>Please read before your first visit.</b> Quick links: <a href="#club-rules">gym rules</a> and <a href="#swimming-pool-rules">pool rules</a> below.</p>
+        <!-- Float/clear demo: the image is floated left INSIDE this
+             paragraph's own text (see .float-img in nuraly.css), so the
+             rest of the sentence wraps along its right side instead of
+             sitting in a separate figure above the text. -->
+        <p>
+            <img class="float-img" src="images/gym-floor.webp" alt="RixFit gym floor with properly re-racked dumbbells" width="200">
+            <b>Please read before your first visit.</b> Quick links: <a href="#club-rules">gym rules</a> and <a href="#swimming-pool-rules">pool rules</a> below. Proper re-racking, like the RixFit gym floor pictured here, is the very first habit every member is expected to build from day one — weights go back on the numbered rack, plates get stacked by size, and barbells never lean against a wall.
+        </p>
 
-        <figure>
-            <!-- figure+figcaption used because this image and its caption describe one another and should stay together as a single unit, unlike a standalone img -->
-            <img src="images/gym-floor.webp" alt="RixFit gym floor with properly re-racked dumbbells" width="400">
-            <figcaption>Proper re-racking on the RixFit gym floor.</figcaption>
-        
-        </figure>
-
-        <aside aria-label="Membership tip">
+        <aside aria-label="Membership tip" class="membership-tip">
             <h2>Membership Tip</h2>
             <!-- aside chosen instead of a plain paragraph because this tip is tangential to the rules text below and can be read on its own -->
             <p>Renew your locker rental at least <mark>3 days</mark> before it expires &mdash; spots are limited. Members holding an <abbr title="Annual Unlimited Pass">AUP</abbr> get priority renewal.</p>
@@ -128,7 +130,7 @@
 
         <section id="glossary">
             <h2>Glossary of Terms</h2>
-            <dl>
+            <dl class="glossary-list">
                 <dt>Peak hours</dt>
                 <dd>06:00-09:00 and 18:00-21:00, when the gym floor is busiest.</dd>
                 <dt>Long-term locker rental</dt>
@@ -149,7 +151,7 @@
 
         <section id="socials">
             <h3>Follow &amp; Message Us</h3>
-            <ul>
+            <ul class="socials-list">
                 <li>
                     <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
                 </li>
@@ -160,8 +162,7 @@
         </section>
 
         <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
-        <p><a href="#top">Back to the top</a></p>
+        <p><a href="#top" class="back-to-top">Back to the top</a></p>
     </footer>
 </body>
 </html>
-    
