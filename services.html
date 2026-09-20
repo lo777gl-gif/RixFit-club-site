@@ -9,16 +9,18 @@
     <meta name="author" content="Muratov Anuar, SE-2534">
     <!--Services are a different page simply because of how many different sections and recreation zones the gym offers-->
     <title>RixFit - Services</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/anuar.css">
 </head>
 
 <body id="top">
 
     <!--Navigation will be the same across all pages so it is best to keep them as a separate section here-->
-    <header>
+    <header class="site-header">
         <h1>RixFit Fitness Club</h1>
 
         <nav aria-label="main-nav">
-            <ul>
+            <ul class="nav-list">
                 <li><a href="index.html">Main page</a></li>
                 <li><a href="programs-and-trainers.html">Programs and Trainers </a></li>
                 <li><a href="services.html">Services</a></li>
@@ -40,15 +42,13 @@
     <main>
         <h2>RixFit - Services</h2>
         <!--<div> tag here is used since these jump links are only utility and do not serve any meaning for the semantic composition-->
-        <div>
-            <p>
-                Jump to:
+            <nav class="service-jump" aria-label="Service Shortcuts">
+                <span>Jump to:</span>
                 <a href="#pool">Swimming Pool</a>
                 <a href="#sauna">Sauna</a>
                 <a href="#terrace">Summer Terrace</a>
                 <a href="#spa">SPA</a>
-            </p>
-        </div>
+            </nav>
         <p>
             RixFit Fitness &amp; offers countless of different services. Ranging from the gym to
             spa. Gym includes in itself professionals in the face of coaches who are
