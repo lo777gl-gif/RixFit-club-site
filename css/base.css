@@ -76,16 +76,13 @@ textarea:focus {
   outline-offset: 2px;
 }
 
-/* Attribute selector + pseudo-element together: any link that opens
-   in a new tab (target="_blank" — our WhatsApp/Instagram links) gets
-   an explicit "opens elsewhere" marker instead of relying on colour
-   alone. */
+/* Attribute selector + pseudo-element together */
 a[target="_blank"]::after {
   content: " ↗";
   font-size: 0.85em;
 }
 
-/* Header is one merged row: logo, main nav and auth nav sit side by side on a single line */
+/* Header is one merged row: logo, main, nav, and auth, nav side by side on a line */
 .site-header {
   display: flex;
   align-items: center;
@@ -115,9 +112,7 @@ a[target="_blank"]::after {
   padding: 0;
 }
 
-/* Child combinator (>) — only the direct ul child of nav becomes the
-   flex row; this deliberately does NOT reach into a nested ul, so a
-   dropdown added later would not be forced flat by accident. */
+/* Child combinator (>) - this deliberately does NOT reach into a nested ul */
 .site-header nav > ul.nav-list {
   display: flex;
   flex-wrap: wrap;
@@ -141,8 +136,7 @@ nav[aria-label="auth-nav"] > ul.nav-list {
   color: var(--color-red);
 }
 
-/* ------------------------------------------------------------
-   MAIN
+/* MAIN
    ------------------------------------------------------------ */
 main {
   max-width: 1100px;
@@ -150,20 +144,23 @@ main {
   padding: 1.5rem;
 }
 
-/* Margin collapse note: main > section headings (h2) originally had
-   margin-top AND the section itself had margin-top, and the two
-   adjacent top margins collapsed into a single larger gap instead of
-   adding together. Fixed by giving the spacing to the section only
-   (padding-top) and letting h2 keep margin-bottom only, so there is
-   no longer a vertical-margin pair that can collapse. */
+/* h2 margin-top collapsed into section margin-top. Solved by moving top spacing to section padding-top. */
 main section {
   padding-top: 2rem;
 }
 
 main section:first-child {
-  /* :first-child pseudo-class — the very first section on a page
-     should not repeat the 2rem gap the header already provides. */
+  /* :first-child pseudo-class — the very first section on a page should not repeat the 2rem gap the header already provides. */
   padding-top: 0.5rem;
+}
+
+main section ul {
+  padding-left: 1rem;
+}
+
+mark {
+  color: var(--color-black);
+  background-color: var(--color-red);
 }
 
 /* Buttons */
@@ -195,9 +192,7 @@ main section:first-child {
   color: var(--color-red);
 }
 
-/* Adjacent sibling selector — every label that is immediately
-   followed by a field pushes that field onto its own line, without
-   touching labels that wrap a checkbox/radio instead. */
+/* Adjacent sibling selector - every label that is followed by a field pushes that field onto its own line */
 label + input:not([type="radio"]):not([type="checkbox"]),
 label + select,
 label + textarea {
@@ -240,12 +235,11 @@ footer address p {
   font-style: normal;
 }
 
-/* Centering technique 2: flexbox — the socials list is centred as a
-   row regardless of how many icons/links it ends up holding. */
+/* Centering technique 2: flexbox — the socials list is centred as a row regardless of how many icons/links it ends up holding. */
 .socials-list {
   display: flex;
   flex-direction: row; /* explicit flex-direction, required at least once */
-  justify-content: center;
+  justify-content: left;
   gap: 1.25rem;
   list-style: none;
   margin-top: 0.5rem;
