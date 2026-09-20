@@ -1,0 +1,201 @@
+/*
+    Supplement CSS (Grid)
+*/
+
+.supplement-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin: 1rem 0;
+}
+
+.supplement-card {
+    margin: 0;
+    padding: 1rem;
+    background-color: var(--color-dark-gray);
+    border: 1px solid var(--color-white);
+    border-radius: 6px;
+    text-align: center;
+}
+
+.supplement-card img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.supplement-card figcaption {
+    margin-top: 0.5rem;
+    color: var(--color-white);
+    font-weight: 700;
+}
+
+.supplement-detail {
+    margin: 1rem 0;
+}
+
+.supplement-detail dt {
+    margin-top: 1rem;
+    color: var(--color-red);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.supplement-detail dt + dd {
+    margin: 0.5rem 0 1rem;
+    padding: 0.5rem 1rem;
+    border-left: 3px solid var(--color-red);
+    background-color: var(--color-dark-gray);
+}
+
+/*
+    bar CSS
+*/
+
+.bar-intro {
+    max-width: 800px;
+}
+
+.bar-image {
+    display: block;
+    width: 190px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.bar-table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-collapse: collapse;
+    background-color: var(--color-dark-grey);
+}
+
+#bar-menu {
+    scroll-margin-top: 1rem;
+}
+
+.bar-table caption {
+    padding: 0.75rem;
+    color: var(--color-red);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.bar-table th {
+    text-align: center;
+}
+
+.bar-table th,
+.bar-table td {
+    padding: 0.75rem;
+    border: 1px solid var(--color-gray);
+    vertical-align: middle;
+}
+
+.bar-table thead {
+    background-color: var(--color-red);
+    color: var(--color-white);
+}
+
+.bar-table td:nth-child(2) {
+    text-align: left;
+}
+
+.bar-table td:not(:nth-child(2)) {
+    text-align: center;
+}
+
+.bar-table tbody tr:hover {
+    background-color: rgba(186, 43, 43, 0.1);
+}
+
+.bar-note {
+    display: block;
+    color: var(--color-gray)
+}
+
+/*
+    additional (aside
+*/
+
+.additional {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 2px solid var(--color-gray);
+    border-radius: 6px;
+    background-color: var(--color-dark-gray);
+    text-align: center;
+}
+
+.additional a {
+    font-weight: 700;
+}
+
+.supplement-additional {
+    margin-top: 2rem;
+}
+
+.safety-steps {
+    display: grid;
+    gap: 1rem;
+    padding-left: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.safety-steps li {
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--color-red);
+    background-color: var(--color-dark-gray);
+}
+
+.safety-steps li::marker {
+    color: var(--color-red);
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.nutrition-warning {
+    position: relative;
+    margin-top: 2rem;
+    padding: 1.5rem; 
+    border: 3px solid var(--color-red);
+    border-radius: 6px;
+    background-color: var(--color-dark-gray);
+}
+
+.nutrition-warning::before {
+    content: "!";
+    position: absolute;
+    top: 0.25rem;
+    right: 1.25rem;
+    color: var(--color-red);
+    font-size: 2.5rem;
+    font-weight: 400;
+}
+
+.nutrition-warning mark {
+    background-color: var(--color-red);
+    padding: 0.1rem 0.25rem
+}
+
+.nutrients {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1rem;
+    list-style: none;
+}
+
+.nutrients > li {
+    flex: 1;
+    padding: 2rem;
+    border: 2px solid var(--color-gray);
+    border-radius: 6px;
+}

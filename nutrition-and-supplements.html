@@ -9,6 +9,8 @@
     >
     <!-- Author: Muratov Anuar from group SE-2534 -->
     <meta name="author" content="Muratov Anuar, SE-2534">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/anuar.css">
 
     <!--Nutrition has its own page because food and supplements need more detailed explanation than the general services page-->
     <title>RixFit - Nutrition and Supplements</title>
@@ -17,11 +19,11 @@
   <body id="top">
 
     <!--Navigation is kept consistent across all pages so visitors can reach every part of the website-->
-    <header>
+    <header class="site-header">
         <h1>RixFit Fitness Club</h1>
 
         <nav aria-label="main-nav">
-            <ul>
+            <ul class="nav-list">
                 <li><a href="index.html">Main page</a></li>
                 <li><a href="programs-and-trainers.html">Programs and Trainers </a></li>
                 <li><a href="services.html">Services</a></li>
@@ -43,40 +45,57 @@
 
     <main>
       <h2>Nutrition and Supplements</h2>
-        <section>
+        <section class="bar-section" id="bar-menu">
             <h2>Bar</h2>
-            <p>
+            <p class="bar-intro">
                 RixFit Fitness offers its visitors a variety of drinks, stretching from Moroccan tea to milkshakes.
                 On the object there are 18 different positions, ranging from 1600-2200 &#8376;. Bar works in <b>07:00-23:00</b> during workdays,
                 and <b>09:00-22:00</b> during weekends.
             </p>
-            <table>
+            <table class="bar-table">
                 <caption>Tea</caption>
                 <thead>
                     <tr>
+                        <th scope="col">Image</th>
                         <th scope="col">Tea</th>
                         <th scope="col">Pricing</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <td><img 
+                            class="bar-image" 
+                            src="images/seabucktorn-lime-tea.jpg" 
+                            alt="Seabucktorn-Lime tea">
+                        </td>
                         <td>Sea Bucktorn-Lime</td>
                         <td>1800 &#8376;</td>
                     </tr>
                     <tr>
+                        <td><img 
+                            class="bar-image" 
+                            src="images/raspberry-cinnamon-tea.jpg" 
+                            alt="Raspberry-Cinnamon tea">
+                        </td>
                         <td>Raspberry-Cinnamon</td>
                         <td>1800 &#8376;</td>
                     </tr>
                     <tr>
+                        <td><img 
+                            class="bar-image" 
+                            src="images/moroccan-mint-tea.jpg" 
+                            alt="Moroccan tea">
+                        </td>
                         <td>Moroccan</td>
                         <td>1800 &#8376;</td>
                     </tr>
                 </tbody>
             </table>
-            <table>
+            <table class="bar-table">
                 <caption>Fresh Juices</caption>
                 <thead>
                     <tr>
+                        <th scope="col">Image</th>
                         <th scope="col">Fresh Juice</th>
                         <th scope="col">Price(250 ml)</th>
                         <th scope="col">Price(400 ml)</th>
@@ -84,69 +103,124 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td><img 
+                            class="bar-image" 
+                            src="images/apple-fresh.jpg" 
+                            alt="Apple Fresh">
+                        </td>
                         <td>Apple</td>
                         <td>1600 &#8376;</td>
                         <td>2200 &#8376;</td>
                     </tr>
                     <tr>
+                        <td><img 
+                            class="bar-image" 
+                            src="images/apple-carrot-fresh.jpg" 
+                            alt="Apple-Carrot Fresh">
+                        </td>
                         <td>Apple-Carrot</td>
                         <td>1600 &#8376;</td>
                         <td>2200 &#8376;</td>
                     </tr>
                     <tr>
+                        <td><img 
+                            class="bar-image" 
+                            src="images/carrot-fresh.jpg" 
+                            alt="Carrot Fresh">
+                        </td>
                         <td>Carrot</td>
                         <td>1600 &#8376;</td>
                         <td>2200 &#8376;</td>
                     </tr>
                     <tr>
+                        <td><img 
+                            class="bar-image" 
+                            src="images/orange-carrot-apple-fresh.jpg" 
+                            alt="Orange-Carrot-Apple Fresh">
+                        </td>
                         <td>Orange-Apple-Carrot</td>
                         <td>1600 &#8376;</td>
                         <td>2200 &#8376;</td>
                     </tr>
                     <tr>
+                        <td><img 
+                            class="bar-image" 
+                            src="images/orange-apple-fresh.webp" 
+                            alt="Orange-Apple Fresh">
+                        </td>
                         <td>Orange-Apple</td>
                         <td>1600 &#8376;</td>
                         <td>2200 &#8376;</td>
                     </tr>
                     <tr>
+                        <td><img 
+                            class="bar-image" 
+                            src="images/orange-carrot-fresh.png" 
+                            alt="Orange-Carrot Fresh">
+                        </td>
                         <td>Orange-Carrot</td>
                         <td>1600 &#8376;</td>
                         <td>2200 &#8376;</td>
                     </tr>
                     <tr>
+                        <td><img 
+                            class="bar-image" 
+                            src="images/orange-fresh.webp" 
+                            alt="Orange Fresh">
+                        </td>
                         <td>Orange</td>
                         <td>1600 &#8376;</td>
                         <td>2200 &#8376;</td>
                     </tr>
                 </tbody>
             </table>
-            <table>
+            <table class="bar-table">
                 <caption>Milkshake</caption>
                 <thead>
                     <tr>
+                        <th scope="col">Image</th>
                         <th scope="col">Milkshake</th>
                         <th scope="col">Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <td><img 
+                            class="bar-image" 
+                            src="images/milkshake.jpg" 
+                            alt="Milkshake">
+                        </td>
                         <td>Milkshake</td>
                         <td>1900 &#8376;</td>
                     </tr>
                 </tbody>
             </table>
 
-            <small>
+            <small class="bar-note">
                 <sup>*</sup>Prices and availability are susceptible to change.<sup>*</sup>
             </small>
         </section>
-        <section>
+        <section class="supplements-section">
             <h2>Supplements</h2>
             <p>
                 Supplements are a great way to boost recovery and help build muscle for anyone who has a hard time filling out the necessary elements.
                 They are all varied and are used in different occasions. For example, if you quickly get tired, consider using pre-workout supplement.
             </p>
-            <dl>
+            <div class="supplement-gallery" aria-label="Supplements">
+                <figure class="supplement-card supplement-card">
+                    <img src="images/wheyprotein.jpg" alt="Whey Protein card">
+                    <figcaption>Whey Protein</figcaption>
+                </figure>
+                <figure class="supplement-card">
+                    <img src="images/creatine.png" alt="Creatine card">
+                    <figcaption>Creatine</figcaption>
+                </figure>
+                <figure class="supplement-card">
+                    <img src="images/preworkout.jpg" alt="Pre-Workout card">
+                    <figcaption>Pre-Workout</figcaption>
+                </figure>
+            </div>
+            <dl class="supplement-detail">
                 <dt>Whey Protein</dt>
                 <dd>
                     A protein supplement used in case a person lacks in proteins in his diet to fill out the rest of the intake. Helps in recovery.
@@ -162,7 +236,7 @@
                     That's where <i>Pre-Workout</i> comes in, with an immediate source of energy in forms of caffeine and quick carbs.
                 </dd>
             </dl>
-            <p>
+            <p class="additional">
                 More general nutrition information can be found from the 
                 <a 
                     href="https://www.who.int/news-room/fact-sheets/detail/healthy-diet" 
@@ -173,9 +247,9 @@
                 </a>.
             </p>
         </section>
-        <section>
+        <section class="supplement-additional">
             <h2>Before Supplement Use</h2>
-            <ol type="1">
+            <ol type="1" class="safety-steps">
                 <li>
                     Know exactly what do you need from your training. Whether it is for strength, flexibility or hypertrophy.
                 </li>
@@ -186,14 +260,14 @@
 
         <hr>
 
-        <aside>
+        <aside class="nutrition-warning">
             <h2>Nutrition Warning</h2>
             <p>
                 Supplements are great as its name suggests in case you have problem satisfying your <mark>intake with just your diet.</mark>
                 <em>But by no means should it replace your regular meals.</em>
             </p>
 
-            <ul>
+            <ul class="nutrients">
                 <li>
                     Main (Necessary) Nutrients
                     <ul>
