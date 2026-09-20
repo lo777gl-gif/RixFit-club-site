@@ -1,0 +1,280 @@
+/* RixFit — base.css
+   Written by the team together. Holds the shared colour palette, typography, and the styling of header, nav, main and footer.
+
+   Load order on every page: base.css first, personal stylesheet second — so personal files can build on / override these rules.
+
+   COLOUR PALETTE (5 colours max)
+   1. --color-black       #1a1a1a  hex  - main background. Keeps enough contrast headroom for red accents
+   2. --color-dark-gray   #333333  hex  - secondary surface (cards, footer) one step lighter than the background. Used to separate content blocks
+   3. --color-gray        #999999  hex  - muted / secondary text and borders. Keeps captions and metadata from competing with body text
+   4. --color-white       white    NAMED colour - primary text on dark surfaces. Simplest possible value for the colour that needs zero ambiguity.
+   5. --color-red         rgb(230, 57, 70)  rgb - the single accent colour: buttons, links, hover states. 
+*/
+:root {
+  --color-black: #1a1a1a;
+  --color-dark-gray: #333333;
+  --color-gray: #999999;
+  --color-white: white;
+  --color-red: rgb(230, 57, 70);
+
+  /* Two font families */
+  --font-heading: "Arial Black", "Segoe UI", Arial, sans-serif;
+  --font-body: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Universal selector */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Type selectors */
+body {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Grouping selector */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+h4 { font-size: 1rem; }
+
+p { margin-bottom: 0.75rem; }
+
+a {
+  color: var(--color-red);
+  text-decoration: none;
+}
+
+/* Pseudo-class: hover */
+a:hover {
+  text-decoration: underline;
+}
+
+/* Pseudo-class: focus — keyboard users get the same signal mouse users get from :hover, required for real accessibility. */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid var(--color-red) !important;
+  /* !important justified: this is the one deliberate use on the whole site */
+  outline-offset: 2px;
+}
+
+/* Attribute selector + pseudo-element together: any link that opens
+   in a new tab (target="_blank" — our WhatsApp/Instagram links) gets
+   an explicit "opens elsewhere" marker instead of relying on colour
+   alone. */
+a[target="_blank"]::after {
+  content: " ↗";
+  font-size: 0.85em;
+}
+
+/* Header is one merged row: logo, main nav and auth nav sit side by side on a single line */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  background-color: var(--color-dark-gray);
+  padding: 0.75rem 1.5rem;
+  border-bottom: 2px solid var(--color-red);
+}
+
+.site-header h1 {
+  margin-bottom: 0;
+  line-height: 0; /* collapses the heading box tightly around the logo image */
+}
+
+/* Logo image used in place of the site title text. */
+.logo {
+  display: block;
+  height: 48px;
+  width: auto;
+}
+
+/* Descendant selector */
+.site-header nav {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Child combinator (>) — only the direct ul child of nav becomes the
+   flex row; this deliberately does NOT reach into a nested ul, so a
+   dropdown added later would not be forced flat by accident. */
+.site-header nav > ul.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.25rem;
+  list-style: none;
+}
+
+nav[aria-label="auth-nav"] > ul.nav-list {
+  justify-content: flex-end;
+}
+
+.nav-list a {
+  color: var(--color-white);
+  font-weight: 700;
+  padding: 0.25rem 0;
+}
+
+.nav-list a:hover {
+  color: var(--color-red);
+}
+
+/* ------------------------------------------------------------
+   MAIN
+   ------------------------------------------------------------ */
+main {
+  max-width: 1100px;
+  margin: 0 auto; /* Centering technique 1: margin auto on a fixed-width block */
+  padding: 1.5rem;
+}
+
+/* Margin collapse note: main > section headings (h2) originally had
+   margin-top AND the section itself had margin-top, and the two
+   adjacent top margins collapsed into a single larger gap instead of
+   adding together. Fixed by giving the spacing to the section only
+   (padding-top) and letting h2 keep margin-bottom only, so there is
+   no longer a vertical-margin pair that can collapse. */
+main section {
+  padding-top: 2rem;
+}
+
+main section:first-child {
+  /* :first-child pseudo-class — the very first section on a page
+     should not repeat the 2rem gap the header already provides. */
+  padding-top: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.6rem 1.25rem;
+  border: 2px solid var(--color-red);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--color-red);
+  color: var(--color-white);
+}
+
+.btn-primary {
+  background-color: var(--color-red);
+  color: var(--color-white);
+  border-color: var(--color-red);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--color-red);
+}
+
+/* Adjacent sibling selector — every label that is immediately
+   followed by a field pushes that field onto its own line, without
+   touching labels that wrap a checkbox/radio instead. */
+label + input:not([type="radio"]):not([type="checkbox"]),
+label + select,
+label + textarea {
+  display: block;
+  margin: 0.25rem 0 0.75rem;
+  width: 100%;
+  max-width: 360px;
+  padding: 0.4rem;
+  background-color: var(--color-dark-gray);
+  color: var(--color-white);
+  border: 1px solid var(--color-gray);
+  border-radius: 3px;
+}
+
+fieldset {
+  border: 1px solid var(--color-gray);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+legend {
+  font-family: var(--font-heading);
+  padding: 0 0.5rem;
+  color: var(--color-red);
+}
+
+/* ------------------------------------------------------------
+   FOOTER
+   ------------------------------------------------------------ */
+footer {
+  background-color: var(--color-dark-gray);
+  color: var(--color-gray);
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Descendant selector */
+footer address p {
+  margin-bottom: 0.25rem;
+  font-style: normal;
+}
+
+/* Centering technique 2: flexbox — the socials list is centred as a
+   row regardless of how many icons/links it ends up holding. */
+.socials-list {
+  display: flex;
+  flex-direction: row; /* explicit flex-direction, required at least once */
+  justify-content: center;
+  gap: 1.25rem;
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+/* Positioning: fixed — stays on screen while the visitor scrolls a
+   long page (rules.html, programs-and-trainers.html) so returning to
+   the top never requires hunting for the link at the very bottom. */
+.back-to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.back-to-top:hover {
+  text-decoration: none;
+  background-color: var(--color-white);
+  color: var(--color-red);
+}
+
+/* Positioning: static — every element on the page that we do NOT
+   touch (body, h1, p, most of main) is left at the browser default,
+   position: static. That is not a bug: static is correct here
+   because none of that content needs to be pulled out of normal
+   document flow or act as an anchor for an absolutely positioned
+   child, so there is nothing to declare. */

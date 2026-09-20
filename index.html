@@ -9,14 +9,23 @@
     <meta name="author" content="Yeren Edige, SE-2534">
     <meta name="description" content="Main web page of RixFit Fitness">
     <title>RixFit — Main</title>
+    <link rel="stylesheet" href="css/base.css">
+
+    <!-- index.html is the shared team page: it is styled by base.css -->
+    <!-- Cascade/priority demo: one internal style block, but because this block loads AFTER base.css it wins by source order alone -->
+    <style>
+        .site-header {
+            border-bottom-color: var(--color-white);
+        }
+    </style>
 </head>
 <body id="top">
 
-    <header>
-        <h1>RixFit Fitness Club</h1>
+    <header class="site-header">
+        <h1><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1>
 
         <nav aria-label="main-nav">
-            <ul>
+            <ul class="nav-list">
                 <li><a href="index.html">Main page</a></li>
                 <li><a href="programs-and-trainers.html">Programs and Trainers </a></li>
                 <li><a href="services.html">Services</a></li>
@@ -28,7 +37,7 @@
         </nav>
 
         <nav aria-label="auth-nav">
-            <ul>
+            <ul class="nav-list">
                 <li><a href="login.html">Sign in</a></li>
                 <li><a href="register.html">Sign up</a></li>
             </ul>
@@ -65,7 +74,8 @@
         </section>
 
         <section id="booking">
-            <h2>Book a Training Session</h2>
+            <!-- Inline-style demo: An inline style always wins over any class/id rule that is not !important -->
+            <h2 style="color: white;">Book a Training Session</h2>
             <!-- Form doesn't work, because it has no server part -->
             <form action="#" method="GET">
                 <fieldset>
@@ -91,9 +101,9 @@
                     <input type="date" id="date" name="date">
                     <br>
 
-                    Select Gender:
+                    Select Gender: <br>
                     <label for="male">Male</label>
-                    <input type="radio" id="male" name="gender" value="male">
+                    <input type="radio" id="male" name="gender" value="male"> <br>
                     <label for="female">Female</label>
                     <input type="radio" id="female" name="gender" value="female">
                     <br><br>
@@ -113,8 +123,8 @@
                     <input type="checkbox" id="agree" name="agree" required>
                     <br>
 
-                    <button type="submit">Submit</button>
-                    <button type="reset">Clear Form</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn">Clear Form</button>
                 </fieldset>
             </form>
         </section>
@@ -132,7 +142,7 @@
 
         <section id="socials">
             <h3>Follow &amp; Message Us</h3>
-            <ul>
+            <ul class="socials-list">
                 <li>
                     <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
                 </li>
@@ -143,7 +153,7 @@
         </section>
 
         <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
-        <p><a href="#top">Back to the top</a></p>
+        <p><a href="#top" class="back-to-top">Back to the top</a></p>
     </footer>
 </body>
 </html>
