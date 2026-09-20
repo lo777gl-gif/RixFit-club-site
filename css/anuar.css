@@ -1,3 +1,8 @@
+.site-header h1 {
+  margin-bottom: 0;
+  line-height: 1.25;
+}
+
 /*
     nutrition-and-supplements.html: Supplement CSS (Grid)
 */
@@ -71,7 +76,7 @@
     width: 100%;
     margin-bottom: 1.5rem;
     border-collapse: collapse;
-    background-color: var(--color-dark-grey);
+    background-color: var(--color-dark-gray);
 }
 
 #bar-menu {
@@ -102,7 +107,10 @@
     background-color: var(--color-red);
     color: var(--color-white);
 }
-
+.bar-table td:first-child {
+    width:190px;
+    padding: 0;
+}
 .bar-table td:nth-child(2) {
     text-align: left;
 }
@@ -112,7 +120,7 @@
 }
 
 .bar-table tbody tr:hover {
-    background-color: rgba(186, 43, 43, 0.1);
+    background-color: var(--color-black);
 }
 
 .bar-note {
@@ -245,6 +253,11 @@
     grid-column: 1/ -1;
 }
 
+h3.service-title {
+    color: var(--color-white);
+    position: static;
+}
+
 .service-grid .service-title {
     color: var(--color-red);
 }
@@ -286,6 +299,23 @@
     text-align: center;
     margin-bottom: 2rem;
     margin-top: 2rem;
+}
+
+.service-quote {
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--color-red);
+    background-color: var(--color-black);
+}
+
+.service-quote p {
+    font-style: italic;
+}
+
+.service-quote figcaption {
+    color: var(--color-gray);
+    font-size: 0.75rem;
+    text-align: right;
 }
 
 /*
