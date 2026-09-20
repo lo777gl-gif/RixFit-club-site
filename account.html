@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Yeren Yedige, SE-2534">
+    <meta name="description" content="Personal member dashboard for RixFit Fitness Club.">
+    <title>RixFit — My Account</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/yeren-yedige.css">
+</head>
+
+<body id="top">
+
+    <header class="site-header">
+        <h1><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1>
+
+        <nav aria-label="main-nav">
+            <ul class="nav-list">
+                <li><a href="index.html">Main page</a></li>
+                <li><a href="programs-and-trainers.html">Programs and Trainers </a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="rules.html">Rules</a></li>
+                <li><a href="gym-equipment.html">Gym Equipment Guide</a></li>
+                <li><a href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
+            </ul>
+        </nav>
+
+        <nav aria-label="auth-nav">
+            <ul class="nav-list">
+                <li><a href="login.html">Sign in</a></li>
+                <li><a href="register.html">Sign up</a></li>
+                <li><a href="account.html">My account</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="account-intro" aria-labelledby="account-heading">
+            <h2 id="account-heading">Welcome back, Yeren</h2>
+            <p>Your membership, next session and weekly plan in one place.</p>
+            <a class="btn btn-primary" href="#schedule">View my schedule</a>
+        </section>
+
+        <section class="account-grid" aria-label="Account overview">
+            <article class="account-panel">
+                <h3>Membership</h3>
+                <ul class="membership-list">
+                    <li><span>Plan</span><strong>All access</strong></li>
+                    <li><span>Status</span><strong>Active</strong></li>
+                    <li><span>Member since</span><strong>September 2026</strong></li>
+                    <li><span>Renews</span><strong>30 Sep 2026</strong></li>
+                </ul>
+                <label for="monthly-progress">September progress</label>
+                <progress id="monthly-progress" value="68" max="100">68%</progress>
+            </article>
+
+            <article class="account-panel">
+                <h3>Next session</h3>
+                <p><strong>Strength foundations</strong></p>
+                <p class="account-note">Tuesday, 18:30 · Coach Aigerim · Studio 02</p>
+                <p>Bring your water bottle and leave ten minutes for a calm warm-up.</p>
+                <a class="btn" href="programs-and-trainers.html">View program</a>
+            </article>
+        </section>
+
+        <section id="schedule" class="account-panel" aria-labelledby="schedule-heading">
+            <h3 id="schedule-heading">Upcoming sessions</h3>
+            <ul class="account-list">
+                <li><strong>Strength foundations</strong><span class="session-time">Tue / 18:30</span></li>
+                <li><strong>Open swim</strong><span class="session-time">Thu / 07:30</span></li>
+                <li><strong>Mobility reset</strong><span class="session-time">Sat / 11:00</span></li>
+            </ul>
+        </section>
+
+        <section class="account-panel" aria-labelledby="actions-heading">
+            <h3 id="actions-heading">Quick actions</h3>
+            <div class="account-actions">
+                <a class="btn" href="services.html#pool">Book the pool</a>
+                <a class="btn" href="reviews.html">Share feedback</a>
+                <a class="btn" href="login.html">Sign out</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <section id="contacts">
+            <h2>Contacts</h2>
+            <address>
+                <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
+                <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
+                <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+            </address>
+        </section>
+
+        <section id="socials">
+            <h3>Follow &amp; Message Us</h3>
+            <ul class="socials-list">
+                <li><a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+                <li><a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            </ul>
+        </section>
+
+        <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
+        <p><a href="#top" class="back-to-top">Back to the top</a></p>
+    </footer>
+</body>
+
+</html>
