@@ -4,10 +4,10 @@ Web Technologies 1 Project.
 The Real RixFit has no real own web Site, Address: **Turan Avenue 37/9**.
 
 ## Authors
-* **Auyelkhan Nuraly, Yeren Yedige, Anuar Muratov From SE-2534** — `index.html`
-* **Auyelkhan Nuraly** — `programs-and-trainers.html`, `rules.html`, `register.html`
-* **Yeren Yedige** — `gym-equipment.html`, `reviews.html`, `account.html`
-* **Anuar Muratov** — `nutrition-and-supplements.html`, `services.html`, `login.html`
+* **Auyelkhan Nuraly, Yeren Yedige, Anuar Muratov From SE-2534** — `index.html`, `base.css`
+* **Auyelkhan Nuraly** — `programs-and-trainers.html`, `rules.html`, `register.html`, `nuraly.css`
+* **Yeren Yedige** — `gym-equipment.html`, `reviews.html`, `account.html`, `yeren-yedige.css`
+* **Anuar Muratov** — `nutrition-and-supplements.html`, `services.html`, `login.html`, `anuar.css`
 
 ## Project Structure
 * `index.html` — main page of RixFit.
@@ -21,8 +21,12 @@ The Real RixFit has no real own web Site, Address: **Turan Avenue 37/9**.
 * `register.html` — page of Registration.
 * `account.html` — page of User Profile.
 * `images/` — real images from the RixFit.
+* `css/base.css` — main css file, that is the common stylesheet
+* `css/nuraly.css` — personal css file, implements Nuraly's web pages
+* `css/yeren-yedige.css` — personal css file, implements Yeren's web pages
+* `css/anuar.css` — personal css file, implements Anuar's web pages
 
 ## Notes to the project
-* All pages are written in pure HTML5 without using CSS and JavaScript.
+* All pages are written in pure HTML5 and CSS without using JavaScript.
 * Texts and contact information are completely real, without fish text (Lorem ipsum).
 * Each page has been validated through the W3C validator and is error-free.
