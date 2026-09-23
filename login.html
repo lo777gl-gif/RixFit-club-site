@@ -9,6 +9,7 @@
     <meta name="description" content="Login of RixFit Fitness">
     <title>RixFit — Login</title>
     <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/nuraly.css">
 </head>
 
 <body>
@@ -25,22 +26,20 @@
     </header>
 
     <main>
-        <h2>Login</h2>
+        <h2 id="register-align-text">Login</h2>
 
-        <p id="message" style="display:none;"></p>
+        <p id="message" class="form-message"></p>
 
-        <form id="loginForm" method="post" action="/api/login">
-            <label for="loginIdentifier">Username or Email:</label><br>
+        <form id="loginForm" class="auth-form" method="post" action="/api/login">
+            <label for="loginIdentifier">Username or Email:</label>
             <input type="text" id="loginIdentifier" name="loginIdentifier" required>
-            <br>
-            <label for="password">Password:</label><br>
+            <label for="password">Password:</label>
             <input type="password" id="password" name="password" required minlength="6">
-            <br><br>
             <button class="btn btn-primary" type="submit">Sign In</button>
         </form>
 
-        <p>Don't have an account yet? <a href="register.html">Sign up</a></p>
-    </main> <br> <br>
+        <p id="register-align-text">Don't have an account yet? <a href="register.html">Sign up</a></p>
+    </main>
 
 
     <footer>
