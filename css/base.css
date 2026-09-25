@@ -187,6 +187,10 @@ mark {
   border-color: var(--color-red);
 }
 
+.btn-secondary {
+  float: right;
+}
+
 .btn-primary:hover {
   background-color: transparent;
   color: var(--color-red);

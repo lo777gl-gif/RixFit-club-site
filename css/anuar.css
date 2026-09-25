@@ -282,8 +282,8 @@ h3.service-title {
 
 .service-image {
     display: block;
-    width: 100%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
     object-fit: cover;
     border-radius: 6px;
 }
