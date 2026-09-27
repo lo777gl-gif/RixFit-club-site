@@ -1,18 +1,6 @@
-.site-header h1 {
-  margin-bottom: 0;
-  line-height: 1.25;
-}
-
 /*
     nutrition-and-supplements.html: Supplement CSS (Grid)
 */
-
-.supplement-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
-    margin: 1rem 0;
-}
 
 .supplement-card {
     margin: 0;
@@ -243,15 +231,8 @@
     service.html: Services Grid
 */
 
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 1.25rem;
-}
-
 h3.service-title {
     color: var(--color-red);
-    position: static;
 }
 
 .service-card {
@@ -281,7 +262,6 @@ h3.service-title {
 }
 
 .service-fact {
-    grid-column: 1/ -1;
     display: grid;
     place-items: center;
     padding: 1.5rem;

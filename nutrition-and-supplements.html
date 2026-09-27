@@ -25,31 +25,33 @@
 
     <!--Navigation is kept consistent across all pages so visitors can reach every part of the website-->
     <header class="site-header">
-        <h1><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1>
-
-        <nav aria-label="main-nav">
-            <ul class="nav-list">
-                <li><a href="index.html">Main page</a></li>
-                <li><a href="programs-and-trainers.html">Programs and Trainers </a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="rules.html">Rules</a></li>
-                <li><a href="gym-equipment.html">Gym Equipment Guide</a></li>
-                <li><a href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg" data-bs-theme="dark" aria-label="main-nav">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteMenu" aria-controls="siteMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="siteMenu">
+                    <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Main page</a></li>
+                        <li class="nav-item"><a class="nav-link" href="programs-and-trainers.html">Programs and Trainers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+                        <li class="nav-item"><a class="nav-link" href="rules.html">Rules</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gym-equipment.html">Gym Equipment Guide</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
+                    </ul>
+                    <ul class="navbar-nav" aria-label="auth-nav">
+                        <li class="nav-item"><a class="nav-link" href="login.html">Sign in</a></li>
+                        <li class="nav-item"><a class="nav-link" href="register.html">Sign up</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
-
-        <nav aria-label="auth-nav">
-            <ul class="nav-list">
-                <li><a href="login.html">Sign in</a></li>
-                <li><a href="register.html">Sign up</a></li>
-            </ul>
-        </nav>
-
     </header>
 
-    <main>
-      <h2>Nutrition and Supplements</h2>
+    <main class="container py-4">
+      <h1>Nutrition and Supplements</h1>
         <section class="bar-section" id="bar-menu">
             <h2>Bar</h2>
             <p class="bar-intro">
@@ -57,150 +59,155 @@
                 On the object there are 18 different positions, ranging from 1600-2200 &#8376;. Bar works in <b>07:00-23:00</b> during workdays,
                 and <b>09:00-22:00</b> during weekends.
             </p>
-            <table class="bar-table">
-                <caption>Tea</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Tea</th>
-                        <th scope="col">Pricing</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img 
-                            class="bar-image" 
-                            src="images/seabucktorn-lime-tea.jpg" 
-                            alt="Seabucktorn-Lime tea">
-                        </td>
-                        <td>Sea Bucktorn-Lime</td>
-                        <td>1800 &#8376;</td>
-                    </tr>
-                    <tr>
-                        <td><img 
-                            class="bar-image" 
-                            src="images/raspberry-cinnamon-tea.jpg" 
-                            alt="Raspberry-Cinnamon tea">
-                        </td>
-                        <td>Raspberry-Cinnamon</td>
-                        <td>1800 &#8376;</td>
-                    </tr>
-                    <tr>
-                        <td><img 
-                            class="bar-image" 
-                            src="images/moroccan-mint-tea.jpg" 
-                            alt="Moroccan tea">
-                        </td>
-                        <td>Moroccan</td>
-                        <td>1800 &#8376;</td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="bar-table">
-                <caption>Fresh Juices</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Fresh Juice</th>
-                        <th scope="col">Price(250 ml)</th>
-                        <th scope="col">Price(400 ml)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img 
-                            class="bar-image" 
-                            src="images/apple-fresh.jpg" 
-                            alt="Apple Fresh">
-                        </td>
-                        <td>Apple</td>
-                        <td>1600 &#8376;</td>
-                        <td>2200 &#8376;</td>
-                    </tr>
-                    <tr>
-                        <td><img 
-                            class="bar-image" 
-                            src="images/apple-carrot-fresh.jpg" 
-                            alt="Apple-Carrot Fresh">
-                        </td>
-                        <td>Apple-Carrot</td>
-                        <td>1600 &#8376;</td>
-                        <td>2200 &#8376;</td>
-                    </tr>
-                    <tr>
-                        <td><img 
-                            class="bar-image" 
-                            src="images/carrot-fresh.jpg" 
-                            alt="Carrot Fresh">
-                        </td>
-                        <td>Carrot</td>
-                        <td>1600 &#8376;</td>
-                        <td>2200 &#8376;</td>
-                    </tr>
-                    <tr>
-                        <td><img 
-                            class="bar-image" 
-                            src="images/orange-carrot-apple-fresh.jpg" 
-                            alt="Orange-Carrot-Apple Fresh">
-                        </td>
-                        <td>Orange-Apple-Carrot</td>
-                        <td>1600 &#8376;</td>
-                        <td>2200 &#8376;</td>
-                    </tr>
-                    <tr>
-                        <td><img 
-                            class="bar-image" 
-                            src="images/orange-apple-fresh.webp" 
-                            alt="Orange-Apple Fresh">
-                        </td>
-                        <td>Orange-Apple</td>
-                        <td>1600 &#8376;</td>
-                        <td>2200 &#8376;</td>
-                    </tr>
-                    <tr>
-                        <td><img 
-                            class="bar-image" 
-                            src="images/orange-carrot-fresh.png" 
-                            alt="Orange-Carrot Fresh">
-                        </td>
-                        <td>Orange-Carrot</td>
-                        <td>1600 &#8376;</td>
-                        <td>2200 &#8376;</td>
-                    </tr>
-                    <tr>
-                        <td><img 
-                            class="bar-image" 
-                            src="images/orange-fresh.webp" 
-                            alt="Orange Fresh">
-                        </td>
-                        <td>Orange</td>
-                        <td>1600 &#8376;</td>
-                        <td>2200 &#8376;</td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="bar-table">
-                <caption>Milkshake</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Milkshake</th>
-                        <th scope="col">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img 
-                            class="bar-image" 
-                            src="images/milkshake.jpg" 
-                            alt="Milkshake">
-                        </td>
-                        <td>Milkshake</td>
-                        <td>1900 &#8376;</td>
-                    </tr>
-                </tbody>
-            </table>
-
+            <div class="table-responsive">
+                <table class="bar-table">
+                    <caption class="bar-table caption-top">Tea</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Tea</th>
+                            <th scope="col">Pricing</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img 
+                                class="bar-image" 
+                                src="images/seabucktorn-lime-tea.jpg" 
+                                alt="Seabucktorn-Lime tea">
+                            </td>
+                            <td>Sea Bucktorn-Lime</td>
+                            <td>1800 &#8376;</td>
+                        </tr>
+                        <tr>
+                            <td><img 
+                                class="bar-image" 
+                                src="images/raspberry-cinnamon-tea.jpg" 
+                                alt="Raspberry-Cinnamon tea">
+                            </td>
+                            <td>Raspberry-Cinnamon</td>
+                            <td>1800 &#8376;</td>
+                        </tr>
+                        <tr>
+                            <td><img 
+                                class="bar-image" 
+                                src="images/moroccan-mint-tea.jpg" 
+                                alt="Moroccan tea">
+                            </td>
+                            <td>Moroccan</td>
+                            <td>1800 &#8376;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="bar-table">
+                    <caption class="bar-table caption-top">Fresh Juices</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Fresh Juice</th>
+                            <th scope="col">Price(250 ml)</th>
+                            <th scope="col">Price(400 ml)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img 
+                                class="bar-image" 
+                                src="images/apple-fresh.jpg" 
+                                alt="Apple Fresh">
+                            </td>
+                            <td>Apple</td>
+                            <td>1600 &#8376;</td>
+                            <td>2200 &#8376;</td>
+                        </tr>
+                        <tr>
+                            <td><img 
+                                class="bar-image" 
+                                src="images/apple-carrot-fresh.jpg" 
+                                alt="Apple-Carrot Fresh">
+                            </td>
+                            <td>Apple-Carrot</td>
+                            <td>1600 &#8376;</td>
+                            <td>2200 &#8376;</td>
+                        </tr>
+                        <tr>
+                            <td><img 
+                                class="bar-image" 
+                                src="images/carrot-fresh.jpg" 
+                                alt="Carrot Fresh">
+                            </td>
+                            <td>Carrot</td>
+                            <td>1600 &#8376;</td>
+                            <td>2200 &#8376;</td>
+                        </tr>
+                        <tr>
+                            <td><img 
+                                class="bar-image" 
+                                src="images/orange-carrot-apple-fresh.jpg" 
+                                alt="Orange-Carrot-Apple Fresh">
+                            </td>
+                            <td>Orange-Apple-Carrot</td>
+                            <td>1600 &#8376;</td>
+                            <td>2200 &#8376;</td>
+                        </tr>
+                        <tr>
+                            <td><img 
+                                class="bar-image" 
+                                src="images/orange-apple-fresh.webp" 
+                                alt="Orange-Apple Fresh">
+                            </td>
+                            <td>Orange-Apple</td>
+                            <td>1600 &#8376;</td>
+                            <td>2200 &#8376;</td>
+                        </tr>
+                        <tr>
+                            <td><img 
+                                class="bar-image" 
+                                src="images/orange-carrot-fresh.png" 
+                                alt="Orange-Carrot Fresh">
+                            </td>
+                            <td>Orange-Carrot</td>
+                            <td>1600 &#8376;</td>
+                            <td>2200 &#8376;</td>
+                        </tr>
+                        <tr>
+                            <td><img 
+                                class="bar-image" 
+                                src="images/orange-fresh.webp" 
+                                alt="Orange Fresh">
+                            </td>
+                            <td>Orange</td>
+                            <td>1600 &#8376;</td>
+                            <td>2200 &#8376;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="bar-table">
+                    <caption class="bar-table caption-top">Milkshake</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Milkshake</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img 
+                                class="bar-image" 
+                                src="images/milkshake.jpg" 
+                                alt="Milkshake">
+                            </td>
+                            <td>Milkshake</td>
+                            <td>1900 &#8376;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <small class="bar-note">
                 <sup>*</sup>Prices and availability are susceptible to change.<sup>*</sup>
             </small>
@@ -211,19 +218,25 @@
                 Supplements are a great way to boost recovery and help build muscle for anyone who has a hard time filling out the necessary elements.
                 They are all varied and are used in different occasions. For example, if you quickly get tired, consider using pre-workout supplement.
             </p>
-            <div class="supplement-gallery" aria-label="Supplements">
-                <figure class="supplement-card">
-                    <img src="images/wheyprotein.jpg" alt="Whey Protein card">
-                    <figcaption>Whey Protein</figcaption>
-                </figure>
-                <figure class="supplement-card">
-                    <img src="images/creatine.png" alt="Creatine card">
-                    <figcaption>Creatine</figcaption>
-                </figure>
-                <figure class="supplement-card">
-                    <img src="images/preworkout.jpg" alt="Pre-Workout card">
-                    <figcaption>Pre-Workout</figcaption>
-                </figure>
+            <div class="row g-3" aria-label="Supplements">
+                <div class="col-12 col-md-4">
+                    <figure class="supplement-card">
+                        <img src="images/wheyprotein.jpg" alt="Whey Protein card">
+                        <figcaption>Whey Protein</figcaption>
+                    </figure>
+                </div>
+                <div class="col-12 col-md-4">
+                    <figure class="supplement-card">
+                        <img src="images/creatine.png" alt="Creatine card">
+                        <figcaption>Creatine</figcaption>
+                    </figure>
+                </div>
+                <div class="col-12 col-md-4">
+                    <figure class="supplement-card">
+                        <img src="images/preworkout.jpg" alt="Pre-Workout card">
+                        <figcaption>Pre-Workout</figcaption>
+                    </figure>
+                </div>
             </div>
             <dl class="supplement-detail">
                 <dt>Whey Protein</dt>
