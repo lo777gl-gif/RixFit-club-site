@@ -48,3 +48,16 @@ Total custom CSS across `base.css` + `nuraly.css` is well under 100 lines, and
 everything left is either a brand-colour/font correction or a detail Bootstrap
 doesn't provide out of the box (the fixed back-to-top button, the absolutely
 positioned cert badge, the dark-input colour fix).
+
+## anuar.css
+
+| Removed rule | Replaced by |
+|---|---|
+| `.supplement-gallery` three-column CSS grid | `.row.g-3` with a `.col-12.col-md-4` wrapper around each supplement card |
+| `.service-grid` one-column CSS grid | `.row.g-4` with `.col-12.col-lg-6` around each service card |
+| `.service-grid > h2` grid-column span | `.col-12` on the heading |
+| `.service-fact` grid-column span and grid centring | `.col-12` wrapper and nested Bootstrap `.row`/`.col-*` layout |
+| `.facilities-table` width, borders, spacing and zebra rules | `.table.table-dark.table-bordered.table-striped.align-middle` inside `.table-responsive` |
+| `.site-header h1` and `position: static` on the service title | Removed because the old header element/layout no longer uses them; no replacement needed |
+
+Kept intentionally: `.bar-table` styling preserves the image-filled cells and RixFit colours. `.table-responsive` adds overflow handling but does **not** replace those visual rules. Image sizing, card colours and the warning design also remain as page-specific styling.
