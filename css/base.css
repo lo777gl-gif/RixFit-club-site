@@ -1,14 +1,14 @@
 /* RixFit — base.css
-   Written by the team together. Holds the shared colour palette, typography, and the styling of header, nav, main and footer.
+   Written by the team together.
+   With Bootstrap now doing the layout, navigation, buttons, forms and centring,
+   Bootstrap by default does not cover dark-navbar/light-body theme on its own so here fixes for it.
 
-   Load order on every page: base.css first, personal stylesheet second — so personal files can build on / override these rules.
-
-   COLOUR PALETTE (5 colours max)
-   1. --color-black       #1a1a1a  hex  - main background. Keeps enough contrast headroom for red accents
-   2. --color-dark-gray   #333333  hex  - secondary surface (cards, footer) one step lighter than the background. Used to separate content blocks
-   3. --color-gray        #999999  hex  - muted / secondary text and borders. Keeps captions and metadata from competing with body text
-   4. --color-white       white    NAMED colour - primary text on dark surfaces. Simplest possible value for the colour that needs zero ambiguity.
-   5. --color-red         rgb(230, 57, 70)  rgb - the single accent colour: buttons, links, hover states. 
+   COLOUR PALETTE (5 colours max) — unchanged from Assignment 2
+   1. --color-black       #1a1a1a  hex  - page background (dark theme)
+   2. --color-dark-gray   #333333  hex  - secondary surface (navbar, footer, cards)
+   3. --color-gray        #999999  hex  - muted text and borders
+   4. --color-white       white    NAMED colour - primary text on dark surfaces
+   5. --color-red         rgb(230, 57, 70)  rgb - accent: links, buttons, hover
 */
 :root {
   --color-black: #1a1a1a;
@@ -20,142 +20,51 @@
   /* Two font families */
   --font-heading: "Arial Black", "Segoe UI", Arial, sans-serif;
   --font-body: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  /* Tell Bootstrap's own components to use our colour */
+  --bs-primary: var(--color-red);
+  --bs-link-color: var(--color-red);
+  --bs-secondary-color: var(--color-gray);
 }
 
-/* Universal selector */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Type selectors */
 body {
   background-color: var(--color-black);
   color: var(--color-white);
   font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.6;
-  letter-spacing: 0.01em;
 }
 
-/* Grouping selector */
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: 0.02em;
 }
-
-h1 { font-size: 2rem; }
-h2 { font-size: 1.5rem; margin-bottom: 0.75rem; }
-h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-h4 { font-size: 1rem; }
-
-p { margin-bottom: 0.75rem; }
 
 a {
   color: var(--color-red);
-  text-decoration: none;
 }
 
-/* Pseudo-class: hover */
 a:hover {
-  text-decoration: underline;
+  color: var(--color-red); 
+  filter: brightness(1.15); 
 }
 
-/* Pseudo-class: focus — keyboard users get the same signal mouse users get from :hover, required for real accessibility. */
-a:focus,
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
+/* Focus outline correction — Bootstrap's default focus ring doesn't use our colours, and this is required for keyboard-accessibility parity with :hover. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
   outline: 3px solid var(--color-red) !important;
   /* !important justified: this is the one deliberate use on the whole site */
   outline-offset: 2px;
 }
 
-/* Attribute selector + pseudo-element together */
-a[target="_blank"]::after {
-  content: " ↗";
-  font-size: 0.85em;
-}
-
-/* Header is one merged row: logo, main, nav, and auth, nav side by side on a line */
-.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem 1.5rem;
+.site-header .navbar {
   background-color: var(--color-dark-gray);
-  padding: 0.75rem 1.5rem;
   border-bottom: 2px solid var(--color-red);
 }
 
-.site-header h1 {
-  margin-bottom: 0;
-  line-height: 0; /* collapses the heading box tightly around the logo image */
-}
-
-/* Logo image used in place of the site title text. */
 .logo {
-  display: block;
   height: 48px;
   width: auto;
-}
-
-/* Descendant selector */
-.site-header nav {
-  background-color: transparent;
-  padding: 0;
-}
-
-/* Child combinator (>) - this deliberately does NOT reach into a nested ul */
-.site-header nav > ul.nav-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1.25rem;
-  list-style: none;
-}
-
-nav[aria-label="auth-nav"] > ul.nav-list {
-  justify-content: flex-end;
-}
-
-.nav-list a {
-  color: var(--color-white);
-  font-weight: 700;
-  padding: 0.25rem 0;
-}
-
-.nav-list a:hover {
-  color: var(--color-red);
-}
-
-/* MAIN
-   ------------------------------------------------------------ */
-main {
-  max-width: 1100px;
-  margin: 0 auto; /* Centering technique 1: margin auto on a fixed-width block */
-  padding: 1.5rem;
-}
-
-/* h2 margin-top collapsed into section margin-top. Solved by moving top spacing to section padding-top. */
-main section {
-  padding-top: 2rem;
-}
-
-main section:first-child {
-  /* :first-child pseudo-class — the very first section on a page should not repeat the 2rem gap the header already provides. */
-  padding-top: 0.5rem;
-}
-
-main section ul {
-  padding-left: 1rem;
 }
 
 mark {
@@ -163,99 +72,36 @@ mark {
   background-color: var(--color-red);
 }
 
-/* Buttons */
-.btn {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  padding: 0.6rem 1.25rem;
-  border: 2px solid var(--color-red);
-  border-radius: 4px;
-  background-color: transparent;
-  color: var(--color-white);
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: var(--color-red);
-  color: var(--color-white);
-}
-
+/* Bootstrap's .btn-primary is Bootstrap-blue by default; retint it to our accent instead of writing a whole button system by hand */
 .btn-primary {
-  background-color: var(--color-red);
-  color: var(--color-white);
-  border-color: var(--color-red);
+  --bs-btn-bg: var(--color-red);
+  --bs-btn-border-color: var(--color-red);
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-color: var(--color-red);
+  --bs-btn-hover-border-color: var(--color-red);
 }
 
-.btn-secondary {
-  float: right;
-}
-
-.btn-primary:hover {
-  background-color: transparent;
-  color: var(--color-red);
-}
-
-/* Adjacent sibling selector - every label that is followed by a field pushes that field onto its own line */
-label + input:not([type="radio"]):not([type="checkbox"]),
-label + select,
-label + textarea {
-  display: block;
-  margin: 0.25rem 0 0.75rem;
-  width: 100%;
-  max-width: 360px;
-  padding: 0.4rem;
-  background-color: var(--color-dark-gray);
-  color: var(--color-white);
-  border: 1px solid var(--color-gray);
-  border-radius: 3px;
-}
-
-fieldset {
-  border: 1px solid var(--color-gray);
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-legend {
-  font-family: var(--font-heading);
-  padding: 0 0.5rem;
-  color: var(--color-red);
-}
-
-/* ------------------------------------------------------------
-   FOOTER
-   ------------------------------------------------------------ */
 footer {
   background-color: var(--color-dark-gray);
   color: var(--color-gray);
-  padding: 1.5rem;
-  margin-top: 2rem;
 }
 
-/* Descendant selector */
 footer address p {
-  margin-bottom: 0.25rem;
-  font-style: normal;
+  font-style: normal; 
 }
 
-/* Centering technique 2: flexbox — the socials list is centred as a row regardless of how many icons/links it ends up holding. */
-.socials-list {
-  display: flex;
-  flex-direction: row; /* explicit flex-direction, required at least once */
-  justify-content: left;
-  gap: 1.25rem;
-  list-style: none;
-  margin-top: 0.5rem;
+a[target="_blank"]::after {
+  content: " ↗";
+  font-size: 0.85em;
 }
 
-/* Positioning: fixed — stays on screen while the visitor scrolls a
-   long page (rules.html, programs-and-trainers.html) so returning to
-   the top never requires hunting for the link at the very bottom. */
+/* Positioning: fixed — kept from Assignment 2, Bootstrap has no equivalent
+   "back to top" component. Stays on screen while scrolling long pages. */
 .back-to-top {
   position: fixed;
   right: 1rem;
   bottom: 1rem;
+  z-index: 1030;
   background-color: var(--color-red);
   color: var(--color-white);
   padding: 0.5rem 1rem;
@@ -269,10 +115,3 @@ footer address p {
   background-color: var(--color-white);
   color: var(--color-red);
 }
-
-/* Positioning: static — every element on the page that we do NOT
-   touch (body, h1, p, most of main) is left at the browser default,
-   position: static. That is not a bug: static is correct here
-   because none of that content needs to be pulled out of normal
-   document flow or act as an anchor for an absolutely positioned
-   child, so there is nothing to declare. */

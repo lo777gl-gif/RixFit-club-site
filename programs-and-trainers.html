@@ -7,278 +7,348 @@
     <meta name="author" content="Nuraly Auyelkhan, SE-2534">
     <meta name="description" content="Trainers and Programs of RixFit Fitness">
     <title>RixFit — Trainers &amp; Programs</title>
+
+    <!-- Bootstrap 5.3.8 (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/nuraly.css">
 </head>
-<body id="top">
+<body id="top" class="d-flex flex-column min-vh-100">
 
     <header class="site-header">
-        <h1><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1>
-
-        <nav aria-label="main-nav">
-            <ul class="nav-list">
-                <li><a href="index.html">Main page</a></li>
-                <li><a href="programs-and-trainers.html">Programs and Trainers </a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="rules.html">Rules</a></li>
-                <li><a href="gym-equipment.html">Gym Equipment Guide</a></li>
-                <li><a href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Main page</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="programs-and-trainers.html">Programs and Trainers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+                        <li class="nav-item"><a class="nav-link" href="rules.html">Rules</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gym-equipment.html">Gym Equipment Guide</a></li>
+                        <li class="nav-item"><a class="nav-link" href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
+                    </ul>
+                    <ul class="navbar-nav" aria-label="auth-nav">
+                        <li class="nav-item"><a class="nav-link" href="login.html">Sign in</a></li>
+                        <li class="nav-item"><a class="nav-link" href="register.html">Sign up</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
-
-        <nav aria-label="auth-nav">
-            <ul class="nav-list">
-                <li><a href="login.html">Sign in</a></li>
-                <li><a href="register.html">Sign up</a></li>
-            </ul>
-        </nav>
-
     </header>
 
     <main>
-        <header>
-            <h2>Rixfit Programs &amp; Trainers</h2>
-        </header>
+        <div class="container">
+            <!-- container (not container-fluid) here: this is long readable content and should
+                 stay within a comfortable max-width, unlike the full-bleed header above -->
 
-        <!-- Programs and cost of RixFit services -->
-        <section>
-            <h3>What is Included to Every standard membership pass:</h3>    
-            <ul>
-                <li>Fully equipped gym and strength area</li>
-                <li>Indoor swimming pool</li>
-                <li>3 types of saunas</li>
-                <li>Summer terrace lounge</li>
-            </ul> <br>
+            <header class="py-4">
+                <h1 class="display-6">Rixfit Programs &amp; Trainers</h1>
+            </header>
 
-            <h3>Special Offers &amp; Rates</h3>
-            <!-- table used instead of a list because pass name, duration, and price form genuinely tabular data with meaningful columns and rows -->
-            <table class="price-table">
-                <caption>RixFit Pass Prices (2026)</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Pass</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">Price, KZT</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">12-Month Unlimited (Promo)</th>
-                        <td>12 months</td>
-                        <td>179,000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6-Month Couple Unlimited</th>
-                        <td>6 months</td>
-                        <td>150,000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">12-Month Unlimited (Standard)</th>
-                        <td>12 months</td>
-                        <td>250,000</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-        </section> 
+            <!-- Programs and cost of RixFit services -->
+            <section class="pb-4">
+                <h2 class="display-8">What is Included to Every standard membership pass:</h2>
+                <ul>
+                    <li>Fully equipped gym and strength area</li>
+                    <li>Indoor swimming pool</li>
+                    <li>3 types of saunas</li>
+                    <li>Summer terrace lounge</li>
+                </ul>
 
-        <!-- Gym Trainers Section: flexbox container (see nuraly.css .coach-list) -->
-        <section class="coach-list">
-            <h3>Gym &amp; Strength Coaches</h3> 
+                <h3 class="mt-4">Special Offers &amp; Rates</h3>
+                <!-- table used instead of a list because pass name, duration, and price form genuinely tabular data with meaningful columns and rows -->
+                <div class="table-responsive">
+                    <table class="price-table table table-dark table-striped table-bordered align-middle">
+                        <caption>RixFit Pass Prices (2026)</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Pass</th>
+                                <th scope="col">Duration</th>
+                                <th scope="col">Price, KZT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">12-Month Unlimited (Promo)</th>
+                                <td>12 months</td>
+                                <td>179,000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6-Month Couple Unlimited</th>
+                                <td>6 months</td>
+                                <td>150,000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">12-Month Unlimited (Standard)</th>
+                                <td>12 months</td>
+                                <td>250,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-            <!-- Vera -->
-            <article class="trainer-card">
-            <img src="images/GymCoach(1).jpeg" alt="Vera - Gym Instructor" width="250">
-            <h4>Vera</h4>
-            <p><strong>Role:</strong> Gym Instructor | <abbr title="International Master of Sports">MSMK</abbr> in Powerlifting</p>
-            <p>
-                Vera is a gym instructor and an International Master of Sports (MSMK) in powerlifting. With her elite lifting background, she specializes in strength conditioning, proper lifting mechanics, and muscle hypertrophy.
-            </p>
-            <!-- div groups an icon and a short label as one certification badge; span is inline-only and section/article would be wrong here since this isn't standalone content, just a small UI unit -->
-            <div class="cert-badge">
-                <img src="images/badge-msmk.png" alt="" width="32">
-                International Master of Sports
-            </div>
-            </article>
+            <section class="coach-list pb-4">
+                <h3 class="text-center">Gym &amp; Strength Coaches</h3>
 
-            <!-- Ulan -->
-            <article class="trainer-card">
-            <img src="images/GymCoach(2).jpeg" alt="Ulan - Gym Trainer"  width="250">
-            <h4>Ulan</h4>
-            <p><strong>Role:</strong> Certified Gym Trainer | <abbr title="Candidate for Master of Sports">KMS</abbr> in Hand-to-Hand Combat</p>
-            <p>
-                Ulan is a certified gym trainer who holds the title of Candidate for Master of Sports (KMS) in hand-to-hand combat. His martial arts foundation allows him to integrate functional strength, agility, and dynamic endurance into training sessions. He often tells clients, <q>strength without control is just noise</q>.
-            </p>
-            </article>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+                    <!-- Vera -->
+                    <div class="col">
+                        <article class="trainer-card card h-100 bg-dark text-white">
+                            <img src="images/GymCoach(1).jpeg" class="card-img-top" alt="Vera - Gym Instructor">
+                            <div class="card-body">
+                                <h4 class="card-title">Vera</h4>
+                                <p class="card-text"><strong>Role:</strong> Gym Instructor | <abbr title="International Master of Sports">MSMK</abbr> in Powerlifting</p>
+                                <p class="card-text small">
+                                    Vera is a gym instructor and an International Master of Sports (MSMK) in powerlifting. With her elite lifting background, she specializes in strength conditioning, proper lifting mechanics, and muscle hypertrophy.
+                                </p>
+                                <!-- div groups an icon and a short label as one certification badge; span is inline-only and section/article would be wrong here since this isn't standalone content, just a small UI unit -->
+                                <div class="cert-badge">
+                                    <img src="images/badge-msmk.png" alt="" width="32">
+                                    International Master of Sports
+                                </div>
+                            </div>
+                        </article>
+                    </div>
 
-            <!-- Chingis -->
-            <article class="trainer-card">
-            <img src="images/GymCoach(3).jpeg" alt="Chingis - Gym Trainer"  width="250">
-            <h4>Chingis</h4>
-            <p><strong>Role:</strong> Certified Gym Trainer (<abbr title="National Academy of Sports Medicine">NASM</abbr> USA) | MS in Judo</p>
-            <p>
-                Chingis is certified by the National Academy of Sports Medicine (NASM, USA) and brings over 20 years of athletic coaching experience. As a Master of Sports in judo, he pairs deep sports science knowledge with comprehensive functional training.
-            </p>
-            </article>
+                    <!-- Ulan -->
+                    <div class="col">
+                        <article class="trainer-card card h-100 bg-dark text-white">
+                            <img src="images/GymCoach(2).jpeg" class="card-img-top" alt="Ulan - Gym Trainer">
+                            <div class="card-body">
+                                <h4 class="card-title">Ulan</h4>
+                                <p class="card-text"><strong>Role:</strong> Certified Gym Trainer | <abbr title="Candidate for Master of Sports">KMS</abbr> in Hand-to-Hand Combat</p>
+                                <p class="card-text small">
+                                    Ulan is a certified gym trainer who holds the title of Candidate for Master of Sports (KMS) in hand-to-hand combat. His martial arts foundation allows him to integrate functional strength, agility, and dynamic endurance into training sessions. He often tells clients, <q>strength without control is just noise</q>.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
 
-            <!-- Dmitriy (Gym) -->
-            <article class="trainer-card">
-            <img src="images/GymCoach(4).jpeg" alt="Dmitriy - Gym Trainer"  width="250">
-            <h4>Dmitriy</h4>
-            <p><strong>Role:</strong> Certified Gym Trainer | MS in Cross-Country Skiing</p>
-            <p>
-                Dmitriy is a certified gym instructor, a Master of Sports in cross-country skiing, and a 3rd-rank polyathlon athlete. He specializes in aerobic capacity, endurance building, and balanced full-body conditioning.
-            </p>
-            </article>
-        </section>
+                    <!-- Chingis -->
+                    <div class="col">
+                        <article class="trainer-card card h-100 bg-dark text-white">
+                            <img src="images/GymCoach(3).jpeg" class="card-img-top" alt="Chingis - Gym Trainer">
+                            <div class="card-body">
+                                <h4 class="card-title">Chingis</h4>
+                                <p class="card-text"><strong>Role:</strong> Certified Gym Trainer (<abbr title="National Academy of Sports Medicine">NASM</abbr> USA) | MS in Judo</p>
+                                <p class="card-text small">
+                                    Chingis is certified by the National Academy of Sports Medicine (NASM, USA) and brings over 20 years of athletic coaching experience. As a Master of Sports in judo, he pairs deep sports science knowledge with comprehensive functional training.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
 
-        <!-- Pool & Aquatic Trainers Section: CSS grid container (see nuraly.css .aqua-list) -->
-        <section class="aqua-list">
-            <h3>Swimming &amp; Aquatics Coaches</h3>
+                    <!-- Dmitriy (Gym) -->
+                    <div class="col">
+                        <article class="trainer-card card h-100 bg-dark text-white">
+                            <img src="images/GymCoach(4).jpeg" class="card-img-top" alt="Dmitriy - Gym Trainer">
+                            <div class="card-body">
+                                <h4 class="card-title">Dmitriy</h4>
+                                <p class="card-text"><strong>Role:</strong> Certified Gym Trainer | MS in Cross-Country Skiing</p>
+                                <p class="card-text small">
+                                    Dmitriy is a certified gym instructor, a Master of Sports in cross-country skiing, and a 3rd-rank polyathlon athlete. He specializes in aerobic capacity, endurance building, and balanced full-body conditioning.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
 
-            <!-- Dmitriy (Pool) -->
-            <article class="trainer-card">
-            <img src="images/PoolTrainer(1).jpeg" alt="Dmitriy - Swimming Coach"  width="250">
-            <h4>Dmitriy</h4>
-            <p><strong>Role:</strong> Certified Swimming Coach | Multi-time Champion of RK</p>
-            <p>
-                Dmitriy is a certified swimming instructor and a multiple-time champion of the Republic of Kazakhstan with a degree in pedagogy. He implements a structured, pedagogical approach to stroke development and athletic water conditioning.
-            </p>
-            </article>
+            <!-- Pool & Aquatics: laid out with Bootstrap's grid instead of the old hand-written CSS Grid in nuraly.css (see css-cleanup-notes.md) -->
+            <section class="aqua-list pb-4">
+                <h3 class="text-center">Swimming &amp; Aquatics Coaches</h3>
 
-            <!-- Sergey Mikhailovich -->
-            <article class="trainer-card">
-            <img src="images/PoolTrainer(2).jpeg" alt="Sergey Mikhailovich - Swimming and Gym Coach" width="250">
-            <h4>Sergey Mikhailovich</h4>
-            <p><strong>Role:</strong> Certified Swimming &amp; Gym Trainer | MS in Swimming</p>
-            <p>
-                Sergey Mikhailovich is a certified swimming and gym instructor holding the title of Master of Sports in swimming and 1st Sports Rank in water polo. His deep aquatic background makes him an expert in stroke refinement, endurance, and aquatic conditioning.
-            </p>
-            </article>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+                    <!-- Dmitriy (Pool) -->
+                    <div class="col">
+                        <article class="trainer-card card h-100 bg-dark text-white">
+                            <img src="images/PoolTrainer(1).jpeg" class="card-img-top" alt="Dmitriy - Swimming Coach">
+                            <div class="card-body">
+                                <h4 class="card-title">Dmitriy</h4>
+                                <p class="card-text"><strong>Role:</strong> Certified Swimming Coach | Multi-time Champion of RK</p>
+                                <p class="card-text small">
+                                    Dmitriy is a certified swimming instructor and a multiple-time champion of the Republic of Kazakhstan with a degree in pedagogy. He implements a structured, pedagogical approach to stroke development and athletic water conditioning.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
 
-            <!-- Sabina -->
-            <article class="trainer-card">
-            <img src="images/PoolTrainer(3).jpeg" alt="Sabina - Water Polo & Swimming Instructor" width="250">
-            <h4>Sabina</h4>
-            <p><strong>Role:</strong> KMS in Water Polo | 3rd Rank in Swimming</p>
-            <p>
-                Sabina is a Candidate for Master of Sports (KMS) in water polo and holds the 3rd Adult Rank in competitive swimming. She focuses on teaching fundamental swimming skills, water confidence, and dynamic aquatic movement for clients of various ages.
-            </p>
-            </article>
+                    <!-- Sergey Mikhailovich -->
+                    <div class="col">
+                        <article class="trainer-card card h-100 bg-dark text-white">
+                            <img src="images/PoolTrainer(2).jpeg" class="card-img-top" alt="Sergey Mikhailovich - Swimming and Gym Coach">
+                            <div class="card-body">
+                                <h4 class="card-title">Sergey Mikhailovich</h4>
+                                <p class="card-text"><strong>Role:</strong> Certified Swimming &amp; Gym Trainer | MS in Swimming</p>
+                                <p class="card-text small">
+                                    Sergey Mikhailovich is a certified swimming and gym instructor holding the title of Master of Sports in swimming and 1st Sports Rank in water polo. His deep aquatic background makes him an expert in stroke refinement, endurance, and aquatic conditioning.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
 
-            <!-- Samat -->
-            <article class="trainer-card">
-            <img src="images/PoolTrainer(4).jpeg" alt="Samat - Swimming Coach" width="250">
-            <h4>Samat</h4>
-            <p><strong>Role:</strong> Certified Swimming Coach | 1st Rank in Swimming</p>
-            <p>
-                Samat is a certified swimming coach holding a 1st Sports Rank in competitive swimming. He is dedicated to perfecting stroke technique, building aquatic endurance, and guiding clients toward their personal fitness goals in the pool.
-            </p>
-            </article>
-        </section>
+                    <!-- Sabina -->
+                    <div class="col">
+                        <article class="trainer-card card h-100 bg-dark text-white">
+                            <img src="images/PoolTrainer(3).jpeg" class="card-img-top" alt="Sabina - Water Polo & Swimming Instructor">
+                            <div class="card-body">
+                                <h4 class="card-title">Sabina</h4>
+                                <p class="card-text"><strong>Role:</strong> KMS in Water Polo | 3rd Rank in Swimming</p>
+                                <p class="card-text small">
+                                    Sabina is a Candidate for Master of Sports (KMS) in water polo and holds the 3rd Adult Rank in competitive swimming. She focuses on teaching fundamental swimming skills, water confidence, and dynamic aquatic movement for clients of various ages.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
 
-        <!-- Member testimonial -->
-        <section id="testimonials">
-            <h3>What Our Members Say</h3>
-            <blockquote cite="https://www.instagram.com/rixfitastana">
-                <p>Sergey Mikhailovich helped me shave two minutes off my 1500m time in just three months.</p>
-            </blockquote>
-            <p>&mdash; <cite>Aidana K.</cite>, RixFit member since 2025</p>
-            <!-- TODO: replace with a real quote, name and date you collected yourself, per assignment authenticity rules -->
-        </section>
+                    <!-- Samat -->
+                    <div class="col">
+                        <article class="trainer-card card h-100 bg-dark text-white">
+                            <img src="images/PoolTrainer(4).jpeg" class="card-img-top" alt="Samat - Swimming Coach">
+                            <div class="card-body">
+                                <h4 class="card-title">Samat</h4>
+                                <p class="card-text"><strong>Role:</strong> Certified Swimming Coach | 1st Rank in Swimming</p>
+                                <p class="card-text small">
+                                    Samat is a certified swimming coach holding a 1st Sports Rank in competitive swimming. He is dedicated to perfecting stroke technique, building aquatic endurance, and guiding clients toward their personal fitness goals in the pool.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
 
-        <section id="book-trial">
-            <h3>Book a Free Trial Session</h3>
-            <!-- This form does not send data anywhere yet - there is no server behind it. Server-side handling comes later in the course. -->
-            <form method="post" action="#" aria-label="Trial session booking form">
-                <fieldset>
-                    <legend>Your details</legend>
-                    <p>
-                        <label for="full-name">Full name</label><br>
-                        <input type="text" id="full-name" name="full-name" placeholder="Aidana Serikova" required>
-                    </p>
-                    <p>
-                        <label for="email">Email</label><br>
-                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
-                    </p>
-                    <p>
-                        <label for="phone">Phone</label><br>
-                        <input type="tel" id="phone" name="phone" placeholder="+7 700 000 00 00" required>
-                    </p>
-                    <p>
-                        <label for="age">Age</label><br>
-                        <input type="number" id="age" name="age" min="12" max="90" required>
-                    </p>
-                    <p>
-                        <label for="preferred-date">Preferred date</label><br>
-                        <input type="date" id="preferred-date" name="preferred-date" required>
-                    </p>
-                </fieldset>
+            <!-- Member testimonial -->
+            <section id="testimonials" class="mb-4 p-3">
+                <h3>What Our Members Say</h3>
+                <blockquote class="blockquote mb-2" cite="https://www.instagram.com/rixfitastana">
+                    <p>Sergey Mikhailovich helped me shave two minutes off my 1500m time in just three months.</p>
+                </blockquote>
+                <p>&mdash; <cite>Aidana K.</cite>, RixFit member since 2025</p>
+                <!-- TODO: replace with a real quote, name and date you collected yourself, per assignment authenticity rules -->
+            </section>
 
-                <fieldset>
-                    <legend>Trial preferences</legend>
-                    <p>
-                        Preferred area:
-                        <label><input type="radio" name="area" value="gym" checked> Gym &amp; Strength</label>
-                        <label><input type="radio" name="area" value="pool"> Pool &amp; Aquatics</label>
-                    </p>
-                    <p>
-                        <label for="trainer">Preferred trainer</label><br>
-                        <select id="trainer" name="trainer">
-                            <option value="any">No preference</option>
-                            <option value="vera">Vera</option>
-                            <option value="ulan">Ulan</option>
-                            <option value="chingis">Chingis</option>
-                            <option value="dmitriy-gym">Dmitriy (Gym)</option>
-                            <option value="dmitriy-pool">Dmitriy (Pool)</option>
-                            <option value="sergey">Sergey Mikhailovich</option>
-                            <option value="sabina">Sabina</option>
-                            <option value="samat">Samat</option>
-                        </select>
-                    </p>
-                    <p>
-                        <label><input type="checkbox" name="newsletter" value="yes"> Send me news about promo passes</label>
-                    </p>
-                    <p>
-                        <label for="notes">Anything we should know?</label><br>
-                        <textarea id="notes" name="notes" placeholder="Injuries, goals, schedule constraints..."></textarea>
-                    </p>
-                </fieldset>
+            <section id="book-trial" class="mb-4">
+                <h3>Book a Free Trial Session</h3>
+                <!-- This form does not send data anywhere yet - there is no server behind it. Server-side handling comes later in the course. -->
+                <form method="post" action="#" aria-label="Trial session booking form">
+                    <!-- Nested grid demo: a row inside this fieldset's column, so the personal-details fields
+                         sit two-per-line on tablets/desktop and stack on phones -->
+                    <fieldset class="mb-3">
+                        <legend class="h5">Your details</legend>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="full-name" class="form-label">Full name</label>
+                                <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Aidana Serikova" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="+7 700 000 00 00" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="age" class="form-label">Age</label>
+                                <input type="number" class="form-control" id="age" name="age" min="12" max="90" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="preferred-date" class="form-label">Preferred date</label>
+                                <input type="date" class="form-control" id="preferred-date" name="preferred-date" required>
+                            </div>
+                        </div>
+                    </fieldset>
 
-                <p>
-                    <button type="submit" class="btn btn-primary">Book my trial</button>
-                    <button type="reset" class="btn btn-secondary">Clear form</button>
-                </p>
-            </form>
-        </section>
+                    <fieldset class="mb-3">
+                        <legend class="h5">Trial preferences</legend>
+                        <p>
+                            Preferred area:
+                            <span class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="area" value="gym" id="area-gym" checked>
+                                <label class="form-check-label" for="area-gym">Gym &amp; Strength</label>
+                            </span>
+                            <span class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="area" value="pool" id="area-pool">
+                                <label class="form-check-label" for="area-pool">Pool &amp; Aquatics</label>
+                            </span>
+                        </p>
+                        <div class="mb-3">
+                            <label for="trainer" class="form-label">Preferred trainer</label>
+                            <select class="form-select" id="trainer" name="trainer">
+                                <option value="any">No preference</option>
+                                <option value="vera">Vera</option>
+                                <option value="ulan">Ulan</option>
+                                <option value="chingis">Chingis</option>
+                                <option value="dmitriy-gym">Dmitriy (Gym)</option>
+                                <option value="dmitriy-pool">Dmitriy (Pool)</option>
+                                <option value="sergey">Sergey Mikhailovich</option>
+                                <option value="sabina">Sabina</option>
+                                <option value="samat">Samat</option>
+                            </select>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="newsletter" value="yes" id="newsletter">
+                            <label class="form-check-label" for="newsletter">Send me news about promo passes</label>
+                        </div>
+                        <div>
+                            <label for="notes" class="form-label">Anything we should know?</label>
+                            <textarea class="form-control" id="notes" name="notes" placeholder="Injuries, goals, schedule constraints..."></textarea>
+                        </div>
+                    </fieldset>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="submit" class="btn btn-primary">Book my trial</button>
+                        <button type="reset" class="btn btn-outline-secondary">Clear form</button>
+                        <!-- Button-class requirements covered across the project: outline style + size variant here,
+                             disabled state on register.html -->
+                        <a href="tel:+77754385471" class="btn btn-outline-danger btn-sm align-self-center">Or call us directly</a>
+                    </div>
+                </form>
+            </section>
+        </div>
     </main>
-    
+
 
     <footer>
-        <section id="contacts">
-            <h2>Contacts</h2>
-            <address>
-                <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
-                <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
-                <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p> 
-            </address>
-        </section> <br>
+        <div class="container">
 
-        <section id="socials">
-            <h3>Follow &amp; Message Us</h3>
-            <ul class="socials-list">
-                <li>
-                    <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
-                </li>
-            </ul>
-        </section> <br>
+            <div class="pt-1">
+                <p><a href="#top" class="back-to-top">Back to the top</a></p>
+            </div>
 
-        <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
-        <p><a href="#top" class="back-to-top">Back to the top</a></p>
+            <section id="contacts">
+                <h2>Contacts</h2>
+                <address>
+                    <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
+                    <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
+                    <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+                </address>
+            </section>
+
+            <section id="socials">
+                <h3>Follow &amp; Message Us</h3>
+                <ul class="socials-list d-flex gap-3 list-unstyled">
+                    <li>
+                        <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </li>
+                </ul>
+            </section>
+
+            <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
+        </div>
     </footer>
 </body>
 </html>

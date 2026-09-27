@@ -9,151 +9,200 @@
     <meta name="author" content="Yeren Edige, SE-2534">
     <meta name="description" content="Main web page of RixFit Fitness">
     <title>RixFit — Main</title>
+
+    <!-- Bootstrap 5.3.8 (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <!-- base.css after the bootstrap -->
     <link rel="stylesheet" href="css/base.css">
 
-    <!-- index.html is the shared team page: it is styled by base.css -->
-    <!-- Cascade/priority demo: one internal style block, but because this block loads AFTER base.css it wins by source order alone -->
+    <!-- Cascade/priority demo: one internal style block, but because this block loads after base.css it wins by source order alone -->
     <style>
         .site-header {
             border-bottom-color: var(--color-white);
         }
     </style>
+
 </head>
-<body id="top">
+<body id="top" class="d-flex flex-column min-vh-100">
 
+    <!-- Bootstrap navbar component: replaces the old hand-flexed header row. Navbar-expand-lg collapses into the toggler below the lg breakpoint, which is what gives us the working hamburger menu on phones/tablets. -->
     <header class="site-header">
-        <h1><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1>
-
-        <nav aria-label="main-nav">
-            <ul class="nav-list">
-                <li><a href="index.html">Main page</a></li>
-                <li><a href="programs-and-trainers.html">Programs and Trainers </a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="rules.html">Rules</a></li>
-                <li><a href="gym-equipment.html">Gym Equipment Guide</a></li>
-                <li><a href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <!-- container-fluid here because the header background should span the full viewport width -->
+                <a class="navbar-brand" href="index.html">
+                    <img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Main page</a></li>
+                        <li class="nav-item"><a class="nav-link" href="programs-and-trainers.html">Programs and Trainers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+                        <li class="nav-item"><a class="nav-link" href="rules.html">Rules</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gym-equipment.html">Gym Equipment Guide</a></li>
+                        <li class="nav-item"><a class="nav-link" href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
+                    </ul>
+                    <ul class="navbar-nav" aria-label="auth-nav">
+                        <li class="nav-item"><a class="nav-link" href="login.html">Sign in</a></li>
+                        <li class="nav-item"><a class="nav-link" href="register.html">Sign up</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
-
-        <nav aria-label="auth-nav">
-            <ul class="nav-list">
-                <li><a href="login.html">Sign in</a></li>
-                <li><a href="register.html">Sign up</a></li>
-            </ul>
-        </nav>
-
     </header>
 
     <main>
-        <section id="about">
-            <h2>About Our Fitness Center</h2>
-            <article>
-                <h3>Your Journey to a Healthier Lifestyle Starts Here</h3>
-                <p>
-                    Welcome to our fitness hub. We provide <strong>state-of-the-art equipment</strong>, personalized training programs, and a supportive community to help you achieve your goals. Whether you want to build strength or improve endurance, <mark>our expert coaches</mark> will guide you every step of the way. Start transforming your life <em>today</em>!
-                </p>
+        <div class="container">
+            <!-- container (fixed max-width, centred) for readable body content, unlike the full-bleed container-fluid used in the header above -->
 
-                <h3>Advantages and features of the club:</h3>
-                <ul>
-                    <li>Modern equipment</li>
-                    <li>Spacious swimming pool with multi-stage water purification</li>
-                    <li>High-Certified coaching staff</li>
-                    <li>Convenient parking and SPA area</li>
-                </ul>
-                <figure>
-                    <img src="images/RixFitMainPage.jpg" alt="Gym interior with professional treadmills and weight lifting area close-up">
-                    <figcaption>Our spacious cardio and strength training zone equipped with great machines.</figcaption>
-                </figure>
-                
-                <!-- "div" was used because We need to group the elements for future alignment and there is no semantic meaning here -->
-                <div>
-                    <span>Join thousands of satisfied resident who have already changed their lives with us.</span>
+            <section id="about" class="py-4">
+                <h1 class="display-6">About Our Fitness Center</h1>
+                <article class="row g-4 align-items-center">
+                    <div class="col-lg-7">
+                        <h2 class="py-2">Your Journey to a Healthier Lifestyle Starts Here</h2>
+                        <p class="lead">
+                            Welcome to our fitness hub. We provide <strong>state-of-the-art equipment</strong>, personalized training programs, and a supportive community to help you achieve your goals. Whether you want to build strength or improve endurance, <mark>our expert coaches</mark> will guide you every step of the way. Start transforming your life <em>today</em>!
+                        </p>
+
+                        <h3>Advantages and features of the club:</h3>
+                        <ul>
+                            <li>Modern equipment</li>
+                            <li>Spacious swimming pool with multi-stage water purification</li>
+                            <li>High-Certified coaching staff</li>
+                            <li>Convenient parking and SPA area</li>
+                        </ul>
+
+                        <!-- Responsive utility demo: this note is hidden on phones and shown from md up, so small screens aren't cluttered with a secondary line. -->
+                        <div class="d-none d-md-block">
+                            <span class="text-muted small">Join thousands of satisfied residents who have already changed their lives with us.</span>
+                        </div>
+                        <!-- Responsive utility demo: the same note, shown only below md, right-aligned to fit a narrow column differently than the line above. -->
+                        <div class="d-md-none text-md-start text-end">
+                            <span class="text-muted small">Join thousands of satisfied residents who have already changed their lives with us.</span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <figure class="mb-0">
+                            <img src="images/RixFitMainPage.jpg" class="img-fluid rounded shadow-sm" alt="Gym interior with professional treadmills and weight lifting area close-up">
+                            <figcaption class="text-muted small mt-2">Our spacious cardio and strength training zone equipped with great machines.</figcaption>
+                        </figure>
+                    </div>
+                </article>
+            </section>
+
+            <section id="booking" class="py-4">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <!-- Inline-style demo kept from the original page: an inline style always wins over
+                             any class/id rule that is not !important -->
+                        <h2 style="color: white;" class="mb-3">Book a Training Session</h2>
+                        <!-- Form doesn't work, because it has no server part -->
+                        <form action="#" method="GET" class="p-3 p-md-4 bg-dark bg-opacity-50 rounded border border-secondary">
+                            <fieldset>
+                                <legend class="h5">Application Form</legend>
+
+                                <!-- Nested grid demo: a row nested inside this column, splitting the two name/email
+                                     fields side by side on md+ screens and stacking them on phones -->
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="userName" class="form-label">Name:</label>
+                                        <input type="text" class="form-control" id="userName" name="userName" placeholder="Marat Maratovich" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="userEmail" class="form-label">Email:</label>
+                                        <input type="email" class="form-control" id="userEmail" name="userEmail" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="userPhone" class="form-label">Phone:</label>
+                                        <input type="tel" class="form-control" id="userPhone" name="userPhone">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="age" class="form-label">Age:</label>
+                                        <input type="number" class="form-control" id="age" name="age">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="date" class="form-label">First Training Date:</label>
+                                        <input type="date" class="form-control" id="date" name="date">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="form-label d-block">Select Gender:</span>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" id="male" name="gender" value="male">
+                                            <label class="form-check-label" for="male">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" id="female" name="gender" value="female">
+                                            <label class="form-check-label" for="female">Female</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="goal" class="form-label">Goal:</label>
+                                        <select class="form-select" id="goal" name="goal">
+                                            <option value="lose_weight">Weight Loss</option>
+                                            <option value="gain_muscle">Muscle Gain</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="comments" class="form-label">Additional Comments:</label>
+                                        <textarea class="form-control" id="comments" name="comments" rows="4"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="agree" name="agree" required>
+                                            <label class="form-check-label" for="agree">I agree to the club rules:</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 d-flex flex-wrap gap-2">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="reset" class="btn btn-outline-secondary">Clear Form</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
-            </article>
-        </section>
-
-        <section id="booking">
-            <!-- Inline-style demo: An inline style always wins over any class/id rule that is not !important -->
-            <h2 style="color: white;">Book a Training Session</h2>
-            <!-- Form doesn't work, because it has no server part -->
-            <form action="#" method="GET">
-                <fieldset>
-                    <legend>Application Form</legend>
-                    
-                    <label for="userName">Name:</label>
-                    <input type="text" id="userName" name="userName" placeholder="Marat Maratovich" required>
-                    <br>
-
-                    <label for="userEmail">Email:</label>
-                    <input type="email" id="userEmail" name="userEmail" required>
-                    <br>
-
-                    <label for="userPhone">Phone:</label>
-                    <input type="tel" id="userPhone" name="userPhone">
-                    <br>
-
-                    <label for="age">Age:</label>
-                    <input type="number" id="age" name="age">
-                    <br>
-
-                    <label for="date">First Training Date:</label>
-                    <input type="date" id="date" name="date">
-                    <br>
-
-                    Select Gender: <br>
-                    <label for="male">Male</label>
-                    <input type="radio" id="male" name="gender" value="male"> <br>
-                    <label for="female">Female</label>
-                    <input type="radio" id="female" name="gender" value="female">
-                    <br><br>
-
-                    <label for="goal">Goal:</label>
-                    <select id="goal" name="goal">
-                        <option value="lose_weight">Weight Loss</option>
-                        <option value="gain_muscle">Muscle Gain</option>
-                    </select>
-                    <br>
-
-                    <label for="comments">Additional Comments:</label>
-                    <textarea id="comments" name="comments" rows="4" cols="30"></textarea>
-                    <br>
-
-                    <label for="agree">I agree to the club rules:</label>
-                    <input type="checkbox" id="agree" name="agree" required>
-                    <br>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-secondary">Clear Form</button>
-                </fieldset>
-            </form>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <section id="contacts">
-            <h2>Contacts</h2>
-            <address>
-                <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
-                <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
-                <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
-            </address>
-        </section>
+        <div class="container">
 
-        <section id="socials">
-            <h3>Follow &amp; Message Us</h3>
-            <ul class="socials-list">
-                <li>
-                    <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
-                </li>
-            </ul>
-        </section>
+            <div class="pt-1">
+                <p><a href="#top" class="back-to-top">Back to the top</a></p>
+            </div>
 
-        <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
-        <p><a href="#top" class="back-to-top">Back to the top</a></p>
+            <section id="contacts">
+                <h2>Contacts</h2>
+                <address>
+                    <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
+                    <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
+                    <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+                </address>
+            </section>
+
+            <section id="socials">
+                <h3>Follow &amp; Message Us</h3>
+                <ul class="socials-list d-flex gap-3 list-unstyled">
+                    <li>
+                        <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </li>
+                </ul>
+            </section>
+
+            <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
+        </div>
     </footer>
 </body>
 </html>

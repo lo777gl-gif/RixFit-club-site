@@ -7,162 +7,184 @@
     <meta name="author" content="Nuraly Auyelkhan, SE-2534">
     <meta name="description" content="Rules of RixFit Fitness">
     <title>RixFit — Rules</title>
+
+    <!-- Bootstrap 5.3.8 (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/nuraly.css">
 </head>
-<body id="top">
+<body id="top" class="d-flex flex-column min-vh-100">
 
     <header class="site-header">
-        <h1><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1>
-
-        <nav aria-label="main-nav">
-            <ul class="nav-list">
-                <li><a href="index.html">Main page</a></li>
-                <li><a href="programs-and-trainers.html">Programs and Trainers </a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="rules.html">Rules</a></li>
-                <li><a href="gym-equipment.html">Gym Equipment Guide</a></li>
-                <li><a href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Main page</a></li>
+                        <li class="nav-item"><a class="nav-link" href="programs-and-trainers.html">Programs and Trainers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="rules.html">Rules</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gym-equipment.html">Gym Equipment Guide</a></li>
+                        <li class="nav-item"><a class="nav-link" href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
+                    </ul>
+                    <ul class="navbar-nav" aria-label="auth-nav">
+                        <li class="nav-item"><a class="nav-link" href="login.html">Sign in</a></li>
+                        <li class="nav-item"><a class="nav-link" href="register.html">Sign up</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
-
-        <nav aria-label="auth-nav">
-            <ul class="nav-list">
-                <li><a href="login.html">Sign in</a></li>
-                <li><a href="register.html">Sign up</a></li>
-            </ul>
-        </nav>
-
     </header>
 
     <main>
-        <!-- Float/clear demo: the image is floated left INSIDE this
-             paragraph's own text (see .float-img in nuraly.css), so the
-             rest of the sentence wraps along its right side instead of
-             sitting in a separate figure above the text. -->
-        <p>
-            <img class="float-img" src="images/gym-floor.webp" alt="RixFit gym floor with properly re-racked dumbbells" width="200">
-            <b>Please read before your first visit.</b> Quick links: <a href="#club-rules">gym rules</a> and <a href="#swimming-pool-rules">pool rules</a> below. Proper re-racking, like the RixFit gym floor pictured here, is the very first habit every member is expected to build from day one — weights go back on the numbered rack, plates get stacked by size, and barbells never lean against a wall.
-        </p>
+        <div class="container">
+            <!-- container (not container-fluid): long-form rules text reads better at a fixed max-width -->
 
-        <aside aria-label="Membership tip" class="membership-tip">
-            <h2>Membership Tip</h2>
-            <!-- aside chosen instead of a plain paragraph because this tip is tangential to the rules text below and can be read on its own -->
-            <p>Renew your locker rental at least <mark>3 days</mark> before it expires &mdash; spots are limited. Members holding an <abbr title="Annual Unlimited Pass">AUP</abbr> get priority renewal.</p>
-        </aside>
+            <p class="py-4">
+                <img class="float-start me-3 mb-2 rounded" src="images/gym-floor.webp" alt="RixFit gym floor with properly re-racked dumbbells" width="200">
+                <b>Please read before your first visit.</b> Quick links: <a href="#club-rules">gym rules</a> and <a href="#swimming-pool-rules">pool rules</a> below. Proper re-racking, like the RixFit gym floor pictured here, is the very first habit every member is expected to build from day one — weights go back on the numbered rack, plates get stacked by size, and barbells never lean against a wall.
+            </p>
 
-        <section id="club-rules">
-            <h2>Club Rules &amp; Regulations</h2>
+            <aside aria-label="Membership tip" class="membership-tip clearfix">
+                <h2 class="h5">Membership Tip</h2>
+                <!-- aside chosen instead of a plain paragraph because this tip is tangential to the rules text below and can be read on its own -->
+                <p class="mb-0">Renew your locker rental at least <mark>3 days</mark> before it expires &mdash; spots are limited. Members holding an <abbr title="Annual Unlimited Pass">AUP</abbr> get priority renewal.</p>
+            </aside>
 
-            <article>
-                <h3>1. Dress Code &amp; Hygiene</h3>
-                <ul>
-                    <li>Clean athletic shoes (sneakers) and appropriate workout attire are strictly required in all training areas.</li>
-                    <li>Using an individual sweat towel on exercise equipment and workout benches is mandatory.</li>
-                    <li>Outdoor footwear, open-toed shoes (slides, sandals), or barefoot training are not permitted in the gym.</li>
-                </ul>
-            </article>
+            <section id="club-rules" class="py-4">
+                <h2>Club Rules &amp; Regulations</h2>
 
-            <article>
-                <h3>2. Gym Floor Etiquette</h3>
-                <ul>
-                    <li>Always re-rack dumbbells, weight plates, and barbells to their designated storage racks immediately after use, specifically:
-                        <ul>
-                            <li>Dumbbells &ndash; return to the numbered rack by weight</li>
-                            <li>Weight plates &ndash; stack by size on the plate tree</li>
-                            <li>Barbells &ndash; place on the barbell rack, never leaning against walls</li>
-                        </ul>
-                    </li>
-                    <li>Do not drop weights, dumbbells, or barbells onto bare floors or non-lifting platforms.</li>
-                    <li>Wipe down machine touchpoints and leather pads with disinfectant wipes after completing your sets.</li>
-                    <li>Share equipment between sets during peak hours and avoid occupying stations solely to use personal mobile devices.</li>
-                </ul>
-            </article>
+                <!-- Responsive grid: single column on phones, two columns from md up, three from lg up, using row-cols utilities instead of a hand-built float/flex layout -->
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-1">
+                    <div class="col">
+                        <article>
+                            <h3>1. Dress Code &amp; Hygiene</h3>
+                            <ul>
+                                <li>Clean athletic shoes (sneakers) and appropriate workout attire are strictly required in all training areas.</li>
+                                <li>Using an individual sweat towel on exercise equipment and workout benches is mandatory.</li>
+                                <li>Outdoor footwear, open-toed shoes (slides, sandals), or barefoot training are not permitted in the gym.</li>
+                            </ul>
+                        </article>
+                    </div>
 
-            <article>
-                <h3>3. Health &amp; Safety</h3>
-                <ul>
-                    <li>Assess workout intensity according to your <i>physical capabilities</i>; use spotters or ask an on-duty instructor when lifting heavy loads.</li>
-                    <li>Access to facilities is strictly prohibited for individuals under the influence of alcohol, drugs, or showing symptoms of infectious illnesses.</li>
-                    <li>In case of an injury or sudden health issue, notify the floor supervisor or front desk staff <em>immediately</em>.</li>
-                </ul>
-            </article>
+                    <div class="col">
+                        <article>
+                            <h3>2. Gym Floor Etiquette</h3>
+                            <ul>
+                                <li>Return all equipment to its designated racks immediately: dumbbells by weight, plates by size, and barbells to stands.</li>
+                                <li>Do not drop weights, dumbbells, or barbells onto bare floors or non-lifting platforms.</li>
+                                <li>Wipe down machine touchpoints and leather pads with disinfectant wipes after completing your sets.</li>
+                                <li>Share equipment between sets during peak hours and avoid occupying stations solely to use personal mobile devices.</li>
+                            </ul>
+                        </article>
+                    </div>
 
-            <article>
-                <h3>4. Locker Rooms &amp; Belongings</h3>
-                <ul>
-                    <!-- span used only as a generic inline wrapper for a phrase that will get a visual style later; no inline semantic tag (em/strong/mark) fits since it is not stress, importance, or highlighting -->
-                    <li>Store personal items in locked lockers during your visit. The club is not responsible for <span>unattended valuables</span>.</li>
-                    <li>Lockers must be cleared before the club closes; overnight storage is not allowed unless a long-term locker rental is active.</li>
-                    <li>Photography and video recording inside locker rooms and shower areas are strictly prohibited.</li>
-                </ul>
-            </article>
+                    <div class="col">
+                        <article>
+                            <h3>3. Health &amp; Safety</h3>
+                            <ul>
+                                <li>Assess workout intensity according to your <i>physical capabilities</i>; use spotters or ask an on-duty instructor when lifting heavy loads.</li>
+                                <li>Access to facilities is strictly prohibited for individuals under the influence of alcohol, drugs, or showing symptoms of infectious illnesses.</li>
+                                <li>In case of an injury or sudden health issue, notify the floor supervisor or front desk staff <em>immediately</em>.</li>
+                            </ul>
+                        </article>
+                    </div>
 
-            <article>
-                <h3>5. Membership &amp; Access Policy</h3>
-                <ul>
-                    <li>Entry requires presenting a valid personal membership <abbr title="Identification">ID</abbr> card. Passes are non-transferable.</li>
-                    <li>Workouts must conclude, and training zones must be vacated at least 15 minutes before the facility's closing time.</li>
-                    <li>Members are limited to one guest pass per month<sup>*</sup>.</li>
-                </ul>
-                <p><small>* Guest passes must be arranged with the front desk at least 24 hours in advance.</small></p>
-            </article>
-        </section>
+                    <div class="col">
+                        <article>
+                            <h3>4. Locker Rooms &amp; Belongings</h3>
+                            <ul>
+                                <!-- span used only as a generic inline wrapper for a phrase that will get a visual style later; no inline semantic tag (em/strong/mark) fits since it is not stress, importance, or highlighting -->
+                                <li>Store personal items in locked lockers during your visit. The club is not responsible for <span>unattended valuables</span>.</li>
+                                <li>Lockers must be cleared before the club closes; overnight storage is not allowed unless a long-term locker rental is active.</li>
+                                <li>Photography and video recording inside locker rooms and shower areas are strictly prohibited.</li>
+                            </ul>
+                        </article>
+                    </div>
 
-        <hr>
-        <!-- hr marks a real thematic shift here, from gym-floor rules to pool rules, not just a visual line -->
+                    <div class="col">
+                        <article>
+                            <h3>5. Membership &amp; Access Policy</h3>
+                            <ul>
+                                <li>Entry requires presenting a valid personal membership <abbr title="Identification">ID</abbr> card. Passes are non-transferable.</li>
+                                <li>Workouts must conclude, and training zones must be vacated at least 15 minutes before the facility's closing time.</li>
+                                <li>Members are limited to one guest pass per month<sup>*</sup>.</li>
+                            </ul>
+                            <p><small>* Guest passes must be arranged with the front desk at least 24 hours in advance.</small></p>
+                        </article>
+                    </div>
+                </div>
+            </section>
 
-        <section id="swimming-pool-rules">
-            <h2>Swimming Pool Rules &amp; Regulations</h2>
-            <p>Pool water (H<sub>2</sub>O) is tested twice daily for chlorine and pH levels.</p>
-            <ol type="I">
-                <li>Entry into the pool area is strictly permitted only in pool slides or flip-flops.</li>
-                <li>Access to the pool is permitted only in swimwear or swim trunks (no other clothing is allowed).</li>
-                <li>A swim cap is mandatory &ndash; sauna hats or disposable plastic caps are strictly prohibited.</li>
-                <li>Taking a shower is mandatory before entering the pool and after visiting the sauna.</li>
-                <li>Bringing food, beverages, or chewing gum into the pool area is strictly forbidden.</li>
-                <li>Children are only allowed in the swimming pool under direct adult supervision.</li>
-                <li>Diving or jumping into the pool from the edge is strictly prohibited.</li>
-                <li>In the event of a rule violation, the management reserves the right to deny access to the pool.</li>
-            </ol>
-        </section>
+            <hr>
+            <!-- hr marks a real thematic shift here, from gym-floor rules to pool rules, not just a visual line -->
 
-        <section id="glossary">
-            <h2>Glossary of Terms</h2>
-            <dl class="glossary-list">
-                <dt>Peak hours</dt>
-                <dd>06:00-09:00 and 18:00-21:00, when the gym floor is busiest.</dd>
-                <dt>Long-term locker rental</dt>
-                <dd>A paid monthly subscription that lets a member keep the same locker overnight instead of clearing it daily.</dd>
-            </dl>
-        </section>
+            <section id="swimming-pool-rules" class="py-4">
+                <h2>Swimming Pool Rules &amp; Regulations</h2>
+                <p>Pool water (H<sub>2</sub>O) is tested twice daily for chlorine and pH levels.</p>
+                <ol type="I">
+                    <li>Entry into the pool area is strictly permitted only in pool slides or flip-flops.</li>
+                    <li>Access to the pool is permitted only in swimwear or swim trunks (no other clothing is allowed).</li>
+                    <li>A swim cap is mandatory &ndash; sauna hats or disposable plastic caps are strictly prohibited.</li>
+                    <li>Taking a shower is mandatory before entering the pool and after visiting the sauna.</li>
+                    <li>Bringing food, beverages, or chewing gum into the pool area is strictly forbidden.</li>
+                    <li>Children are only allowed in the swimming pool under direct adult supervision.</li>
+                    <li>Diving or jumping into the pool from the edge is strictly prohibited.</li>
+                    <li>In the event of a rule violation, the management reserves the right to deny access to the pool.</li>
+                </ol>
+            </section>
+
+            <section id="glossary" class="py-4">
+                <h2>Glossary of Terms</h2>
+                <dl class="glossary-list">
+                    <dt>Peak hours</dt>
+                    <dd>06:00-09:00 and 18:00-21:00, when the gym floor is busiest.</dd>
+                    <dt>Long-term locker rental</dt>
+                    <dd>A paid monthly subscription that lets a member keep the same locker overnight instead of clearing it daily.</dd>
+                </dl>
+            </section>
+        </div>
     </main>
-    
+
     <footer>
-        <section id="contacts">
-            <h2>Contacts</h2>
-            <address>
-                <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
-                <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
-                <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
-            </address>
-        </section>
+        <div class="container">
 
-        <section id="socials">
-            <h3>Follow &amp; Message Us</h3>
-            <ul class="socials-list">
-                <li>
-                    <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
-                </li>
-            </ul>
-        </section>
+            <div class="pt-1">
+                <p><a href="#top" class="back-to-top">Back to the top</a></p>
+            </div>
 
-        <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
-        <p><a href="#top" class="back-to-top">Back to the top</a></p>
+            <section id="contacts">
+                <h2>Contacts</h2>
+                <address>
+                    <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
+                    <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
+                    <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+                </address>
+            </section>
+
+            <section id="socials">
+                <h3>Follow &amp; Message Us</h3>
+                <ul class="socials-list d-flex gap-3 list-unstyled">
+                    <li>
+                        <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </li>
+                </ul>
+            </section>
+
+            <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
+        </div>
     </footer>
 </body>
 </html>

@@ -8,80 +8,112 @@
     <meta name="author" content="Nuraly Auyelkhan">
     <meta name="description" content="Register of RixFit Fitness">
     <title>RixFit — Register</title>
+
+    <!-- Bootstrap 5.3.8 (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/nuraly.css">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <header class="site-header">
-        <h1><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1>
-
-        <nav aria-label="main-nav">
-            <ul class="nav-list">
-                <li><a href="index.html">Main page</a></li>
-                <li><a href="programs-and-trainers.html">Programs and Trainers </a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="rules.html">Rules</a></li>
-                <li><a href="gym-equipment.html">Gym Equipment Guide</a></li>
-                <li><a href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
-            </ul>
-        </nav>
-
-        <nav aria-label="auth-nav">
-            <ul class="nav-list">
-                <li><a href="login.html">Sign in</a></li>
-                <li><a href="register.html">Sign up</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Main page</a></li>
+                        <li class="nav-item"><a class="nav-link" href="programs-and-trainers.html">Programs and Trainers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+                        <li class="nav-item"><a class="nav-link" href="rules.html">Rules</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gym-equipment.html">Gym Equipment Guide</a></li>
+                        <li class="nav-item"><a class="nav-link" href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
+                    </ul>
+                    <ul class="navbar-nav" aria-label="auth-nav">
+                        <li class="nav-item"><a class="nav-link" href="login.html">Sign in</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="register.html">Sign up</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
 
     <main>
-        <h2 id="register-align-text">Register</h2>
+        <div class="container">
+            <!-- container (not container-fluid): a short auth form only needs a narrow, centred column -->
+            <div class="row">
+                <div class="col-md-6 col-lg-5 mx-auto">
 
-        <p id="message" class="form-message"></p>
+                    <h1 id="register-align-text" class="display-6 py-4" style="margin-top: 8rem;">Register</h1>
 
-        <form id="registerForm" class="auth-form" method="post" action="/api/register">
-            <label for="username">User Name:</label>
-            <input type="text" id="username" name="username" required minlength="3">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required minlength="6">
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+                    <p id="message" class="form-message"></p>
 
-        <p  id="register-align-text">Already have an account? <a href="login.html">Sign in</a></p>
+                    <form id="registerForm" class="auth-form" method="post" action="/api/register">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">User Name:</label>
+                            <input type="text" class="form-control" id="username" name="username" required minlength="3">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password" required minlength="6">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password:</label>
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required minlength="6">
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                            <!-- Disabled-state button required by the assignment: a real, working control that is simply not available yet. -->
+                            <button type="button" class="btn btn-outline-light" disabled title="Coming soon">
+                                Register with Google
+                            </button>
+                        </div>
+                    </form>
+                    <p class="text-center mt-4" style="margin-bottom: 14rem;">Already have an account? <a href="login.html">Sign in</a></p>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
-        <section id="contacts">
-            <h2>Contacts</h2>
-            <address>
-                <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
-                <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
-                <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
-            </address>
-        </section>
+        <div class="container">
+            <section id="contacts">
+                <h2 class="pt-3">Contacts</h2>
+                <address>
+                    <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
+                    <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
+                    <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+                </address>
+            </section>
 
-        <section id="socials">
-            <h3>Follow &amp; Message Us</h3>
-            <ul class="socials-list">
-                <li>
-                    <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
-                </li>
-            </ul>
-        </section>
+            <section id="socials">
+                <h3>Follow &amp; Message Us</h3>
+                <ul class="socials-list d-flex gap-3 list-unstyled">
+                    <li>
+                        <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </li>
+                </ul>
+            </section>
 
-        <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
+            <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
+        </div>
     </footer>
-
 </body>
-
 </html>
