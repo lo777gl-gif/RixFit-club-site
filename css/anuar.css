@@ -351,6 +351,10 @@ h3.service-title {
     text-align: left;
 }
 
+.facilities-table td p:hover {
+    font-size: larger;
+}
+
 .facilities-table thead {
     background-color: var(--color-red);
 }
