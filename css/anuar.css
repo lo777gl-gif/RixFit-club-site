@@ -1,18 +1,6 @@
-.site-header h1 {
-  margin-bottom: 0;
-  line-height: 1.25;
-}
-
 /*
     nutrition-and-supplements.html: Supplement CSS (Grid)
 */
-
-.supplement-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
-    margin: 1rem 0;
-}
 
 .supplement-card {
     margin: 0;
@@ -243,22 +231,7 @@
     service.html: Services Grid
 */
 
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 1.25rem;
-}
-
-.service-grid > h2 {
-    grid-column: 1/ -1;
-}
-
 h3.service-title {
-    color: var(--color-white);
-    position: static;
-}
-
-.service-grid .service-title {
     color: var(--color-red);
 }
 
@@ -282,16 +255,13 @@ h3.service-title {
 
 .service-image {
     display: block;
-    width: 80%;
-    height: 80%;
+    width: min(100%, 420px);
+    height: 230px;
     object-fit: cover;
     border-radius: 6px;
 }
 
 .service-fact {
-    grid-column: 1/ -1;
-    display: grid;
-    place-items: center;
     padding: 1.5rem;
     background-color: var(--color-dark-gray);
     border-left: 3px solid var(--color-red);
@@ -324,37 +294,4 @@ h3.service-title {
 
 #pool, #sauna, #terrace, #spa {
     scroll-margin-top: 1rem;
-}
-
-/*
-    services.html: Facilities table
-*/
-
-.facilities-table {
-    width: 100%;
-    margin: 2rem 0;
-    border-collapse: collapse;
-}
-
-.facilities-table caption {
-    padding: 0.75rem;
-    color: var(--color-red);
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-align: left;
-}
-
-.facilities-table th, .facilities-table td {
-    padding: 0.75rem;
-    border: 1px solid var(--color-gray);
-    text-align: left;
-}
-
-.facilities-table thead {
-    background-color: var(--color-red);
-}
-
-.facilities-table tbody tr:nth-child(odd) {
-    background-color: var(--color-dark-gray);
 }
