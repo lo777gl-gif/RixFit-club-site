@@ -48,7 +48,7 @@
     </header>
 
     <main class="container py-4">
-        <h2>RixFit - Services</h2>
+        <h1>RixFit - Services</h1>
         <!--<div> tag here is used since these jump links are only utility and do not serve any meaning for the semantic composition-->
             <nav class="service-jump" aria-label="Service Shortcuts">
                 <span>Jump to:</span>
@@ -74,7 +74,7 @@
             <h2 class="col-12">Relaxation Areas</h2>
             
             <div class="col-12 col-lg-6">
-                <article class="service-card h-100">
+                <article class="service-card h-100 d-flex flex-column">
                     <h3 class="service-title pool-service" id="pool">Swimming Pool</h3>
                     <p>
                         Pool in the RixFit Fitness provides both relaxation and activity.
@@ -85,15 +85,15 @@
                         After exercising, visitors can use the pool and take some time in enjoying the warm water.
                         There are also, sometimes, competitions for kids within the gym.
                     </p>
-                    <figure class="service-figure">
-                        <img class="service-image" src="images/Pool.jpg" alt="Adults Swimming Pool">
+                    <figure class="service-figure d-flex flex-column flex-grow-1">
+                        <img class="service-image w-100 flex-grow-1" src="images/Pool.jpg" alt="Adults Swimming Pool">
                         <figcaption>Adult Swimming Pool in RixFit Fitness.</figcaption>
                     </figure>
                 </article>
             </div>
 
             <div class="col-12 col-lg-6">
-                <article class="service-card h-100">
+                <article class="service-card h-100 d-flex flex-column">
                     <h3 class="service-title" id="sauna">Sauna</h3>
                     <p>
                         The sauna area is designed to be a recovery place, with different sections, such as hammam and
@@ -118,15 +118,15 @@
                             </figcaption>
                     </figure>
 
-                    <figure class="service-figure">
-                        <img class="service-image" src="images/InfraredSauna.jpg" alt="Infrared Sauna">
+                    <figure class="service-figure d-flex flex-column flex-grow-1">
+                        <img class="service-image w-100 flex-grow-1" src="images/InfraredSauna.jpg" alt="Infrared Sauna">
                         <figcaption>Infrared Sauna in RixFit Fitness</figcaption>
                     </figure>
                 </article>
             </div>
                 
             <div class="col-12 col-lg-6">
-                <article class="service-card h-100">
+                <article class="service-card h-100 d-flex flex-column">
                     <h3 class="service-title" id="terrace">Summer Terrace</h3>
                     <p>
                         With one and only summer terrace in Astana located in the Khan-Shatyr, RixFit Fitness offers it to
@@ -134,21 +134,21 @@
                         visitors to sunbathe on a deck chair.
                         Open during warm weather, gym-goers can have a great view on Astana along with enjoying quite time after a gym session.
                     </p>
-                    <figure class="service-figure">
-                        <img class="service-image" src="images/Terrace.jpg" alt="Summer Terrace">
+                    <figure class="service-figure d-flex flex-column flex-grow-1">
+                        <img class="service-image w-100 flex-grow-1" src="images/Terrace.jpg" alt="Summer Terrace">
                         <figcaption>Summer Terrace in RixFit Fitness</figcaption>
                     </figure>
                 </article>
             </div>
 
             <div class="col-12 col-lg-6">
-                <article class="service-card h-100">
+                <article class="service-card h-100 d-flex flex-column">
                     <h3 class="service-title" id="spa">SPA</h3>
                     <p>
                         RixFit offers you professionals who know how to apply pressure on your most tired muscles and joints.
                     </p>
-                    <figure class="service-figure">
-                        <img class="service-image" src="images/SPA.jpeg" alt="SPA">
+                    <figure class="service-figure d-flex flex-column flex-grow-1">
+                        <img class="service-image w-100 flex-grow-1" src="images/SPA.jpeg" alt="SPA">
                         <figcaption>SPA in RixFit Fitness</figcaption>
                     </figure>
                 </article>
@@ -167,8 +167,6 @@
                 </aside>
             </div>
         </section>
-
-        <hr>
 
         <div class="table-responsive">
             <table class="table table-dark table-bordered table-striped align-middle facilities-table">
@@ -207,37 +205,34 @@
                 </tbody>
             </table>
         </div>
-        
-        <hr>
 
     </main>
 
-    <footer>
-        <section id="contacts">
-            <h2>Contacts</h2>
-            <address>
-                <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
-                <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
-                <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
-            </address>
-        </section>
+    <footer class="mt-auto">
+        <div class="container">
+            <section id="contacts">
+                <h2 class="pt-3">Contacts</h2>
+                <address>
+                    <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
+                    <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
+                    <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+                </address>
+            </section>
 
-        <section id="socials">
-            <h3>Follow &amp; Message Us</h3>
-            <ul class="socials-list">
-                <li>
-                    <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank"
-                        rel="noopener noreferrer">WhatsApp</a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/rixfitastana" target="_blank"
-                        rel="noopener noreferrer">Instagram</a>
-                </li>
-            </ul>
-        </section>
+            <section id="socials">
+                <h3>Follow &amp; Message Us</h3>
+                <ul class="socials-list d-flex gap-3 list-unstyled">
+                    <li>
+                        <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </li>
+                </ul>
+            </section>
 
-        <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
-        <p><a class="back-to-top" href="#top">Back to the top</a></p>
+            <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
+        </div>
     </footer>
 </body>
 </html>
