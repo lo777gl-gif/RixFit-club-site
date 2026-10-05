@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Yeren Yedige, SE-2534">
-    <meta name="description" content="Personal member dashboard for RixFit Fitness Club.">
+    <meta name="description" content="Personal visit planner for RixFit Fitness Club.">
     <title>RixFit — My Account</title>
+    <link rel="icon" href="images/Logo.jpg" type="image/jpeg">
     <!-- Bootstrap 5.3.8 (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/base.css">
@@ -14,17 +15,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
 
-<body id="top" class="d-flex flex-column min-vh-100">
+<body id="top" class="member-pages d-flex flex-column min-vh-100" data-bs-theme="dark">
+    <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
                 <!-- container-fluid keeps the navigation background full width. -->
-                <a class="navbar-brand" href="index.html"><h1 class="mb-0"><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></a>
+                <button id="navigation-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbar-nav">
                     <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
                         <li class="nav-item"><a class="nav-link" href="index.html">Main page</a></li>
                         <li class="nav-item"><a class="nav-link" href="programs-and-trainers.html">Programs and Trainers</a></li>
@@ -44,68 +46,83 @@
         </nav>
     </header>
 
-    <main class="flex-grow-1">
+    <main id="main-content" class="flex-grow-1">
         <div class="container">
-            <!-- container keeps account details within a readable width; the header uses container-fluid. -->
-            <section class="py-4 border-bottom border-danger" aria-labelledby="account-heading">
-                <h2 id="account-heading" class="display-6 text-danger mb-2">Welcome back, Yeren</h2>
-                <p class="lead">Your membership, next session and weekly plan in one place.</p>
-                <a class="btn btn-primary btn-lg" href="#schedule">View my schedule</a>
-            </section>
-
-            <section class="row g-4 py-4" aria-label="Account overview">
-                <article class="col-12 col-lg-6">
-                    <div class="card bg-dark text-white border-secondary h-100">
-                        <div class="card-body">
-                            <h3 class="card-title text-danger">Membership</h3>
-                            <ul class="row row-cols-1 row-cols-sm-2 g-3 list-unstyled mb-4">
-                                <li class="col"><div class="p-3 border border-secondary rounded h-100"><span class="d-block text-white-50 small">Plan</span><strong>All access</strong></div></li>
-                                <li class="col"><div class="p-3 border border-secondary rounded h-100"><span class="d-block text-white-50 small">Status</span><strong>Active</strong></div></li>
-                                <li class="col"><div class="p-3 border border-secondary rounded h-100"><span class="d-block text-white-50 small">Member since</span><strong>September 2026</strong></div></li>
-                                <li class="col"><div class="p-3 border border-secondary rounded h-100"><span class="d-block text-white-50 small">Renews</span><strong>30 Sep 2026</strong></div></li>
-                            </ul>
-                            <label class="form-label" for="monthly-progress">September progress</label>
-                            <progress id="monthly-progress" class="w-100" value="68" max="100">68%</progress>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="col-12 col-lg-6">
-                    <div class="card bg-dark text-white border-secondary h-100">
-                        <div class="card-body">
-                            <h3 class="card-title text-danger">Next session</h3>
-                            <p><strong>Strength foundations</strong></p>
-                            <p class="text-white-50 small">Tuesday, 18:30 · Coach Aigerim · Studio 02</p>
-                            <p>Bring your water bottle and leave ten minutes for a calm warm-up.</p>
-                            <a class="btn btn-outline-secondary" href="programs-and-trainers.html">View program</a>
-                        </div>
-                    </div>
-                </article>
-            </section>
-
-            <section id="schedule" class="py-3" aria-labelledby="schedule-heading">
-                <div class="card bg-dark text-white border-secondary">
-                    <div class="card-body">
-                        <h3 id="schedule-heading" class="card-title text-danger">Upcoming sessions</h3>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item bg-dark text-white border-secondary d-flex flex-wrap justify-content-between gap-2"><strong>Strength foundations</strong><span class="text-danger fw-bold text-nowrap">Tue / 18:30</span></li>
-                            <li class="list-group-item bg-dark text-white border-secondary d-flex flex-wrap justify-content-between gap-2"><strong>Open swim</strong><span class="text-danger fw-bold text-nowrap">Thu / 07:30</span></li>
-                            <li class="list-group-item bg-dark text-white border-secondary d-flex flex-wrap justify-content-between gap-2"><strong>Mobility reset</strong><span class="text-danger fw-bold text-nowrap">Sat / 11:00</span></li>
-                        </ul>
-                    </div>
+            <section class="py-4" aria-labelledby="account-heading">
+                <h1 id="account-heading" class="display-6">My Account</h1>
+                <p class="lead">Prepare a personal visit plan and keep useful club links together.</p>
+                <p id="account-mode">This page is a personal planner. It does not show a verified membership or reserve a class. Saving on this device will be enabled in the JavaScript assignment.</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a id="account-plan-link" class="btn btn-primary" href="#visit-plan">Plan a visit</a>
+                    <a id="account-equipment-link" class="btn btn-outline-light" href="gym-equipment.html">Explore equipment</a>
                 </div>
             </section>
-
-            <section class="py-3 pb-4" aria-labelledby="actions-heading">
-                <div class="card bg-dark text-white border-secondary">
-                    <div class="card-body">
-                        <h3 id="actions-heading" class="card-title text-danger">Quick actions</h3>
-                        <div class="d-flex flex-wrap gap-2">
-                            <a class="btn btn-outline-danger" href="services.html#pool">Book the pool</a>
-                            <a class="btn btn-primary" href="reviews.html">Share feedback</a>
-                            <a class="btn btn-outline-secondary btn-sm align-self-center" href="login.html">Sign out</a>
-                        </div>
+            <section id="visit-plan" class="py-4 border-top border-secondary" aria-labelledby="plan-heading">
+                <h2 id="plan-heading" class="text-center">Your next visit</h2>
+                <p id="plan-help" class="text-center mx-auto">Choose an area, day, time and focus. All fields are required. This static version checks your entries without saving or booking a visit.</p>
+                <form id="visit-plan-form" action="account.html#plan-result" method="get" aria-describedby="plan-help" class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <label for="plan-area" class="form-label">Area (required)</label>
+                        <select id="plan-area" name="area" class="form-select" required>
+                            <option value="">Choose an area</option>
+                            <option value="gym">Gym</option>
+                            <option value="pool">Pool</option>
+                        </select>
                     </div>
+                    <div class="col-12 col-md-6">
+                        <label for="plan-day" class="form-label">Day (required)</label>
+                        <select id="plan-day" name="day" class="form-select" required>
+                            <option value="">Choose a day</option>
+                            <option value="monday">Monday</option><option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option><option value="thursday">Thursday</option>
+                            <option value="friday">Friday</option><option value="saturday">Saturday</option><option value="sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="plan-time" class="form-label">Preferred time (required)</label>
+                        <input id="plan-time" name="time" class="form-control" type="time" min="09:00" max="21:00" required aria-describedby="plan-time-help plan-time-error">
+                        <p id="plan-time-help" class="small mt-2">Choose 09:00–21:00, within the opening hours shown below on every day.</p>
+                        <p id="plan-time-error" class="error hidden">Choose a time between 09:00 and 21:00.</p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="plan-goal" class="form-label">Focus (required)</label>
+                        <select id="plan-goal" name="goal" class="form-select" required>
+                            <option value="">Choose your focus</option>
+                            <option value="strength">Strength</option><option value="cardio">Cardio</option>
+                            <option value="swimming">Swimming</option><option value="introduction">First visit and equipment introduction</option>
+                        </select>
+                    </div>
+                    <div class="col-12 d-flex flex-wrap gap-2">
+                        <button id="plan-submit" type="submit" class="btn btn-primary">Check my plan</button>
+                        <button id="plan-reset" type="reset" class="btn btn-outline-light">Clear form</button>
+                    </div>
+                </form>
+                <section id="plan-result" class="form-result border border-secondary rounded p-3 mt-4" tabindex="-1" aria-labelledby="plan-result-heading">
+                    <h3 id="plan-result-heading" class="h5">Plan result</h3>
+                    <p>After checking the form, this is where your personal plan will appear. Nothing is saved or booked in this static version.</p>
+                    <div id="plan-confirmation" class="success hidden" role="status"><p>Your personal visit plan has been saved on this device. No club booking was made.</p></div>
+                    <div id="plan-errors" class="error hidden" role="alert"></div>
+                    <div id="plan-preview" aria-live="polite"></div>
+                    <a id="plan-edit" href="#visit-plan">Return to the plan</a>
+                </section>
+            </section>
+            <section id="schedule" class="py-4 border-top border-secondary" aria-labelledby="schedule-heading">
+                <h2 id="schedule-heading">My planned visits</h2>
+                <p id="schedule-empty">No visits have been saved on this device. Start with the plan above.</p>
+                <ul id="schedule-list" class="list-group" aria-live="polite"></ul>
+                <template id="schedule-item-template">
+                    <li class="list-group-item bg-dark text-white border-secondary d-flex flex-wrap align-items-center justify-content-between gap-2">
+                        <span class="visit-description"></span>
+                        <button class="visit-remove btn btn-outline-light btn-sm" type="button">Remove visit</button>
+                    </li>
+                </template>
+            </section>
+            <section class="py-4 border-top border-secondary" aria-labelledby="actions-heading">
+                <h2 id="actions-heading">Before and after your visit</h2>
+                <div class="d-flex flex-wrap gap-2">
+                    <a id="account-rules-link" class="btn btn-outline-light" href="rules.html">Read club rules</a>
+                    <a id="account-pool-link" class="btn btn-outline-light" href="services.html#pool">Explore the pool</a>
+                    <a id="account-feedback-link" class="btn btn-primary" href="reviews.html#feedback">Share feedback</a>
                 </div>
             </section>
         </div>
@@ -138,12 +155,12 @@
 
                 <section id="socials" class="col-md-4 text-md-end">
                     <h3>Follow &amp; Message Us</h3>
-                    <ul class="socials-list d-flex gap-3 list-unstyled justify-content-md-center">
-                        <li class="px-4">
+                    <ul class="socials-list d-flex gap-3 list-unstyled justify-content-md-end">
+                        <li >
                             <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer"><img src="images/whatsapp-logo.webp" alt="Whatsapp" width="75"></a>
                         </li>
-                        <li class="py-1">
-                            <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer"><img src="images/instagram-logo.webp" alt="Instragram" width="65"></a>
+                        <li >
+                            <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer"><img src="images/instagram-logo.png" alt="Instagram" width="75"></a>
                         </li>
                     </ul>
                 </section>
