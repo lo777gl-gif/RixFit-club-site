@@ -7,22 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Public rating context and a feedback form for RixFit Fitness Club in Astana">
     <title>RixFit — Reviews</title>
+    <link rel="icon" href="images/Logo.jpg" type="image/jpeg">
     <!-- Bootstrap 5.3.8 (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/yeren-yedige.css">
 </head>
-<body id="top" class="d-flex flex-column min-vh-100">
+<body id="top" class="member-pages d-flex flex-column min-vh-100" data-bs-theme="dark">
+    <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
                 <!-- container-fluid keeps the navigation background full width. -->
-                <a class="navbar-brand" href="index.html"><h1 class="mb-0"><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></a>
+                <button id="navigation-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbar-nav">
                     <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
                         <li class="nav-item"><a class="nav-link" href="index.html">Main page</a></li>
                         <li class="nav-item"><a class="nav-link" href="programs-and-trainers.html">Programs and Trainers</a></li>
@@ -35,6 +37,7 @@
                     <ul class="navbar-nav" aria-label="auth-nav">
                         <li class="nav-item"><a class="nav-link" href="login.html">Sign in</a></li>
                         <li class="nav-item"><a class="nav-link" href="register.html">Sign up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="account.html">My account</a></li>
                     </ul>
                 </div>
             </div>
@@ -42,112 +45,87 @@
 
     </header>
 
-    <main class="flex-grow-1">
+    <main id="main-content" class="flex-grow-1">
         <div class="container">
         <!-- container keeps the review text readable on wide screens; the header uses container-fluid. -->
         <section id="overview" class="py-4">
-            <div class="row g-4 align-items-start">
-                <div class="col-12 col-lg-8">
-            <h2 class="display-6 text-center text-md-start">How to read this page</h2>
+            <h1 class="display-6">Reviews &amp; Feedback</h1>
             <p class="lead">
-                This page separates public directory information from first-hand feedback. RixFit Fitness Club is listed at Turan Avenue 37/9 in Astana, on the first floor. The public listing describes the place as a fitness club with a gym, a swimming pool, and personal and group training. These facts should be checked again in person before the final submission because directory details can change.
+                Read independent reviews using the public directory link below, or prepare feedback about your own visit. Only first-hand experiences belong in a visitor review.
             </p>
-                </div>
-            <aside class="col-12 col-lg-4">
-                <h3>On this page</h3>
-                <ul>
-                    <li><a href="#rating">Public rating snapshot</a></li>
-                    <li><a href="#quote">Collected visitor quote</a></li>
-                    <li><a href="#feedback">Feedback form</a></li>
-                </ul>
-            </aside>
-            </div>
+            <nav id="reviews-shortcuts" class="d-flex flex-wrap gap-2 mt-4" aria-label="Reviews shortcuts">
+                <a id="rating-shortcut" class="btn btn-outline-light" href="#rating">Independent reviews</a>
+                <a id="quote-shortcut" class="btn btn-outline-light" href="#quote">What to include</a>
+                <a id="feedback-shortcut" class="btn btn-outline-light" href="#feedback">Leave feedback</a>
+            </nav>
         </section>
 
         <hr>
 
         <section id="rating" class="py-4">
-            <h2>Public rating snapshot</h2>
-            <article class="row g-4 align-items-center">
+            <h2>Independent reviews</h2>
+            <div class="row g-4 align-items-start">
                 <div class="col-12 col-md-6">
-                <h3>RixFit on a public map listing</h3>
-                <div id="ratingSummary" class="card bg-dark text-white border-secondary shadow-sm">
-                    <div class="card-body">
-                    <!-- This div groups the rating and its source note without creating another heading-based section. -->
-                    <p class="card-text"><strong class="display-6">4.6 <span class="fs-4">/ 5</span></strong> from the rating count shown on the public listing.</p>
-                    <!-- This span keeps the unit beside the number because it has no meaning as a separate block. -->
-                    <p class="small text-white-50">Source to verify before submission: <a href="https://2gis.kz/astana/search/%D0%A3%D0%BB%D0%B8%D1%86%D0%B0%20%D1%82%D1%83%D1%80%D0%B0%D0%BD%20%D1%84%D0%B8%D1%82%D0%BD%D0%B5%D1%81" target="_blank" rel="noopener noreferrer">RixFit in 2GIS search results</a>.</p>
-                    <p><cite>RixFit public map listing</cite> is the source label for the snapshot above.</p>
-                </div>
-                </div>
+                    <p>Check the review dates, the number of ratings and the details of each visit when comparing opinions. A directory rating can change over time.</p>
+                    <a id="public-reviews-link" class="btn btn-outline-light" href="https://2gis.kz/astana/search/RixFit" target="_blank" rel="noopener noreferrer">Find RixFit reviews on 2GIS (new tab)</a>
+                    <p class="small mt-3">The link opens a directory search. Select the RixFit listing at Turan Avenue 37/9.</p>
                 </div>
                 <figure class="col-12 col-md-6">
-                    <img class="img-fluid rounded shadow-sm" src="images/RixFitMainPage.jpg" alt="Cardio and strength training area inside the RixFit gym">
-                    <figcaption>The gym area shown in the project’s existing photograph.</figcaption>
+                    <img class="img-fluid rounded" src="images/RixFitMainPage.jpg" alt="Cardio and strength training area at RixFit">
+                    <figcaption>The gym area at RixFit.</figcaption>
                 </figure>
-            </article>
+            </div>
         </section>
 
         <section id="quote" class="py-4">
-            <h2>Visitor reviews</h2>
-            <article class="row g-4 align-items-start">
-                <div class="col-12 col-lg-7">
-                <h3>What members notice first</h3>
-                <p><small>Reviews for this project.</small></p>
-                <blockquote class="blockquote border-start border-4 border-danger ps-3">
-                    The gym is easy to navigate, and I like that I can finish a strength session with a swim. The staff explained the equipment without making the first visit feel complicated.
-                </blockquote>
-                <p><cite>Sample review by Amina K., 6 September 2026</cite></p>
-                <p>In this sample, the visitor describes the club as <q>easy to navigate</q>, which points to the importance of clear zones and friendly introductions.</p>
-                <article>
-                    <h3>Three short ratings</h3>
-                    <ul>
-                        <li><strong>Equipment:</strong> 5/5 — the machines are varied enough for a balanced weekly routine.</li>
-                        <li><strong>Pool:</strong> 4/5 — a useful recovery option after a gym session.</li>
-                        <li><strong>Atmosphere:</strong> 5/5 — calm during the early morning sample visit.</li>
-                    </ul>
-                </article>
-                </div>
-                <figure class="col-12 col-lg-5">
-                    <img class="img-fluid rounded shadow-sm" src="images/Terrace.jpg" alt="Outdoor terrace area at RixFit Fitness Club">
-                    <figcaption>An existing project photograph of the club’s outdoor terrace area.</figcaption>
-                </figure>
-            </article>
+            <h2>Write a useful review</h2>
+            <p>Describe what you used, when you visited and what made the experience better or worse. Avoid other visitors' personal information.</p>
+            <ul>
+                <li>Equipment: mention the machines or training area you used.</li>
+                <li>Pool: describe your swimming experience and the time of your visit.</li>
+                <li>Service: explain what happened and what could improve.</li>
+            </ul>
+            <div id="reviews-empty" class="border border-secondary rounded p-3">
+                <p class="mb-2">There are no visitor-submitted reviews stored on this website.</p>
+                <a id="empty-feedback-link" class="btn btn-outline-light" href="#feedback">Prepare your feedback</a>
+            </div>
+            <div id="reviews-list" aria-live="polite"></div>
         </section>
 
         <section id="feedback" class="py-4">
-            <h2>Leave feedback</h2>
+            <h2 id="feedback-heading" class="text-center">Leave feedback</h2>
             <article>
-                <h3>Visitor feedback form</h3>
+                <h3 class="h5 text-center">Tell us about your visit</h3>
                 <!-- The form has no server behind it yet, only the required HTML controls. -->
-                <form action="#" method="get" class="row g-3">
+                <p id="feedback-help" class="text-center mx-auto">Complete the required fields, then check your feedback. This static version validates your entries but does not save or send them.</p>
+                <form id="feedback-form" action="reviews.html#feedback-result" method="get" class="row g-3" aria-describedby="feedback-help">
                     <fieldset class="col-12 col-lg-10 mx-auto p-3 p-md-4 bg-dark bg-opacity-50 rounded border border-secondary">
-                        <legend class="h5">Tell us about your visit</legend>
+                        <legend class="h5 text-center">Visit details</legend>
 
                         <div class="row g-3">
                         <div class="col-12 col-md-6">
-                        <label class="form-label" for="visitorName">Name:</label>
-                        <input class="form-control" type="text" id="visitorName" name="visitorName" placeholder="Your name" required>
+                        <label class="form-label" for="visitor-name">Name (required):</label>
+                        <input class="form-control" type="text" id="visitor-name" autocomplete="name" maxlength="80" placeholder="Your name" required>
                         </div>
 
                         <div class="col-12 col-md-6">
-                        <label class="form-label" for="visitorEmail">Email:</label>
-                        <input class="form-control" type="email" id="visitorEmail" name="visitorEmail" placeholder="name@example.com" required>
+                        <label class="form-label" for="visitor-email">Email (required):</label>
+                        <input class="form-control" type="email" id="visitor-email" autocomplete="email" maxlength="254" placeholder="name@example.com" required>
                         </div>
 
                         <div class="col-12 col-md-6">
-                        <label class="form-label" for="visitorPhone">Phone:</label>
-                        <input class="form-control" type="tel" id="visitorPhone" name="visitorPhone" placeholder="+7 700 000 00 00">
+                        <label class="form-label" for="visitor-phone">Phone:</label>
+                        <input class="form-control" type="tel" id="visitor-phone" autocomplete="tel" maxlength="30" placeholder="+7 700 000 00 00">
                         </div>
 
                         <div class="col-12 col-md-6">
-                        <label class="form-label" for="visitCount">Number of visits:</label>
-                        <input class="form-control" type="number" id="visitCount" name="visitCount" min="1" placeholder="1">
+                        <label class="form-label" for="visit-count">Number of visits:</label>
+                        <input class="form-control" type="number" id="visit-count" name="visit-count" min="1" placeholder="1">
                         </div>
 
                         <div class="col-12 col-md-6">
-                        <label class="form-label" for="visitDate">Date of visit:</label>
-                        <input class="form-control" type="date" id="visitDate" name="visitDate">
+                        <label class="form-label" for="visit-date">Date of visit:</label>
+                        <input class="form-control" type="date" id="visit-date" name="visit-date">
                         </div>
 
                         <div class="col-12">
@@ -165,8 +143,20 @@
                         </div>
 
                         <div class="col-12 col-md-6">
-                        <label class="form-label" for="visitType">Visit type:</label>
-                        <select class="form-select" id="visitType" name="visitType">
+                        <label class="form-label" for="review-rating">Your rating (required):</label>
+                        <select class="form-select" id="review-rating" name="rating" required>
+                            <option value="">Choose a rating</option>
+                            <option value="5">5 — Excellent</option>
+                            <option value="4">4 — Good</option>
+                            <option value="3">3 — Average</option>
+                            <option value="2">2 — Poor</option>
+                            <option value="1">1 — Very poor</option>
+                        </select>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                        <label class="form-label" for="visit-type">Visit type:</label>
+                        <select class="form-select" id="visit-type" name="visit-type">
                             <option value="single">Single visit</option>
                             <option value="membership">Membership visit</option>
                             <option value="training">Training session</option>
@@ -174,22 +164,32 @@
                         </div>
 
                         <div class="col-12">
-                        <label class="form-label" for="feedbackText">Your feedback:</label>
-                        <textarea class="form-control" id="feedbackText" name="feedbackText" rows="5" placeholder="Write your own verified notes here"></textarea>
+                        <label class="form-label" for="feedback-text">Your feedback (required):</label>
+                        <textarea class="form-control" id="feedback-text" rows="5" required minlength="10" maxlength="2000" aria-describedby="feedback-text-help feedback-text-error" placeholder="Write your own verified notes here"></textarea>
+                        <p id="feedback-text-help" class="small mt-2">Use 10–2,000 characters.</p>
+                        <p id="feedback-text-error" class="error hidden">Enter feedback between 10 and 2,000 characters.</p>
                         </div>
 
                         <div class="col-12 form-check ms-2">
                         <input class="form-check-input" type="checkbox" id="permission" name="permission" required>
-                        <label class="form-check-label" for="permission">I agree that this feedback may be quoted on this student project:</label>
+                        <label class="form-check-label" for="permission">I agree that my name and feedback may be displayed on this website (required).</label>
                         </div>
                         </div>
 
                         <div class="d-flex flex-wrap gap-2 mt-3">
-                        <button type="submit" class="btn btn-primary">Send feedback</button>
-                        <button type="reset" class="btn btn-outline-secondary">Clear form</button>
+                        <button id="feedback-submit" type="submit" class="btn btn-primary">Check feedback</button>
+                        <button id="feedback-reset" type="reset" class="btn btn-outline-light">Clear form</button>
                         </div>
                     </fieldset>
                 </form>
+                <section id="feedback-result" class="form-result border border-secondary rounded p-3 mt-4" tabindex="-1" aria-labelledby="feedback-result-heading">
+                    <h3 id="feedback-result-heading" class="h5">Feedback result</h3>
+                    <p class="mb-2">After checking the form, this is where your submission result will appear. This version does not store or publish feedback.</p>
+                    <div id="feedback-confirmation" class="success hidden" role="status"><p>Your feedback has been saved on this device.</p></div>
+                    <div id="feedback-errors" class="error hidden" role="alert"></div>
+                    <div id="feedback-preview" aria-live="polite"></div>
+                    <a id="feedback-edit" href="#feedback">Return to the form</a>
+                </section>
             </article>
         </section>
         </div>
@@ -222,12 +222,12 @@
 
                 <section id="socials" class="col-md-4 text-md-end">
                     <h3>Follow &amp; Message Us</h3>
-                    <ul class="socials-list d-flex gap-3 list-unstyled justify-content-md-center">
-                        <li class="px-5">
+                    <ul class="socials-list d-flex gap-3 list-unstyled justify-content-md-end">
+                        <li >
                             <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer"><img src="images/whatsapp-logo.webp" alt="Whatsapp" width="75"></a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer"><img src="images/instagram-logo.png" alt="Instragram" width="75"></a>
+                            <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer"><img src="images/instagram-logo.png" alt="Instagram" width="75"></a>
                         </li>
                     </ul>
                 </section>
