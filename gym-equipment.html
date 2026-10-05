@@ -7,23 +7,25 @@
     <meta name="author" content="Yeren Edige, SE-2534">
     <meta name="description" content="A practical guide to the gym equipment listed for RixFit Fitness Club in Astana">
     <title>RixFit — Gym Equipment Guide</title>
+    <link rel="icon" href="images/Logo.jpg" type="image/jpeg">
     <!-- Bootstrap 5.3.8 (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/yeren-yedige.css">
     
 </head>
-<body id="top" class="d-flex flex-column min-vh-100">
+<body id="top" class="member-pages d-flex flex-column min-vh-100" data-bs-theme="dark">
+    <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
                 <!-- container-fluid keeps the navigation background full width. -->
-                <a class="navbar-brand" href="index.html"><h1 class="mb-0"><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></h1></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></a>
+                <button id="navigation-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbar-nav">
                     <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
                         <li class="nav-item"><a class="nav-link" href="index.html">Main page</a></li>
                         <li class="nav-item"><a class="nav-link" href="programs-and-trainers.html">Programs and Trainers</a></li>
@@ -36,6 +38,7 @@
                     <ul class="navbar-nav" aria-label="auth-nav">
                         <li class="nav-item"><a class="nav-link" href="login.html">Sign in</a></li>
                         <li class="nav-item"><a class="nav-link" href="register.html">Sign up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="account.html">My account</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,27 +46,18 @@
 
     </header>
 
-    <main class="flex-grow-1">
+    <main id="main-content" class="flex-grow-1">
         <div class="container">
             <!-- container keeps long reading content at a comfortable width, unlike the full-width header. -->
         <section id="guide-start" class="py-4">
-            <div class="row g-4 align-items-start">
-                <div class="col-12 col-lg-8">
-            <h2 class="display-6 text-center text-md-start">Start with the equipment you recognise</h2>
-            <p class="lead">
-                A public description of RixFit lists Technogym equipment, cardio machines, free weights, and a separate pool area. The list below is a guide for identifying the equipment; it is not a substitute for an in-person induction from a trainer. Ask a staff member to demonstrate any unfamiliar movement, especially if you have an injury or medical restriction. In a safe session, the goal is controlled technique, not the heaviest possible load.
-            </p>
-            <!-- The aside keeps quick links separate from the equipment explanation because it supports navigation rather than adding new content. -->
-                </div>
-            <aside class="col-12 col-lg-4">
-                <h3>Guide map</h3>
-                <ul>
-                    <li><a href="#inventory">Published inventory</a></li>
-                    <li><a href="#sequence">Before your first set</a></li>
-                    <li><a href="#terms">Equipment terms</a></li>
-                </ul>
-            </aside>
-            </div>
+            <h1 class="display-6">Gym Equipment Guide</h1>
+            <p class="lead" id="equipment-intro">Explore the equipment described for RixFit, prepare for your first set and plan your visit.</p>
+            <nav id="equipment-shortcuts" class="d-flex flex-wrap gap-2 mt-4" aria-label="Equipment guide shortcuts">
+                <a id="inventory-shortcut" class="btn btn-outline-light" href="#inventory">Equipment inventory</a>
+                <a id="sequence-shortcut" class="btn btn-outline-light" href="#sequence">Before your first set</a>
+                <a id="terms-shortcut" class="btn btn-outline-light" href="#terms">Equipment terms</a>
+                <a id="plan-shortcut" class="btn btn-outline-light" href="#plan-next">Plan a visit</a>
+            </nav>
         </section>
 
         <hr>
@@ -72,11 +66,11 @@
             <h2>Published equipment inventory</h2>
             <article class="row g-4 align-items-start">
                 <!-- Bootstrap table component: responsive wrapper and striped bordered rows make this inventory easy to scan. -->
-                <div class="col-12">
-                <h3>What the public listing describes</h3>
+                <div class="col-12 col-lg-8">
+                <h3 class="h5">Cardio, strength and pool areas</h3>
                 <div class="table-responsive">
                 <table class="price-table table table-dark table-striped table-bordered align-middle">
-                    <caption>Selected RixFit facilities and equipment to verify on site</caption>
+                    <caption>Equipment described in the archived 2024 RixFit offer</caption>
                     <thead>
                         <tr>
                             <th scope="col">Area</th>
@@ -84,11 +78,11 @@
                             <th scope="col">Published fact</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="equipment-list">
                         <tr>
                             <th scope="row">Cardio</th>
                             <td>Treadmills</td>
-                            <td>2 machines listed</td>
+                            <td>2 machines in the archived listing</td>
                         </tr>
                         <tr>
                             <th scope="row">Cardio</th>
@@ -103,16 +97,16 @@
                         <tr>
                             <th scope="row">Pool</th>
                             <td>Swimming pool</td>
-                            <td>3 lanes, 18 m length listed</td>
+                            <td>Pool access included in the archived offer</td>
                         </tr>
                     </tbody>
                 </table>
                 </div>
-                <p class="small text-white-50">Verify the current inventory at the club before treating this table as a final report. Source: <a href="https://ast.chocolife.me/58252-fitnes-tsentr-rixfit/" target="_blank" rel="noopener noreferrer">public RIXFIT directory description</a>.</p>
+                <p class="small text-white-50">This offer ended in February 2024; it describes historical inventory, not current availability. Source: <a href="https://ast.chocolife.me/58252-fitnes-tsentr-rixfit/" target="_blank" rel="noopener noreferrer">public RIXFIT directory description</a>.</p>
                 </div>
-                <figure class="col-12 col-md-8 col-lg-6">
+                <figure class="col-12 col-lg-4 mb-0">
                     <img class="img-fluid rounded shadow-sm" src="images/Pool.jpg" alt="The indoor pool at RixFit Fitness Club" width="500">
-                    <figcaption>An existing project photograph used to identify the pool area.</figcaption>
+                    <figcaption>The indoor pool at RixFit.</figcaption>
                 </figure>
             </article>
         </section>
@@ -152,10 +146,19 @@
             </article>
         </section>
 
+        <section id="plan-next" class="py-4">
+            <h2>Plan your own visit</h2>
+            <p>Choose a gym or pool visit and a preferred time in your personal plan. This records your intentions; it does not reserve equipment or a class.</p>
+            <div class="d-flex flex-wrap gap-2">
+                <a id="equipment-plan-link" class="btn btn-primary" href="account.html#visit-plan">Plan a visit</a>
+                <a id="equipment-rules-link" class="btn btn-outline-light" href="rules.html">Read club rules</a>
+            </div>
+        </section>
+
         <section id="terms" class="py-4">
             <h2>Equipment terms</h2>
             <article>
-                <h3>Words used in the guide</h3>
+                <h3 class="h5">Words used in the guide</h3>
                 <dl>
                     <dt>Cardio</dt>
                     <dd>Exercise that keeps the body moving continuously to train endurance.</dd>
@@ -164,10 +167,8 @@
                     <dt>Range of motion</dt>
                     <dd>The controlled distance a joint travels during an exercise.</dd>
                 </dl>
-                <p><b>Important:</b> equipment names can differ between machines. <i>Use the label on the machine</i> and the trainer’s instruction as your final reference.</p>
-                <p><mark>Do not start a machine you have not been shown how to use.</mark> A trainer can help you set the correct position for your body.</p>
-                <p>An exercise plan may record repetitions as <strong>3 × 10</strong>; the small number is a count, not a measurement of the machine. Use <abbr title="repetitions">reps</abbr> and <abbr title="range of motion">ROM</abbr> consistently in your notes, with <em>steady control</em> throughout each set.</p>
-                <p>Hydration matters during training: water is written as H<sub>2</sub>O. A training note can label a second set as the 2<sup>nd</sup> set after you confirm the plan with a trainer.</p>
+                <p><strong>Check the machine label.</strong> Names can differ between machines. Ask a trainer to show you the setup before using unfamiliar equipment.</p>
+                <p>A plan written as <strong>3 × 10</strong> means three sets of ten <abbr title="repetitions">reps</abbr>. <abbr title="range of motion">ROM</abbr> describes the distance of the movement.</p>
             </article>
         </section>
         </div>
@@ -200,12 +201,12 @@
 
                 <section id="socials" class="col-md-4 text-md-end">
                     <h3>Follow &amp; Message Us</h3>
-                    <ul class="socials-list d-flex gap-3 list-unstyled justify-content-md-center">
-                        <li class="px-5">
+                    <ul class="socials-list d-flex gap-3 list-unstyled justify-content-md-end">
+                        <li >
                             <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer"><img src="images/whatsapp-logo.webp" alt="Whatsapp" width="75"></a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer"><img src="images/instagram-logo.png" alt="Instragram" width="75"></a>
+                            <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer"><img src="images/instagram-logo.png" alt="Instagram" width="75"></a>
                         </li>
                     </ul>
                 </section>
