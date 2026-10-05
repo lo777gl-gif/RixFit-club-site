@@ -90,10 +90,15 @@ footer address p {
   font-style: normal; 
 }
 
-a[target="_blank"]::after {
+footer a {
+  text-decoration: none;
+}
+
+/* Temporary disabled because i have no access to Js */
+/* a[target="_blank"]::after {
   content: " ↗";
   font-size: 0.85em;
-}
+} */
 
 /* Positioning: fixed — kept from Assignment 2, Bootstrap has no equivalent
    "back to top" component. Stays on screen while scrolling long pages. */

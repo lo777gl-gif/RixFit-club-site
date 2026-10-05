@@ -11,12 +11,12 @@
     <!--Bootstrap 5.3.8 (CDN)-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/nuraly.css">
 </head>
 
+<body class="d-flex flex-column min-vh-100">
 <body class="d-flex flex-column min-vh-100">
 
     <header class="site-header">
@@ -70,31 +70,41 @@
 
     <footer class="mt-auto">
         <div class="container">
-            <section id="contacts">
-                <h2 class="pt-3">Contacts</h2>
-                <address>
-                    <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
-                    <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
-                    <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
-                </address>
-            </section>
+        <div class="container p-3">
+            <div class="row g-4">
+                    <section id="contacts" class="col-md-4">
+                        <h2 class="h3" class="pt-3">Contacts</h2>
+                        <address>
+                            <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
+                            <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
+                            <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+                        </address>
+                    </section>
 
-            <section id="socials">
-                <h3>Follow &amp; Message Us</h3>
-                <ul class="socials-list d-flex gap-3 list-unstyled">
-                    <li>
-                        <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
-                    </li>
-                </ul>
-            </section>
+                <section id="hours" class="col-md-4 text-md-center">
+                    <h3>Opening Hours</h3>
+                    <ul class="list-unstyled">
+                        <li>Workdays: <time datetime="07:00">07:00</time> &ndash; <time datetime="23:00">23:00</time></li>
+                        <li>Weekends: <time datetime="09:00">09:00</time> &ndash; <time datetime="22:00">22:00</time></li>
+                    </ul>
+                </section>
 
-            <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
-        </div>
+                <section id="socials" class="col-md-4 text-md-end">
+                    <h3>Follow &amp; Message Us</h3>
+                    <ul class="socials-list d-flex gap-3 list-unstyled justify-content-md-center">
+                        <li class="px-5">
+                            <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer"><img src="images/whatsapp-logo.webp" alt="Whatsapp" width="75"></a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer"><img src="images/instagram-logo.png" alt="Instragram" width="75"></a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+        <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
     </footer>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
-
 </html>

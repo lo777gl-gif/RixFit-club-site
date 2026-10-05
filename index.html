@@ -12,9 +12,7 @@
 
     <!-- Bootstrap 5.3.8 (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
-    <!-- base.css after the bootstrap -->
     <link rel="stylesheet" href="css/base.css">
 
     <!-- Cascade/priority demo: one internal style block, but because this block loads after base.css it wins by source order alone -->
@@ -61,37 +59,29 @@
         <div class="container">
             <!-- container (fixed max-width, centred) for readable body content, unlike the full-bleed container-fluid used in the header above -->
 
-            <section id="about" class="py-4">
-                <h1 class="display-6">About Our Fitness Center</h1>
-                <article class="row g-4 align-items-center">
-                    <div class="col-lg-7">
-                        <h2 class="py-2">Your Journey to a Healthier Lifestyle Starts Here</h2>
+            <section id="about" class="py-5">
+                <h1 class="display-5 fw-bold mb-4">About Our Fitness Center</h1>
+                <article class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <h2 class="h3 mb-3">Your Journey to a Healthier Lifestyle Starts Here</h2>
                         <p class="lead">
                             Welcome to our fitness hub. We provide <strong>state-of-the-art equipment</strong>, personalized training programs, and a supportive community to help you achieve your goals. Whether you want to build strength or improve endurance, <mark>our expert coaches</mark> will guide you every step of the way. Start transforming your life <em>today</em>!
                         </p>
 
-                        <h3>Advantages and features of the club:</h3>
-                        <ul>
+                        <h3 class="h4 mt-4">Advantages and features of the club:</h3>
+                        <ul class="fs-5">
                             <li>Modern equipment</li>
                             <li>Spacious swimming pool with multi-stage water purification</li>
                             <li>High-Certified coaching staff</li>
                             <li>Convenient parking and SPA area</li>
                         </ul>
-
-                        <!-- Responsive utility demo: this note is hidden on phones and shown from md up, so small screens aren't cluttered with a secondary line. -->
-                        <div class="d-none d-md-block">
-                            <span class="text-muted small">Join thousands of satisfied residents who have already changed their lives with us.</span>
-                        </div>
-                        <!-- Responsive utility demo: the same note, shown only below md, right-aligned to fit a narrow column differently than the line above. -->
-                        <div class="d-md-none text-md-start text-end">
-                            <span class="text-muted small">Join thousands of satisfied residents who have already changed their lives with us.</span>
-                        </div>
+                        <!-- блок "Join thousands..." оставьте как есть -->
                     </div>
 
-                    <div class="col-lg-5">
+                    <div class="col-lg-6">
                         <figure class="mb-0">
-                            <img src="images/RixFitMainPage.jpg" class="img-fluid rounded shadow-sm" alt="Gym interior with professional treadmills and weight lifting area close-up">
-                            <figcaption class="text-muted small mt-2">Our spacious cardio and strength training zone equipped with great machines.</figcaption>
+                            <img src="images/RixFitMainPage.jpg" class="img-fluid rounded shadow" alt="Gym interior with professional treadmills and weight lifting area close-up">
+                            <figcaption class="text-muted mt-2">Our spacious cardio and strength training zone equipped with great machines.</figcaption>
                         </figure>
                     </div>
                 </article>
@@ -180,29 +170,41 @@
                 <p><a href="#top" class="back-to-top">Back to the top</a></p>
             </div>
 
-            <section id="contacts">
-                <h2>Contacts</h2>
-                <address>
-                    <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
-                    <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
-                    <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
-                </address>
-            </section>
+            <div class="row g-4">
+                <section id="contacts" class="col-md-4">
+                    <h2 class="h3">Contacts</h2>
+                    <address>
+                        <p>Address: Turan Avenue 37/9, 1st floor, Astana</p>
+                        <p>Telephone number: <a href="tel:+77754385471">+7 775 438 54 71</a></p>
+                        <p>Email: <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a></p>
+                    </address>
+                </section>
 
-            <section id="socials">
-                <h3>Follow &amp; Message Us</h3>
-                <ul class="socials-list d-flex gap-3 list-unstyled">
-                    <li>
-                        <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer">Instagram</a>
-                    </li>
-                </ul>
-            </section>
+                <section id="hours" class="col-md-4 text-md-center">
+                    <h3>Opening Hours</h3>
+                    <ul class="list-unstyled">
+                        <li>Workdays: <time datetime="07:00">07:00</time> &ndash; <time datetime="23:00">23:00</time></li>
+                        <li>Weekends: <time datetime="09:00">09:00</time> &ndash; <time datetime="22:00">22:00</time></li>
+                    </ul>
+                </section>
 
-            <p><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
+                <section id="socials" class="col-md-4 text-md-end">
+                    <h3>Follow &amp; Message Us</h3>
+                    <ul class="socials-list d-flex gap-3 list-unstyled justify-content-md-center">
+                        <li class="px-5">
+                            <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer"><img src="images/whatsapp-logo.webp" alt="Whatsapp" width="75"></a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer"><img src="images/instagram-logo.png" alt="Instragram" width="75"></a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+            <p class="mt-3"><small>&copy; 2026 RixFit Fitness Club &amp; student project.</small></p>
         </div>
     </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
