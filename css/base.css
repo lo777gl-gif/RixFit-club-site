@@ -120,3 +120,50 @@ footer a {
   background-color: var(--color-white);
   color: var(--color-red);
 }
+
+.hidden {
+  display: none;
+}
+
+.active:not(.nav-link):not(.btn) {
+  border-color: var(--color-red);
+  color: var(--color-red);
+  font-weight: 700;
+}
+
+.selected {
+  background-color: var(--color-dark-gray);
+  outline: 2px solid var(--color-red);
+  outline-offset: 2px;
+}
+
+.error {
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+.success {
+  color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+div.error,
+div.success,
+p.error,
+p.success {
+  border-left: 4px solid;
+  margin-top: 1rem;
+  padding: 0.5rem 0.75rem;
+}
+
+input.form-control.error,
+textarea.form-control.error,
+select.form-select.error {
+  border-color: var(--color-red);
+}
+
+input.form-control.success,
+textarea.form-control.success,
+select.form-select.success {
+  border-color: var(--color-white);
+}

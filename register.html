@@ -28,7 +28,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
+                    <ul id="main-nav" class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
                         <li class="nav-item"><a class="nav-link" href="index.html">Main page</a></li>
                         <li class="nav-item"><a class="nav-link" href="programs-and-trainers.html">Programs and Trainers</a></li>
                         <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
@@ -37,7 +37,7 @@
                         <li class="nav-item"><a class="nav-link" href="gym-equipment.html">Gym Equipment Guide</a></li>
                         <li class="nav-item"><a class="nav-link" href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
                     </ul>
-                    <ul class="navbar-nav" aria-label="auth-nav">
+                    <ul id="auth-nav" class="navbar-nav" aria-label="auth-nav">
                         <li class="nav-item"><a class="nav-link" href="login.html">Sign in</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="register.html">Sign up</a></li>
                         <li class="nav-item"><a class="nav-link" href="account.html">My account</a></li>
@@ -76,12 +76,14 @@
                         </div>
 
                         <div class="d-flex flex-wrap gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                            <button id="btn-submit" type="submit" class="btn btn-primary btn-lg">Register</button>
                             <!-- Disabled-state button required by the assignment: a real, working control that is simply not available yet. -->
                             <button type="button" class="btn btn-outline-light" disabled title="Coming soon">
                                 Register with Google
                             </button>
                         </div>
+                        <div id="register-error"></div>
+                        <div id="register-confirmation"></div>
                     </form>
                     <p class="text-center mt-4" style="margin-bottom: 14rem;">Already have an account? <a href="login.html">Sign in</a></p>
                 </div>

@@ -26,7 +26,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
+                    <ul id="main-nav" class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
                         <li class="nav-item"><a class="nav-link" href="index.html">Main page</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="programs-and-trainers.html">Programs and Trainers</a></li>
                         <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
@@ -35,7 +35,7 @@
                         <li class="nav-item"><a class="nav-link" href="gym-equipment.html">Gym Equipment Guide</a></li>
                         <li class="nav-item"><a class="nav-link" href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
                     </ul>
-                    <ul class="navbar-nav" aria-label="auth-nav">
+                    <ul id="auth-nav" class="navbar-nav" aria-label="auth-nav">
                         <li class="nav-item"><a class="nav-link" href="login.html">Sign in</a></li>
                         <li class="nav-item"><a class="nav-link" href="register.html">Sign up</a></li>
                         <li class="nav-item"><a class="nav-link" href="account.html">My account</a></li>
@@ -240,7 +240,7 @@
             <section id="book-trial" class="mb-4">
                 <h3>Book a Free Trial Session</h3>
                 <!-- This form does not send data anywhere yet - there is no server behind it. Server-side handling comes later in the course. -->
-                <form method="post" action="#" aria-label="Trial session booking form">
+                <form id="trial-form" method="post" action="#" aria-label="Trial session booking form">
                     <!-- Nested grid demo: a row inside this fieldset's column, so the personal-details fields
                          sit two-per-line on tablets/desktop and stack on phones -->
                     <fieldset class="mb-3">
@@ -307,12 +307,14 @@
                     </fieldset>
 
                     <div class="d-flex flex-wrap gap-2">
-                        <button type="submit" class="btn btn-primary">Book my trial</button>
-                        <button type="reset" class="btn btn-outline-secondary">Clear form</button>
+                        <button id="btn-submit" type="submit" class="btn btn-primary">Book my trial</button>
+                        <button id="btn-reset" type="reset" class="btn btn-outline-secondary">Clear form</button>
                         <!-- Button-class requirements covered across the project: outline style + size variant here,
                              disabled state on register.html -->
                         <a href="tel:+77754385471" class="btn btn-outline-danger btn-sm align-self-center">Or call us directly</a>
                     </div>
+                    <div id="trial-error"></div>
+                    <div id="trial-confirmation"></div>
                 </form>
             </section>
         </div>
