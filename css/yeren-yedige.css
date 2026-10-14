@@ -48,7 +48,6 @@ progress {
 .member-pages a:not(.btn):not(.nav-link):not(.back-to-top):not(.navbar-brand) { color: #ff9ba5; }
 .member-pages .btn-primary { --bs-btn-bg: #b82433; --bs-btn-border-color: #b82433; }
 .member-pages .price-table thead th { background-color: #b82433; }
-.member-pages .back-to-top { position: static; display: inline-block; margin-top: 0.75rem; }
 .member-pages main > .container { max-width: 1140px; }
 .member-pages main > .container > section { padding-block: 2rem !important; }
 .member-pages main > .container > section + section { border-top: 1px solid var(--color-gray); }
