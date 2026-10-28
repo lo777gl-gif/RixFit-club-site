@@ -22,6 +22,10 @@
   font-size: 0.75rem;
 }
 
+.badge {
+  background-color: var(--color-red);
+}
+
 .price-table caption {
   font-family: var(--font-heading);
   color: var(--color-red);

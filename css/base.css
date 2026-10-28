@@ -94,6 +94,10 @@ footer a {
   text-decoration: none;
 }
 
+form a::after {
+  content: " ↗";
+}
+
 /* Temporary disabled because i have no access to Js */
 /* a[target="_blank"]::after {
   content: " ↗";
