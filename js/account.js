@@ -51,7 +51,8 @@ function sortPlans(list) {
 }
 
 function getDayHours(day) {
-  return day === 'saturday' || day === 'sunday' ? CLUB_HOURS.weekend : CLUB_HOURS.workday;
+  const hours = day === 'saturday' || day === 'sunday' ? WORK_HOURS.weekend : WORK_HOURS.weekday;
+  return { open: pad2(hours.open) + ':00', close: pad2(hours.close) + ':00' };
 }
 
 function isPeakTime(time) {
