@@ -43,26 +43,25 @@ function filter(drinks, category, query) {
     return result;
 }
 
-const intro = document.querySelector('.bar-intro');
-const grid = document.createElement('div');
-const error = document.createElement('p');
-error.setAttribute('role', 'status');
-grid.classList.add('row', 'g-3');
+const intro = $('.bar-intro');
+const grid = $('<div>');
+const error = $('<p>');
+error.attr('role', 'status');
+grid.addClass('row g-3');
 
-const filterBar = document.createElement('div');
-filterBar.classList.add('d-flex', 'flex-wrap', 'gap-2', 'my-3');
-filterBar.setAttribute('role', 'group');
-filterBar.setAttribute('aria-label', 'Drink category');
+const filterBar = $('<div>');
+filterBar.addClass('d-flex flex-wrap gap-2 my-3');
+filterBar.attr('role', 'group').attr('aria-label', 'Drink category');
 
 const filterButtons = [];
 for (const cat of categories) {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.classList.add('btn', 'btn-outline-light');
-    button.textContent = cat.label;
-    button.dataset.category = cat.value;
+    const button = $('<button>');
+    button.attr('type','button');
+    button.addClass('btn btn-outline-light');
+    button.text(cat.label);
+    button.data(category, cat.value);
 
-    button.addEventListener('click', () => {
+    button.on('click', () => {
         category = cat.value;
         render();
     });
@@ -74,23 +73,23 @@ for (const cat of categories) {
 intro.after(searchInput, filterBar, error, grid);
 
 function createDrinkCard(drink) {
-    const col = document.createElement('div');
-    col.classList.add('col-12', 'col-sm-6', 'col-lg-4');
-    const card = document.createElement('div');
-    card.classList.add('card', 'h-100', 'bg-transparent', 'text-white', 'border-secondary');
-    const body = document.createElement('div');
-    body.classList.add('card-body');
-    const title = document.createElement('h3');
-    title.classList.add('h5', 'card-title');
-    const img = document.createElement('img');
-    img.classList.add('bar-image', 'w-100');
-    const price = document.createElement('p');
+    const col = $('<div>');
+    col.addClass('col-12 col-sm-6 col-lg-4');
+    const card = $('<div>');
+    card.addClass('card h-100 bg-transparent text-white border-secondary');
+    const body = $('<div>');
+    body.addClass('card-body');
+    const title = $('<h3>');
+    title.addClass('h5 card-title');
+    const img = $('<img>');
+    img.addClass('bar-image w-100');
+    const price = $('<p>');
 
-    img.src = drink.image;
-    img.alt = `${drink.name} drink`;
+    img.attr('src', drink.image);
+    img.attr('alt', `${drink.name} drink`);
 
-    title.textContent = drink.name;
-    price.textContent = `${drink.price} ₸`;
+    title.text(drink.name);
+    price.text(`${drink.price} ₸`);
 
     body.append(title, price);
     card.append(img, body);
@@ -101,24 +100,22 @@ function createDrinkCard(drink) {
 
 function render() {
     const result = filter(drinks, category, query);
-    grid.replaceChildren();
+    grid.empty();
     for (const drink of result) {
         grid.append(createDrinkCard(drink));
     }
     for (const button of filterButtons) {
-        const isActive = button.dataset.category === category;
-        button.classList.toggle('active', isActive);
-        button.setAttribute('aria-pressed', String(isActive));
+        const isActive = button.data('category') === category;
+        button.toggleClass('active', isActive);
+        button.attr('aria-pressed', String(isActive));
     }
-    error.classList.toggle('error', result.length === 0);
+    error.toggleClass('error', result.length === 0);
     if (result.length === 0) {
-        error.textContent = 'No drinks found. Try another name';
+        error.text('No drinks found. Try another name');
     } else {
-        error.textContent = `Showing ${result.length} of ${drinks.length} drinks`;
+        error.text(`Showing ${result.length} of ${drinks.length} drinks`);
     }
 }
-for (const wrapper of document.querySelectorAll('.table-responsive')) {
-    wrapper.remove();
-}
+$('.table-responsive').remove();
 
 render();
