@@ -10,61 +10,66 @@ const services = [
     {id: 7, name: 'Massage', area: 'spa', minutes: 45}
 ];
 
-function createPanel(area) {
-    const panel = document.createElement('div');
-    panel.classList.add('service-fact', 'hidden');
-    const message = document.createElement('p');
-    message.setAttribute('role', 'status');
-    const saved = loadFromStorage('rixfit-services', {})[area] || [];
-    const checkboxes = [];
+$(function() {
+    function createPanel(area) {
+        const panel = $('<div>');
+        panel.addClass('service-fact hidden');
+        const message = $('<p>');
+        message.attr('role', 'status');
+        const saved = loadFromStorage('rixfit-services', {})[area] || [];
 
-    for (const service of services) {
-        if (service.area === area) {
-            const label = document.createElement('label');
-            label.classList.add('d-block', 'mb-2');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.classList.add('form-check-input', 'me-2');
-            checkbox.value = service.name;
-            checkbox.checked = saved.includes(service.name);
-            label.append(checkbox, `${service.name} (${service.minutes} min)`);
-            checkboxes.push(checkbox);
-            panel.append(label);
+        for (const service of services) {
+            if (service.area === area) {
+                const label = $('<label>');
+                label.addClass('d-block mb-2');
+                const checkbox = $('<input>');
+                checkbox.attr('type', 'checkbox');
+                checkbox.addClass('form-check-input me-2');
+                checkbox.val(service.name);
+                checkbox.prop('checked', saved.includes(service.name));
+                const text = $('<span>');
+                text.text(`${service.name} (${service.minutes} min)`);
+                label.append(checkbox, text);
+                panel.append(label);
+            }
         }
+
+        const saveButton = $('<button>');
+        saveButton.attr('type', 'button');
+        saveButton.addClass('btn btn-primary');
+        saveButton.text('Save my choice');
+
+        saveButton.on('click', () => {
+            const chosen = loadFromStorage('rixfit-services', {});
+            chosen[area] = panel.find('input:checked').map(function() {
+                return $(this).val();
+            }).get();
+            saveToStorage('rixfit-services', chosen);
+            message.addClass('success');
+            if (chosen[area].length === 0) {
+                message.text('Choice cleared. Nothing saved for this area.');
+            } else {
+                message.text(`Saved on this device: ${chosen[area].join(', ')}. See it in My Account.`);
+            }
+        });
+
+        panel.append(saveButton, message);
+        return panel;
     }
 
-    const saveButton = document.createElement('button');
-    saveButton.type = 'button';
-    saveButton.classList.add('btn', 'btn-primary');
-    saveButton.textContent = 'Save my choice';
+    $('.service-card').each(function() {
+        const area = $(this).find('h3').attr('id');
+        const panel = createPanel(area);
+        const toggleButton = $('<button>');
+        toggleButton.attr('type', 'button').attr('aria-expanded', 'false');
+        toggleButton.addClass('btn btn-outline-light mt-3');
+        toggleButton.text('Choose a service type');
 
-    saveButton.addEventListener('click', () => {
-        const chosen = loadFromStorage('rixfit-services', {});
-        chosen[area] = checkboxes.filter(box => box.checked).map(box => box.value);
-        saveToStorage('rixfit-services', chosen);
-        message.classList.add('success');
-        message.textContent = chosen[area].length === 0
-            ? 'Choice cleared. Nothing saved for this area.'
-            : `Saved on this device: ${chosen[area].join(', ')}. See it in My Account.`;
+        toggleButton.on('click', () => {
+            panel.toggleClass('hidden');
+            toggleButton.attr('aria-expanded', String(!panel.hasClass('hidden')));
+        });
+
+        $(this).append(toggleButton, panel);
     });
-
-    panel.append(saveButton, message);
-    return panel;
-}
-
-for (const card of document.querySelectorAll('.service-card')) {
-    const area = card.querySelector('h3').id;
-    const panel = createPanel(area);
-    const toggleButton = document.createElement('button');
-    toggleButton.type = 'button';
-    toggleButton.classList.add('btn', 'btn-outline-light', 'mt-3');
-    toggleButton.textContent = 'Choose a service type';
-    toggleButton.setAttribute('aria-expanded', 'false');
-
-    toggleButton.addEventListener('click', () => {
-        const isHidden = panel.classList.toggle('hidden');
-        toggleButton.setAttribute('aria-expanded', String(!isHidden));
-    });
-
-    card.append(toggleButton, panel);
-}
+});
