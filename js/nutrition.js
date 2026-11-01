@@ -24,12 +24,11 @@ const categories = [
 let category = 'all';
 let query = '';
 
-const searchInput = document.createElement('input');
-searchInput.type = 'search';
-searchInput.id = 'drink-search';
+const searchInput = $('<input>');
+searchInput.attr('type', 'search').attr('id', 'drink-search');
 
-searchInput.addEventListener('input', () => {
-    query = searchInput.value;
+searchInput.on('input', () => {
+    query = searchInput.val();
     query = query.trim().toLowerCase();
     render();
 });
