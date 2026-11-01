@@ -104,6 +104,8 @@ function render() {
     for (const drink of result) {
         grid.append(createDrinkCard(drink));
     }
+    grid.hide();
+    grid.fadeIn(1000);
     for (const button of filterButtons) {
         const isActive = button.data('category') === category;
         button.toggleClass('active', isActive);
