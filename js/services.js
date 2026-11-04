@@ -49,7 +49,7 @@ $(function() {
             if (chosen[area].length === 0) {
                 message.text('Choice cleared. Nothing saved for this area.');
             } else {
-                message.text(`Saved on this device: ${chosen[area].join(', ')}. See it in My Account.`);
+                message.text(`Saved on this device: ${chosen[area].join(', ')}.`);
             }
         });
 
