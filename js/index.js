@@ -1,9 +1,5 @@
 'use strict';
 
-/* RixFit — index.js
-   Booking form on index.html, rewritten with jQuery (plain-JavaScript version: old-js-version.js, initBookingForm).
-   Needs: jQuery 4.0.0, main.js (SERVICES, TRAINERS, helpers) and nuraly-common.js (RixFitUI) loaded before it. */
-
 $(function () {
     const MAX_GUESTS = 4;
     const $form = $('#booking-form');
@@ -17,10 +13,7 @@ $(function () {
     const $trainer = $('#trainer');
     const $trainerColumn = $trainer.closest('.col-md-6');
 
-    /* FEATURE 1 of 3 (booking form), part a — building the extra fields.
-       $('<div>', {...}).append() replaces createElement + className + htmlFor + append chains.
-       Shorter and clearer: buildField is 6 lines, the plain createInputField was 11, and it reads top-down.
-       I set the "value" attribute (not .val()) so that Clear Form restores 1 guest. */
+   
     function buildField(id, label, type) {
         return $('<div>', { 'class': 'col-md-6' }).append(
             $('<label>', { 'class': 'form-label', 'for': id }).text(label),
@@ -208,7 +201,7 @@ $(function () {
 
         $errorBox.empty();
         const data = readBookingData();
-        const trainer = getTrainer(data.trainerId);
+        const trainer = getTrainer(data.trainerId); 
         const lines = [
             'Client: ' + data.name + ' | Guests: ' + data.guests,
             'Service: ' + data.service.label + ' | Coach: ' + (data.service.needsTrainer ? trainer.name : 'not required'),

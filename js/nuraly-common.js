@@ -1,16 +1,6 @@
 'use strict';
 
-/* RixFit — nuraly-common.js
-   Shared jQuery code for index.html, programs-and-trainers.html, rules.html and register.html.
-   Load order on every page: jQuery (CDN) -> main.js (club data + pure helpers) -> this file -> the page file.
-
-   jQuery version: 4.0.0 (the same file services.html loads from code.jquery.com, with an SRI hash).
-   The <script> line for jQuery is needed because $ and every $(...) call below exist only after the
-   library has loaded, so it must come before this file and the page files.
-
-   main.js stays plain JavaScript because the other pages (reviews, account, equipment, nutrition) still
-   use it. From main.js this file only reuses pure functions that touch no DOM (checkEmail, checkPhone,
-   checkPersonName, getToday, addDays, parseDateValue, toDateInputValue), so no feature mixes both approaches. */
+//   Shared jQuery code for index.html, programs-and-trainers.html, rules.html and register.html.
 
 const RixFitUI = (function ($) {
     const BOOKING_WINDOW_DAYS = 30;
@@ -25,7 +15,8 @@ const RixFitUI = (function ($) {
         return ($field.attr('id') || $field.attr('name')) + '-error';
     }
 
-    /* ---------- Field-level errors (a message beside each invalid field) ---------- */
+
+    // Field-level errors (a message beside each invalid field)
 
     function showFieldError($field, message, $anchor) {
         const id = errorIdFor($field);
@@ -40,8 +31,7 @@ const RixFitUI = (function ($) {
 
         $error.stop(true, true).text('Error: ' + message).slideDown(150);
 
-        // Chain, link by link: take the class "success" off -> put the class "error" on (the red style
-        // from base.css) -> tell screen readers the field is invalid -> link the field to its message
+        // tell screen readers the field is invalid 
         $field.removeClass('success').addClass('error').attr('aria-invalid', 'true').attr('aria-describedby', id);
     }
 
@@ -103,9 +93,9 @@ const RixFitUI = (function ($) {
         });
     }
 
-    /* ---------- Result messages (Bootstrap alerts built with jQuery) ---------- */
+    // Result messages (Bootstrap alerts built with jQuery) 
 
-    // type: 'success' or 'error'; lines: optional list of plain-text lines
+    // type: success or error; lines: optional list of plain-text lines
     function showMessage($box, type, title, lines) {
         const $alert = $('<div>', {
             'class': 'alert alert-' + (type === 'error' ? 'danger' : 'success') + ' mt-3',
@@ -132,7 +122,7 @@ const RixFitUI = (function ($) {
         $('html, body').stop(true).animate({ scrollTop: Math.max($box.offset().top - 120, 0) }, 400);
     }
 
-    /* ---------- Shared date rule (booking and trial forms) ---------- */
+    // Shared date rule (booking and trial forms) 
 
     function visitDateError(value) {
         if (value === '') {

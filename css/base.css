@@ -1,5 +1,4 @@
-/* RixFit — base.css
-   Written by the team together.
+/* Written by the team together.
    With Bootstrap now doing the layout, navigation, buttons, forms and centring,
    Bootstrap by default does not cover dark-navbar/light-body theme on its own so here fixes for it.
 
@@ -147,8 +146,8 @@ form a::after {
 }
 
 .success {
-  color: var(--color-white);
-  border-color: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-black);
 }
 
 div.error,
