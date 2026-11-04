@@ -194,3 +194,260 @@ for (const card of document.querySelectorAll('.service-card')) {
 
     card.append(toggleButton, panel);
 }
+
+
+/* =====================================================================
+   Assignment 6 - OLD plain-JavaScript versions (Yeren Yedige pages)
+   Not linked to any page. Compare with the jQuery versions in
+   js/reviews.js, js/equipment.js and js/account.js. Each block is wrapped in
+   { } so its const/let names do not clash. Helpers such as createElement,
+   showFieldError, validateFields come from js/main.js.
+   ===================================================================== */
+
+/* ---- Feature 1 (old): reviews form validation, plain JS ---- */
+{
+  function updateCharacterCounter() {
+    const length = feedbackText.value.trim().length;
+    let text = 'Use 10–2,000 characters. ' + length + ' / ' + TEXT_MAX + ' used.';
+    if (length < TEXT_MIN) {
+      text += ' ' + (TEXT_MIN - length) + ' more needed.';
+    }
+    feedbackHelp.textContent = text;
+  }
+  
+  function getSelectedReviewArea() {
+    const checked = areaInputs.find((input) => input.checked);
+    return checked === undefined ? '' : checked.value;
+  }
+  
+  function checkVisitCount(value) {
+    if (value.trim() === '') {
+      return '';
+    }
+    const count = Number(value);
+    if (!Number.isInteger(count) || count < 1 || count > 999) {
+      return 'Enter the number of visits as a whole number from 1 to 999.';
+    }
+    return '';
+  }
+  
+  function checkVisitDate(value) {
+    if (value === '') {
+      return '';
+    }
+    const date = parseDateValue(value);
+    if (date === null || daysFromToday(date) > 0) {
+      return 'The visit date cannot be in the future.';
+    }
+    return '';
+  }
+  
+  function checkFeedbackText(text, rating) {
+    const trimmed = text.trim();
+    if (trimmed.length < TEXT_MIN || trimmed.length > TEXT_MAX) {
+      return 'Enter feedback between 10 and 2,000 characters.';
+    }
+    if (rating !== '' && Number(rating) <= 2 && trimmed.length < LOW_RATING_MIN_TEXT) {
+      return 'For a rating of 1 or 2, explain what went wrong in at least ' + LOW_RATING_MIN_TEXT + ' characters.';
+    }
+    return '';
+  }
+  
+  function validateFeedback() {
+    return validateFields([
+      { field: visitorName, check: () => checkPersonName(visitorName.value, 'name') },
+      { field: visitorEmail, check: () => checkEmail(visitorEmail.value) },
+      { field: visitorPhone, check: () => checkPhone(visitorPhone.value, false) },
+      { field: visitCount, check: () => checkVisitCount(visitCount.value) },
+      { field: visitDate, check: () => checkVisitDate(visitDate.value) },
+      { field: reviewRating, check: () => (reviewRating.value === '' ? 'Choose a rating from 1 to 5.' : '') },
+      { field: feedbackText, check: () => checkFeedbackText(feedbackText.value, reviewRating.value) },
+      { field: permission, check: () => (permission.checked ? '' : 'Agree to display your name and feedback, or keep your notes private.') }
+    ]);
+  }
+  
+  function createReviewFromForm() {
+    return {
+      id: 'review-' + Date.now(),
+      name: visitorName.value.trim(),
+      area: getSelectedReviewArea(),
+      visitType: visitType.value,
+      rating: Number(reviewRating.value),
+      visitDate: visitDate.value,
+      text: feedbackText.value.trim(),
+      createdAt: new Date().toISOString()
+    };
+  }
+  
+  function hideFeedbackResult() {
+    feedbackConfirmation.classList.add('hidden');
+    hideMessage(feedbackErrors);
+    feedbackPreview.replaceChildren();
+  }
+  
+  feedbackForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    hideFeedbackResult();
+  
+    const errors = validateFeedback();
+    if (errors.length > 0) {
+      showMessage(feedbackErrors, 'error', 'Your feedback was not saved. Please fix ' + errors.length + ' field(s):', errors);
+      return;
+    }
+  
+    const review = createReviewFromForm();
+    reviews.push(review);
+    const saved = saveToStorage(REVIEWS_KEY, reviews);
+  
+    feedbackConfirmation.replaceChildren(createElement('p', 'mb-0', saved
+      ? 'Your review was saved on this device only and is shown in the review list above. It was not sent to RixFit or published online. Your email and phone were checked but not stored.'
+      : 'Your review is shown in the list above, but this browser blocked saving, so it will disappear after reloading. Nothing was sent to RixFit.'));
+    feedbackConfirmation.classList.remove('hidden');
+  
+    feedbackPreview.replaceChildren(
+      createElement('p', 'fw-bold mt-2 mb-0', 'Summary'),
+      createSummaryList([
+        ['Name', review.name],
+        ['Rating', review.rating + ' out of 5'],
+        ['Area', reviewAreaLabels[review.area]],
+        ['Visit type', visitTypeLabels[review.visitType]],
+        ['Visits', visitCount.value === '' ? 'not given' : visitCount.value],
+        ['Feedback', review.text]
+      ])
+    );
+  
+    renderReviews();
+    feedbackForm.reset();
+    feedbackResult.focus();
+  });
+  
+  feedbackForm.addEventListener('reset', () => {
+    clearFormState(feedbackForm);
+    setTimeout(updateCharacterCounter, 0);
+  });
+  
+  feedbackForm.addEventListener('input', (event) => {
+    if (event.target.matches('.form-control, .form-select')) {
+      clearFieldError(event.target);
+    }
+    if (event.target === feedbackText) {
+      updateCharacterCounter();
+    }
+  });
+  permission.addEventListener('change', () => clearFieldError(permission));
+  
+}
+
+/* ---- Feature 2 (old): equipment list built in code + delegated click, plain JS ---- */
+{
+  let sessionItems = [];
+  
+  function filterEquipment(items, area, searchText) {
+    const query = searchText.trim().toLowerCase();
+    return items.filter((item) => {
+      const matchesArea = area === 'all' || item.area === area;
+      const text = (item.name + ' ' + item.tip).toLowerCase();
+      return matchesArea && (query === '' || text.includes(query));
+    });
+  }
+  
+  function isInSession(id) {
+    return sessionItems.some((entry) => entry.id === id);
+  }
+  
+  function createEquipmentRow(item) {
+    const row = createElement('tr');
+    const areaCell = createElement('th', '', equipmentAreaLabels[item.area]);
+    areaCell.scope = 'row';
+    const nameCell = createElement('td');
+    nameCell.append(createElement('span', 'd-block', item.name), createElement('small', 'text-white-50', item.tip));
+    const actionCell = createElement('td');
+    const addButton = createElement('button', 'btn btn-outline-light btn-sm', isInSession(item.id) ? 'Added' : 'Add to session');
+    addButton.type = 'button';
+    addButton.dataset.id = item.id;
+    addButton.disabled = isInSession(item.id);
+    addButton.setAttribute('aria-label', 'Add ' + item.name + ' to my session');
+    actionCell.append(addButton);
+    row.append(areaCell, nameCell, createElement('td', '', item.fact), actionCell);
+    return row;
+  }
+  
+  function createNoResultsRow() {
+    const row = createElement('tr');
+    const cell = createElement('td', 'error');
+    cell.colSpan = 4;
+    cell.append(document.createTextNode('No equipment matches your filters. '));
+    const resetLink = createElement('button', 'btn btn-outline-light btn-sm', 'Show all equipment');
+    resetLink.type = 'button';
+    resetLink.dataset.action = 'reset';
+    cell.append(resetLink);
+    row.append(cell);
+    return row;
+  }
+  
+  function renderInventory() {
+    const matches = filterEquipment(equipmentCatalog, areaFilter.control.value, equipmentSearch.control.value);
+    equipmentBody.replaceChildren();
+    matches.forEach((item) => equipmentBody.append(createEquipmentRow(item)));
+    if (matches.length === 0) {
+      equipmentBody.append(createNoResultsRow());
+    }
+    inventoryCount.textContent = 'Showing ' + matches.length + ' of ' + equipmentCatalog.length + ' equipment entries.';
+  }
+  
+  function resetInventory() {
+    inventoryControls.reset();
+    renderInventory();
+    equipmentSearch.control.focus();
+  }
+  
+  inventoryControls.addEventListener('submit', (event) => event.preventDefault());
+  areaFilter.control.addEventListener('change', renderInventory);
+  equipmentSearch.control.addEventListener('input', renderInventory);
+  inventoryReset.addEventListener('click', resetInventory);
+  
+  equipmentBody.addEventListener('click', (event) => {
+    const button = event.target.closest('button');
+    if (button === null) {
+      return;
+    }
+    if (button.dataset.action === 'reset') {
+      resetInventory();
+    } else {
+      addToSession(button.dataset.id);
+    }
+  });
+}
+
+/* ---- Feature 3 (old): planned-visit list, show/hide + remove, plain JS ---- */
+{
+  function renderPlans() {
+    scheduleList.replaceChildren();
+    sortPlans(plans).forEach((plan) => scheduleList.append(createPlanItem(plan)));
+  
+    const isEmpty = plans.length === 0;
+    scheduleEmpty.classList.toggle('hidden', !isEmpty);
+    scheduleList.classList.toggle('hidden', isEmpty);
+  
+    if (isEmpty) {
+      scheduleSummary.textContent = '';
+      return;
+    }
+    const gymCount = plans.filter((plan) => plan.area === 'gym').length;
+    scheduleSummary.textContent = plans.length + ' of ' + MAX_PLANS + ' weekly visits planned: ' + gymCount + ' gym, ' + (plans.length - gymCount) + ' pool.';
+  }
+  
+  scheduleList.addEventListener('click', (event) => {
+    const button = event.target.closest('.visit-remove');
+    if (button === null) {
+      return;
+    }
+    const removed = plans.find((plan) => plan.id === button.dataset.id);
+    plans = plans.filter((plan) => plan.id !== button.dataset.id);
+    saveToStorage(PLANS_KEY, plans);
+    renderPlans();
+    scheduleStatus.textContent = 'Removed: ' + describePlan(removed) + '.';
+    scheduleStatus.classList.remove('hidden');
+    scheduleStatus.focus();
+  });
+}
