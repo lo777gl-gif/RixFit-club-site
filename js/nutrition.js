@@ -27,6 +27,13 @@ $(function() {
 
     const searchInput = $('<input>');
     searchInput.attr('type', 'search').attr('id', 'drink-search');
+    const supplement = $('.supplements-section');
+    const h2 = supplement.children('h2');
+
+    $(h2).click(function(){
+        $('div').hide();
+        $('dl').hide();
+    })
 
     searchInput.on('input', () => {
         query = searchInput.val();
@@ -61,7 +68,6 @@ $(function() {
         button.addClass('btn btn-outline-light');
         button.text(cat.label);
         button.data('category', cat.value);
-
         button.on('click', () => {
             category = cat.value;
             render();
@@ -139,6 +145,8 @@ $(function() {
             setStatus(`Showing ${result.length} of ${drinks.length} drinks`);
         }
     }
+
+    
 
     $('.table-responsive').remove();
 
