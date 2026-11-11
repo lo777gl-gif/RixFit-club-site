@@ -45,6 +45,7 @@ Plain JavaScript and jQuery are kept in separate files; a feature uses one or th
 | Shared value checks (email, phone, name, time helpers) | all pages | plain JavaScript | `js/main.js` | team |
 | Home page, programs, register, rules | `index.html`, `programs-and-trainers.html`, `register.html`, `rules.html` | plain JavaScript | `js/index.js`, `js/programs.js`, `js/register.js`, `js/rules.js`, `js/nuraly-common.js` | Auyelkhan Nuraly |
 | Nutrition and services | `nutrition-and-supplements.html`, `services.html` | jQuery | `js/nutrition.js`, `js/services.js` | Anuar Muratov |
+| Login form (validation, show/hide password, attempt limit) | `login.html` | plain JavaScript | `js/login.js` | Yeren Yedige |
 | Equipment inventory and session builder | `gym-equipment.html` | jQuery | `js/equipment.js`, `js/jq-helpers.js` | Yeren Yedige |
 | Reviews list, filters and feedback form | `reviews.html` | jQuery | `js/reviews.js`, `js/jq-helpers.js` | Yeren Yedige |
 | Weekly visit planner | `account.html` | jQuery | `js/account.js`, `js/jq-helpers.js` | Yeren Yedige |
