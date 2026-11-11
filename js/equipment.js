@@ -143,9 +143,25 @@ $(function () {
   const $clear = $('<button>', { type: 'button', class: 'btn btn-outline-light', text: 'Clear session' });
   const $actions = $('<div>', { class: 'hidden' }).append($('<div>', { class: 'd-flex flex-wrap gap-2' }).append($planLink, $clear));
 
+  const $content = $('<div>', { id: 'session-content' }).append($help, $sessionEmpty, $sessionList, $summary, $actions);
+
   $('<section>', { id: 'session-builder', class: 'py-4', 'aria-labelledby': 'session-heading' })
-    .append($heading, $help, $sessionEmpty, $sessionList, $summary, $actions)
+    .append($heading, $content)
     .insertAfter('#inventory');
+
+  $heading.attr({ role: 'button', tabindex: '0', 'aria-expanded': 'true', 'aria-controls': 'session-content' });
+  $heading.on('click', function () {
+    const $title = $(this);
+    const willOpen = $title.attr('aria-expanded') !== 'true';
+    $title.attr('aria-expanded', String(willOpen));
+    $content.stop(true, true).slideToggle(250);
+  });
+  $heading.on('keydown', function (event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      $(this).trigger('click');
+    }
+  });
 
   function createNumberInput(id, label, value, min, max, entryId, property) {
     const control = jqLabeledControl('input', id, label, 'col-6 col-sm-4 col-md-3');
@@ -288,7 +304,7 @@ $(function () {
       sessionItems = $.grep(sessionItems, function (entry) { return entry.id !== id; });
       renderInventory();
       renderSession();
-      $heading.attr('tabindex', '-1').trigger('focus');
+      $heading.trigger('focus');
     });
   });
 
