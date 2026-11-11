@@ -28,7 +28,6 @@ $(function () {
     const $summary = $('<div>', { id: 'booking-summary', 'class': 'alert alert-secondary mt-3' });
     $('#btn-submit').parent().before($summary);
 
-   
     function fillTrainerOptions(service, animate) {
         const needsTrainer = Boolean(service) && service.needsTrainer;
         const showColumn = !service || service.needsTrainer;
@@ -67,7 +66,7 @@ $(function () {
     }
 
     function readBookingData() {
-       
+        // Attribute selector + the :checked filter: the radio button that is selected right now
         const $gender = $form.find('input[name="gender"]:checked');
         return {
             name: $('#userName').val().trim(),
@@ -78,7 +77,8 @@ $(function () {
             service: getService($service.val()),
             trainerId: $trainer.val(),
             guests: Number($guests.val()),
-     
+            // .prop() reads the CURRENT state of the checkbox; .attr('checked') would only show the
+            // initial attribute from the HTML and stay the same after the visitor clicks
             agreed: $('#agree').prop('checked')
         };
     }
@@ -158,7 +158,6 @@ $(function () {
         $summary.append($('<small>', { 'class': 'd-block text-muted' }).text('Estimate only: the final price is confirmed by the club.'));
     }
 
-    /* ---------- Events ---------- */
 
     $service.on('change', function () {
         fillTrainerOptions(getService($(this).val()), true);
@@ -168,9 +167,36 @@ $(function () {
     $form.on('input change', renderSummary);
     RixFitUI.clearErrorsWhileTyping($form, rules);
 
+    function showMaxGuestsError() {
+        RixFitUI.showFieldError($guests, 'The maximum is ' + MAX_GUESTS + ' guests per booking.');
+    }
+
+    $guests.on('keydown', function (event) {
+        if (event.key === 'ArrowUp' && Number($(this).val()) >= MAX_GUESTS) {
+            showMaxGuestsError();
+        }
+    });
+
+    $guests.on('mousedown', function (event) {
+        const box = this.getBoundingClientRect();
+        const onSpinner = event.clientX > box.right - 30;
+        const onUpArrow = event.clientY < box.top + box.height / 2;
+        if (onSpinner && onUpArrow && Number($(this).val()) >= MAX_GUESTS) {
+            showMaxGuestsError();
+        }
+    });
+
+    // Leaving the field with a valid number removes the leftover message
+    $guests.on('blur', function () {
+        if (guestsAreValid(Number($(this).val()))) {
+            RixFitUI.clearFieldError($(this), true);
+        }
+    });
+
     
     $form.on('submit', function (event) {
-        
+        // Without preventDefault() the browser would send the form: the page would reload (action="#" with
+        // method GET adds the field values to the address) and every message below would disappear at once
         event.preventDefault();
         $confirmBox.empty();
 
