@@ -35,3 +35,20 @@ The Real RixFit has no real own web Site, Address: **Turan Avenue 37/9**.
 * `js/jq-helpers.js` - shared jQuery form helpers (field errors, messages, labeled controls) for the equipment, reviews and account pages.
 * `js/equipment.js`, `js/reviews.js`, `js/account.js` - rewritten with jQuery (delegated events, effects with duration and callbacks, per-field validation). Nutrition and services use `js/nutrition.js` and `js/services.js`.
 * `old-js-version.js` - the previous plain-JavaScript versions kept for comparison (not linked to any page). Each jQuery section carries a `COMPARISON` comment.
+
+## Endterm - JavaScript and jQuery
+
+Plain JavaScript and jQuery are kept in separate files; a feature uses one or the other, never both.
+
+| Feature | Page | Technology | File | Author |
+| --- | --- | --- | --- | --- |
+| Shared value checks (email, phone, name, time helpers) | all pages | plain JavaScript | `js/main.js` | team |
+| Home page, programs, register, rules | `index.html`, `programs-and-trainers.html`, `register.html`, `rules.html` | plain JavaScript | `js/index.js`, `js/programs.js`, `js/register.js`, `js/rules.js`, `js/nuraly-common.js` | Auyelkhan Nuraly |
+| Nutrition and services | `nutrition-and-supplements.html`, `services.html` | jQuery | `js/nutrition.js`, `js/services.js` | Anuar Muratov |
+| Equipment inventory and session builder | `gym-equipment.html` | jQuery | `js/equipment.js`, `js/jq-helpers.js` | Yeren Yedige |
+| Reviews list, filters and feedback form | `reviews.html` | jQuery | `js/reviews.js`, `js/jq-helpers.js` | Yeren Yedige |
+| Weekly visit planner | `account.html` | jQuery | `js/account.js`, `js/jq-helpers.js` | Yeren Yedige |
+
+### Added since the jQuery assignment (Yeren Yedige's pages)
+* **Equipment:** the "Build your session" block can now be collapsed and expanded with `slideToggle` (click or Enter/Space, with `aria-expanded`); focus returns to its heading after a removal.
+* **Reviews / account:** no new functionality in this pass; both were re-tested with empty and wrong values (per-field errors, confirmation only when every check passes, empty-list messages, no console errors).
