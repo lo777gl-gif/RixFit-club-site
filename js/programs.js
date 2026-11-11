@@ -1,13 +1,13 @@
 'use strict';
 
 /* RixFit — programs.js
-   programs-and-trainers.html: coach filter, FAQ built from an array (delegated accordion), trial-session form.
+   programs-and-trainers.html: coach filter and FAQ built from an array (delegated accordion).
    Needs: jQuery 4.0.0, main.js and nuraly-common.js (RixFitUI) loaded before it. */
 
 $(function () {
     const DAY_ORDER = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-    /* ======================================================================
+    /*
        1. Coach filter: area buttons + day select + count + empty state.
        Visitor goal: "who can train me in the pool on Saturday?"
        The schedule is read from the badges that are already on the cards. */
@@ -105,7 +105,7 @@ $(function () {
     });
     applyCoachFilter();
 
-    /* ======================================================================
+    /* 
        2. FAQ: a list built from an array (the markup for it exists nowhere in the HTML file).
        Answers come from this array only, never from the visitor, so .html() is safe for them. */
 
@@ -116,15 +116,15 @@ $(function () {
         },
         {
             question: 'When is the club open?',
-            answer: 'Workdays from <strong>07:00 to 23:00</strong>, weekends from <strong>09:00 to 22:00</strong>. The free trial form below is for the visit day you choose.'
+            answer: 'Workdays from <strong>07:00 to 23:00</strong>, weekends from <strong>09:00 to 22:00</strong>.'
         },
         {
             question: 'How do I try the club before buying a pass?',
-            answer: 'Fill in the <strong>Book a Free Trial Session</strong> form below. This site shows a demonstration only: the club tells you the time to come by email or phone.'
+            answer: 'Send an application with the <strong>Booking form</strong> on the <a href="index.html#booking">main page</a> or call the club on <a href="tel:+77754385471">+7 775 438 54 71</a>. The club tells you the time to come by email or phone.'
         },
         {
             question: 'Can I choose my coach?',
-            answer: 'Yes. Pick a preferred coach in the trial form. The list follows the area you choose, and the form checks that the coach works on the day you select.'
+            answer: 'Yes. In the <a href="index.html#booking">Booking form</a> choose a service that needs a coach, and the list shows the coaches of that area. Their working days are on the cards above.'
         },
         {
             question: 'Can children train at the club?',
@@ -188,143 +188,4 @@ $(function () {
         });
         $faqMore.prop('disabled', true).text('All questions are shown');
     });
-
-    /* ======================================================================
-       3. Trial-session form (#trial-form). Nothing is sent anywhere: there is no server behind it. */
-
-    const TRIAL_TRAINERS = {
-        vera: { name: 'Vera', area: 'gym' },
-        ulan: { name: 'Ulan', area: 'gym' },
-        chingis: { name: 'Chingis', area: 'gym' },
-        'dmitriy-gym': { name: 'Dmitriy', area: 'gym' },
-        'dmitriy-pool': { name: 'Dmitriy', area: 'pool' },
-        sergey: { name: 'Sergey Mikhailovich', area: 'pool' },
-        sabina: { name: 'Sabina', area: 'pool' },
-        samat: { name: 'Samat', area: 'pool' }
-    };
-
-    const $form = $('#trial-form');
-    const $errorBox = $('#trial-error');
-    const $confirmBox = $('#trial-confirmation');
-    const $trainer = $('#trainer');
-    const $date = $('#preferred-date');
-
-    // The HTML keeps required/min/max as the first line of defence. novalidate (set here, not in the HTML)
-    // only hides the browser's one-bubble-at-a-time messages so our own message can appear beside every field.
-    // A check in the browser never replaces a check on the server: the visitor can switch JavaScript off,
-    // edit the page in DevTools or send the request without a browser at all, so the server must check again.
-    $form.prop('noValidate', true);
-    $date.attr({
-        min: toDateInputValue(getToday()),
-        max: toDateInputValue(addDays(getToday(), RixFitUI.BOOKING_WINDOW_DAYS))
-    });
-
-    function getTrialArea() {
-        return $form.find('input[name="area"]:checked').val();
-    }
-
-    // The trainer list follows the chosen area: coaches of the other area are disabled and hidden
-    function syncTrainerOptions() {
-        const area = getTrialArea();
-        $trainer.find('option').each(function () {
-            const trainer = TRIAL_TRAINERS[$(this).val()];
-            const otherArea = Boolean(trainer) && trainer.area !== area;
-            $(this).prop('disabled', otherArea).prop('hidden', otherArea);
-        });
-        if ($trainer.find('option:selected').prop('disabled')) {
-            $trainer.val('any');
-        }
-    }
-
-    function getTrainerDays(trainer) {
-        const sectionSelector = trainer.area === 'gym' ? '.coach-list' : '.aqua-list';
-        const $card = $(sectionSelector + ' .trainer-card').filter(function () {
-            return $(this).find('h4').text() === trainer.name;
-        });
-        return getCardDays($card);
-    }
-
-    function trainerError() {
-        const trainer = TRIAL_TRAINERS[$trainer.val()];
-        const visit = parseDateValue($date.val());
-        if (!trainer || visit === null) {
-            return ''; // "No preference", or a date that its own rule reports
-        }
-        const days = getTrainerDays(trainer);
-        const weekday = RixFitUI.DAY_NAMES[visit.getDay()];
-        if (days.indexOf(weekday) === -1) {
-            return trainer.name + ' works on ' + days.join(', ') + '. Choose one of those days or another coach.';
-        }
-        return '';
-    }
-
-    function ageError() {
-        const age = Number($('#age').val());
-        return Number.isInteger(age) && age >= 12 && age <= 90 ? '' : 'Enter a whole number from 12 to 90.';
-    }
-
-    const rules = [
-        { $field: $('#full-name'), check: function () { return checkPersonName($('#full-name').val(), 'full name'); } },
-        { $field: $('#email'), check: function () { return checkEmail($('#email').val()); } },
-        { $field: $('#phone'), check: function () { return checkPhone($('#phone').val(), true); } },
-        { $field: $('#age'), check: ageError },
-        { $field: $date, check: function () { return RixFitUI.visitDateError($date.val()); } },
-        { $field: $trainer, check: trainerError } // combines two fields: the coach and the day of the visit
-    ];
-
-    $form.on('change', 'input[name="area"]', syncTrainerOptions);
-    RixFitUI.clearErrorsWhileTyping($form, rules);
-
-    // The date and the coach depend on each other: when one changes, re-check the pair only if it was marked invalid
-    $form.on('change', '#preferred-date, #trainer', function () {
-        $.each([$date, $trainer], function (_, $field) {
-            const rule = $.grep(rules, function (item) { return item.$field.is($field); })[0];
-            if ($field.hasClass('error') && rule.check() === '') {
-                RixFitUI.clearFieldError($field, true);
-            }
-        });
-    });
-
-    $form.on('submit', function (event) {
-        // Without preventDefault() the browser would submit the form (a POST to "#"), the page would reload,
-        // and the result below would never be seen
-        event.preventDefault();
-        $confirmBox.empty();
-
-        const failed = RixFitUI.validate(rules);
-        if (failed.length > 0) {
-            RixFitUI.showMessage($errorBox, 'error', 'Please fix ' + failed.length + ' field(s) marked above and send the form again.');
-            return;
-        }
-
-        $errorBox.empty();
-        const trainer = TRIAL_TRAINERS[$trainer.val()];
-        const visit = parseDateValue($date.val());
-        const lines = [
-            'Name: ' + $('#full-name').val().trim(),
-            'Contacts: ' + $('#email').val().trim() + ', ' + $('#phone').val().trim(),
-            'Area: ' + (getTrialArea() === 'gym' ? 'Gym & Strength' : 'Pool & Aquatics'),
-            'Coach: ' + (trainer ? trainer.name : 'no preference'),
-            'Date: ' + $date.val() + ' (' + RixFitUI.DAY_NAMES[visit.getDay()] + ')',
-            'Promo news: ' + ($('#newsletter').prop('checked') ? 'yes' : 'no'),
-            'Demo mode: no data was sent to a server. No real booking, payment or order was created.'
-        ];
-        const notes = $('#notes').val().trim();
-        if (notes !== '') {
-            lines.splice(6, 0, 'Notes: ' + notes);
-        }
-
-        $form.get(0).reset(); // its handler clears the boxes, so the confirmation is shown after it
-        RixFitUI.showMessage($confirmBox, 'success', 'Trial request #' + generateRefNumber() + ' received!', lines);
-        RixFitUI.scrollToBox($confirmBox);
-    });
-
-    $form.on('reset', function () {
-        $errorBox.empty();
-        $confirmBox.empty();
-        RixFitUI.clearFormErrors($form);
-        setTimeout(syncTrainerOptions, 0); // values are restored after the reset event
-    });
-
-    syncTrainerOptions();
 });

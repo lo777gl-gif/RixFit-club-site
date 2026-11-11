@@ -13,7 +13,6 @@ $(function () {
     const $trainer = $('#trainer');
     const $trainerColumn = $trainer.closest('.col-md-6');
 
-   
     function buildField(id, label, type) {
         return $('<div>', { 'class': 'col-md-6' }).append(
             $('<label>', { 'class': 'form-label', 'for': id }).text(label),
@@ -21,24 +20,15 @@ $(function () {
         );
     }
 
-    const $dateColumn = buildField('visitDate', 'Visit date:', 'date');
     const $guestsColumn = buildField('guests', 'Guests (1-' + MAX_GUESTS + '):', 'number');
-    $dateColumn.find('input').attr({
-        min: toDateInputValue(getToday()),
-        max: toDateInputValue(addDays(getToday(), RixFitUI.BOOKING_WINDOW_DAYS))
-    });
     $guestsColumn.find('input').attr({ min: 1, max: MAX_GUESTS, value: 1 });
-    $('#comments').closest('.col-12').before($dateColumn, $guestsColumn);
+    $('#comments').closest('.col-12').before($guestsColumn);
 
-    const $date = $('#visitDate');
     const $guests = $('#guests');
     const $summary = $('<div>', { id: 'booking-summary', 'class': 'alert alert-secondary mt-3' });
     $('#btn-submit').parent().before($summary);
 
-    /* FEATURE 1 of 3 (booking form), part b — the list of trainers built from the TRAINERS array.
-       Plain version: new Option() + a DocumentFragment + appendChild. jQuery: $.each + .append().
-       Not shorter (24 lines against 22) and about equally clear. The only real gain is the effect:
-       .slideUp()/.slideDown() hide the trainer column when the service needs no coach. */
+   
     function fillTrainerOptions(service, animate) {
         const needsTrainer = Boolean(service) && service.needsTrainer;
         const showColumn = !service || service.needsTrainer;
@@ -77,7 +67,7 @@ $(function () {
     }
 
     function readBookingData() {
-        // Attribute selector + the :checked filter: the radio button that is selected right now
+       
         const $gender = $form.find('input[name="gender"]:checked');
         return {
             name: $('#userName').val().trim(),
@@ -87,10 +77,8 @@ $(function () {
             gender: $gender.length > 0 ? $gender.val() : '',
             service: getService($service.val()),
             trainerId: $trainer.val(),
-            date: $date.val(),
             guests: Number($guests.val()),
-            // .prop() reads the CURRENT state of the checkbox; .attr('checked') would only show the
-            // initial attribute from the HTML and stay the same after the visitor clicks
+     
             agreed: $('#agree').prop('checked')
         };
     }
@@ -133,7 +121,6 @@ $(function () {
                 return data.service && data.service.needsTrainer && missing ? 'Please select an available coach for this service.' : '';
             }
         },
-        { $field: $date, check: function () { return RixFitUI.visitDateError(readBookingData().date); } },
         {
             $field: $guests,
             check: function () { return guestsAreValid(readBookingData().guests) ? '' : 'Choose from 1 to ' + MAX_GUESTS + ' people.'; }
@@ -162,7 +149,6 @@ $(function () {
         const lines = [
             'Service: ' + data.service.label,
             'Coach: ' + coachText,
-            'Date: ' + (data.date || 'not chosen yet'),
             'Guests: ' + (validGuests ? data.guests : 'enter 1-' + MAX_GUESTS),
             'Estimated total: ' + (validGuests ? formatPrice(data.service.price * data.guests) : '-')
         ];
@@ -182,14 +168,9 @@ $(function () {
     $form.on('input change', renderSummary);
     RixFitUI.clearErrorsWhileTyping($form, rules);
 
-    /* FEATURE 1 of 3 (booking form), part c — the submit handler and the field-level validation.
-       .val()/.prop() replace .value/.checked, .on('submit') replaces addEventListener, and RixFitUI.validate
-       replaces the errors.push(...) block. The checks themselves take about the same number of lines as before
-       (one rule per field in the "rules" array). The handler is shorter and clearer because validate() and
-       showMessage() are shared with the other forms instead of being copied into each one. */
+    
     $form.on('submit', function (event) {
-        // Without preventDefault() the browser would send the form: the page would reload (action="#" with
-        // method GET adds the field values to the address) and every message below would disappear at once
+        
         event.preventDefault();
         $confirmBox.empty();
 
@@ -201,11 +182,11 @@ $(function () {
 
         $errorBox.empty();
         const data = readBookingData();
-        const trainer = getTrainer(data.trainerId); 
+        const trainer = getTrainer(data.trainerId);
         const lines = [
             'Client: ' + data.name + ' | Guests: ' + data.guests,
             'Service: ' + data.service.label + ' | Coach: ' + (data.service.needsTrainer ? trainer.name : 'not required'),
-            'Date: ' + data.date + ' | Estimated total: ' + formatPrice(data.service.price * data.guests),
+            'Estimated total: ' + formatPrice(data.service.price * data.guests),
             'Demo mode: no data was sent to a server. No real booking, payment or order was created.'
         ];
 

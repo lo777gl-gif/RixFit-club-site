@@ -231,7 +231,7 @@
             </section>
 
             <!-- Pool & Aquatics -->
-            <section class="aqua-list pb-4">
+            <section class="aqua-list pb-4 pt-5">
                 <h3 class="text-center">Swimming &amp; Aquatics Coaches</h3>
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
@@ -366,87 +366,6 @@
                 </blockquote>
                 <p>&mdash; <cite>Aidana K.</cite>, RixFit member since 2025</p>
                 <!-- TODO: replace with a real quote, name and date you collected yourself, per assignment authenticity rules -->
-            </section>
-
-            <section id="book-trial" class="mb-4">
-                <h3>Book a Free Trial Session</h3>
-                <!-- This form does not send data anywhere yet - there is no server behind it. Server-side handling comes later in the course. -->
-                <form id="trial-form" method="post" action="#" aria-label="Trial session booking form">
-                    <!-- Nested grid demo: a row inside this fieldset's column, so the personal-details fields
-                         sit two-per-line on tablets/desktop and stack on phones -->
-                    <fieldset class="mb-3">
-                        <legend class="h5">Your details</legend>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="full-name" class="form-label">Full name</label>
-                                <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Aidana Serikova" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="phone" class="form-label">Phone</label>
-                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="+7 700 000 00 00" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="age" class="form-label">Age</label>
-                                <input type="number" class="form-control" id="age" name="age" min="12" max="90" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="preferred-date" class="form-label">Preferred date</label>
-                                <input type="date" class="form-control" id="preferred-date" name="preferred-date" required>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="mb-3">
-                        <legend class="h5">Trial preferences</legend>
-                        <p>
-                            Preferred area:
-                            <span class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="area" value="gym" id="area-gym" checked>
-                                <label class="form-check-label" for="area-gym">Gym &amp; Strength</label>
-                            </span>
-                            <span class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="area" value="pool" id="area-pool">
-                                <label class="form-check-label" for="area-pool">Pool &amp; Aquatics</label>
-                            </span>
-                        </p>
-                        <div class="mb-3">
-                            <label for="trainer" class="form-label">Preferred trainer</label>
-                            <select class="form-select" id="trainer" name="trainer">
-                                <option value="any">No preference</option>
-                                <option value="vera">Vera</option>
-                                <option value="ulan">Ulan</option>
-                                <option value="chingis">Chingis</option>
-                                <option value="dmitriy-gym">Dmitriy (Gym)</option>
-                                <option value="dmitriy-pool">Dmitriy (Pool)</option>
-                                <option value="sergey">Sergey Mikhailovich</option>
-                                <option value="sabina">Sabina</option>
-                                <option value="samat">Samat</option>
-                            </select>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" name="newsletter" value="yes" id="newsletter">
-                            <label class="form-check-label" for="newsletter">Send me news about promo passes</label>
-                        </div>
-                        <div>
-                            <label for="notes" class="form-label">Anything we should know?</label>
-                            <textarea class="form-control" id="notes" name="notes" placeholder="Injuries, goals, schedule constraints..."></textarea>
-                        </div>
-                    </fieldset>
-
-                    <div class="d-flex flex-wrap gap-2">
-                        <button id="btn-submit" type="submit" class="btn btn-primary">Book my trial</button>
-                        <button id="btn-reset" type="reset" class="btn btn-outline-secondary">Clear form</button>
-                        <!-- Button-class requirements covered across the project: outline style + size variant here,
-                             disabled state on register.html -->
-                        <a href="tel:+77754385471" class="btn btn-outline-danger btn-sm align-self-center">Or call us directly</a>
-                    </div>
-                    <div id="trial-error"></div>
-                    <div id="trial-confirmation"></div>
-                </form>
             </section>
         </div>
     </main>
