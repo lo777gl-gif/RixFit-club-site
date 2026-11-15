@@ -10,7 +10,7 @@ $(function() {
         {id: 6, name: 'Carrot', category: 'juice', price: 1600, price400: 2200, image: 'images/carrot-fresh.jpg'},
         {id: 7, name: 'Orange-Apple-Carrot', category: 'juice', price: 1600, price400: 2200, image: 'images/orange-carrot-apple-fresh.jpg'},
         {id: 8, name: 'Orange-Apple', category: 'juice', price: 1600, price400: 2200, image: 'images/orange-apple-fresh.webp'},
-        {id: 9, name: 'Orange-Carrot', category: 'juice', price: 1600, price400: 2200, image: 'images/orange-carrot-fresh.png'},
+        {id: 9, name: 'Orange-Carrot', category: 'juice', price: 1600, price400: 2200, image: 'images/orange-carrot-fresh.jpg'},
         {id: 10, name: 'Orange', category: 'juice', price: 1600, price400: 2200, image: 'images/orange-fresh.webp'},
         {id: 11, name: 'Milkshake', category: 'milkshake', price: 1900, price400: null, image: 'images/milkshake.jpg'}
     ];
@@ -27,13 +27,6 @@ $(function() {
 
     const searchInput = $('<input>');
     searchInput.attr('type', 'search').attr('id', 'drink-search');
-    const supplement = $('.supplements-section');
-    const h2 = supplement.children('h2');
-
-    $(h2).click(function(){
-        $('div').hide();
-        $('dl').hide();
-    })
 
     searchInput.on('input', () => {
         query = searchInput.val();
@@ -49,6 +42,14 @@ $(function() {
             }
         }
         return result;
+    }
+
+    function getUnitPrice(drink, size) {
+        if (size === 400 && drink.price400 !== null) {
+            return drink.price400;
+        } else {
+            return drink.price;
+        }
     }
 
     const intro = $('.bar-intro');
@@ -99,7 +100,28 @@ $(function() {
         title.text(drink.name);
         price.text(`${drink.price} ₸`);
 
-        body.append(title, price);
+        const controls = $('<div>');
+        controls.addClass('d-flex gap-2 align-items-center');
+        if (drink.price400 !== null) {
+            const sizeSelect = $('<select>');
+            sizeSelect.addClass('form-select form-select-sm w-auto');
+            sizeSelect.attr('aria-label', `${drink.name} size`);
+            const smallSize = $('<option>');
+            smallSize.val(250).text(`250 ml, ${drink.price} ₸`);
+            const largeSize = $('<option>');
+            largeSize.val(400).text(`400 ml, ${drink.price400} ₸`);
+            sizeSelect.append(smallSize, largeSize);
+            controls.append(sizeSelect);
+        }
+        const addButton = $('<button>');
+        addButton.attr('type', 'button');
+        addButton.addClass('btn btn-primary btn-sm add-button');
+        addButton.text('Add');
+        controls.append(addButton);
+
+        card.data('id', drink.id);
+        card.attr('tabindex', '0');
+        body.append(title, price, controls);
         card.append(img, body);
         col.append(card);
 
@@ -112,7 +134,24 @@ $(function() {
         });
     }
 
-    grid.on('click', '.card', function() {
+    grid.on('click', '.add-button', function() {
+        const card = $(this).closest('.card');
+        const drink = drinks.find(item => item.id === card.data('id'));
+        let size = 250;
+        if (card.find('select').length > 0) {
+            size = Number(card.find('select').val());
+        }
+        let name = drink.name;
+        if (drink.price400 !== null) {
+            name = `${drink.name} (${size} ml)`;
+        }
+        RixFitSite.addToCart({id: `drink-${drink.id}-${size}`, name: name, price: getUnitPrice(drink, size)});
+    });
+
+    grid.on('click', '.card', function(event) {
+        if ($(event.target).closest('.add-button, select').length > 0) {
+            return;
+        }
         grid.find('.card').not(this).removeClass('selected');
         $(this).toggleClass('selected');
         if ($(this).hasClass('selected')) {
@@ -121,6 +160,13 @@ $(function() {
             setStatus(`Picked: ${title}, ${price}`);
         } else {
             render();
+        }
+    });
+
+    grid.on('keydown', '.card', function(event) {
+        if ((event.key === 'Enter' || event.key === ' ') && event.target === this) {
+            event.preventDefault();
+            $(this).trigger('click');
         }
     });
 
@@ -145,10 +191,6 @@ $(function() {
             setStatus(`Showing ${result.length} of ${drinks.length} drinks`);
         }
     }
-
-    
-
-    $('.table-responsive').remove();
 
     render();
 });
