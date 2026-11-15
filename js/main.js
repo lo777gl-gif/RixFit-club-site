@@ -146,6 +146,21 @@ function isValidPhone(value) {
     return /^\+?[0-9\s()-]+$/.test(value.trim()) && digits.length >= 10 && digits.length <= 15;
 }
 
+function isValidKzPhone(value) {
+    const digits = value.replace(/\D/g, '');
+    return /^[78][67]\d{9}$/.test(digits) && /^\+?[0-9\s()-]+$/.test(value.trim());
+}
+
+function checkKzPhone(value, isRequired) {
+    if (value.trim() === '') {
+        return isRequired ? 'Enter your phone number.' : '';
+    }
+    if (!isValidKzPhone(value)) {
+        return 'Enter a Kazakhstan number, for example +7 700 000 00 00.';
+    }
+    return '';
+}
+
 function checkPersonName(value, label) {
     const name = value.trim();
     if (name === '') {

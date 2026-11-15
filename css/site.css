@@ -1,0 +1,122 @@
+/* Shared styles for the Reviews and Gym Equipment pages (header, cart, account, cards). */
+
+.site-actions { white-space: nowrap; }
+.site-actions .btn { display: inline-flex; align-items: center; gap: 0.5rem; }
+a.site-actions, button.site-actions { display: inline-flex; align-items: center; gap: 0.5rem; }
+.site-actions svg { width: 1.1rem; height: 1.1rem; flex: none; }
+.cart-badge {
+  min-width: 1.4rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.panel-card {
+  background-color: var(--color-dark-gray);
+  border: 1px solid #4a4a4a;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+.member-pages .panel-card p { max-width: none; }
+
+.eyebrow { color: #ff9ba5; font-weight: 700; margin-bottom: 0.5rem; }
+
+/* toast */
+.site-toast {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 1080;
+  max-width: calc(100vw - 2rem);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid var(--color-red);
+  background-color: #2b2b2b;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateY(0.75rem);
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.site-toast.show { opacity: 1; transform: none; }
+
+/* cart */
+.cart-line { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #4a4a4a; }
+.cart-line + .cart-line { margin-top: 0; }
+.cart-line .qty { display: flex; align-items: center; gap: 0.4rem; }
+.cart-line .qty-value { min-width: 1.5rem; text-align: center; }
+.cart-line .line-total { min-width: 5rem; text-align: right; }
+.cart-total { margin: 1rem 0; font-size: 1.15rem; }
+.success-box { border-left: 4px solid #b5e5c0; background-color: var(--color-dark-gray); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; }
+
+/* hero */
+.page-hero { align-items: center; }
+.page-hero img { width: 100%; max-height: 340px; object-fit: cover; border-radius: 0.75rem; }
+
+/* stars and ratings */
+.stars { color: #f2b134; letter-spacing: 0.1em; white-space: nowrap; }
+.stars .off { color: #666; }
+.star-rating { display: inline-flex; flex-direction: row-reverse; gap: 0.15rem; position: relative; }
+.star-rating input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.star-rating label { font-size: 2.1rem; line-height: 1; color: #666; cursor: pointer; padding: 0 0.1rem; }
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label { color: #f2b134; }
+.star-rating input:focus-visible + label { outline: 3px solid var(--color-red); outline-offset: 2px; border-radius: 4px; }
+.rating-bar { display: grid; grid-template-columns: 2rem 1fr 2rem; align-items: center; gap: 0.75rem; }
+.rating-bar .progress { height: 0.5rem; background-color: #444; }
+.rating-bar .progress-bar { background-color: #f2b134; }
+.rating-score { font-family: var(--font-heading); font-size: 3.5rem; line-height: 1; }
+
+/* reviews */
+.chip-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.review-card { background-color: var(--color-dark-gray); border: 1px solid #4a4a4a; border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 1rem; }
+.review-card.is-new { border-color: var(--color-red); }
+.review-avatar {
+  width: 2.75rem; height: 2.75rem; flex: none;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background-color: #b82433;
+  font-weight: 700;
+}
+.empty-state { border: 1px dashed #666; border-radius: 0.75rem; padding: 2rem 1.5rem; text-align: center; }
+.empty-state .stars { font-size: 1.75rem; }
+.member-pages .empty-state p { margin-inline: auto; }
+
+/* equipment */
+.equip-card { height: 100%; background-color: var(--color-dark-gray); border: 1px solid #4a4a4a; border-radius: 0.75rem; overflow: hidden; display: flex; flex-direction: column; }
+.equip-card img { width: 100%; height: 150px; object-fit: cover; }
+.equip-card .body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+.badge-area { align-self: flex-start; background-color: #b82433; color: var(--color-white); font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; }
+.pass-card { height: 100%; display: flex; flex-direction: column; gap: 0.5rem; }
+.pass-price { font-family: var(--font-heading); font-size: 1.6rem; }
+
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); counter-reset: step; }
+.steps li { counter-increment: step; position: relative; background-color: var(--color-dark-gray); border: 1px solid #4a4a4a; border-radius: 0.75rem; padding: 3.25rem 1.25rem 1.25rem; margin: 0 !important; }
+.steps li::before {
+  content: counter(step);
+  position: absolute; top: 1rem; left: 1.25rem;
+  width: 2rem; height: 2rem; display: grid; place-items: center;
+  border-radius: 50%; background-color: #b82433; font-weight: 700;
+}
+.steps strong { display: block; margin-bottom: 0.25rem; }
+
+.sticky-form { position: sticky; top: 1rem; }
+@media (max-width: 991.98px) { .sticky-form { position: static; } }
+
+@media (max-width: 575.98px) {
+  .cart-line { flex-wrap: wrap; }
+  .site-actions .btn { padding-inline: 0.6rem; }
+}
+
+.member-pages .hidden { display: none !important; }
+
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  .site-header .navbar-nav { gap: 0.25rem !important; }
+  .site-header .navbar-nav .nav-link { padding-inline: 0.4rem; font-size: 0.9rem; }
+  .site-header .site-actions { font-size: 0.85rem; padding-inline: 0.5rem; }
+}

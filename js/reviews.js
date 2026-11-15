@@ -1,7 +1,4 @@
-/* reviews.js - reviews page, written with jQuery.
-   jQuery 4.0.0 (CDN, linked before this file in reviews.html): the whole page logic
-   below uses $() selectors, .on() events, effects and DOM building, which plain
-   JavaScript would need much longer code for. Old plain-JS version: old-js-version.js. */
+/* reviews.js - reviews page, written with jQuery. */
 
 $(function () {
   'use strict';
@@ -11,332 +8,280 @@ $(function () {
   const TEXT_MAX = 2000;
   const LOW_RATING_MIN_TEXT = 30;
 
-  const reviewAreaLabels = { gym: 'Gym', pool: 'Pool', '': 'Not specified' };
-  const visitTypeLabels = { single: 'Single visit', membership: 'Membership visit', training: 'Training session' };
+  const areaLabels = { gym: 'Gym', pool: 'Pool' };
+  const ratingCaptions = { 1: 'Very poor', 2: 'Poor', 3: 'Average', 4: 'Good', 5: 'Excellent' };
 
   let reviews = loadFromStorage(REVIEWS_KEY, []);
+  let areaFilter = 'all';
+  let newestId = null;
 
-  // selectors by id
   const $form = $('#feedback-form');
   const $name = $('#visitor-name');
-  const $email = $('#visitor-email');
-  const $phone = $('#visitor-phone');
-  const $visitCount = $('#visit-count');
-  const $visitDate = $('#visit-date');
-  const $rating = $('#review-rating');
-  const $visitType = $('#visit-type');
+  const $nameGroup = $('#guest-name-group');
+  const $identity = $('#identity-note');
+  const $date = $('#visit-date');
   const $text = $('#feedback-text');
   const $help = $('#feedback-text-help');
-  const $permission = $('#permission');
-  const $result = $('#feedback-result');
-  const $confirmation = $('#feedback-confirmation');
-  const $errors = $('#feedback-errors');
-  const $preview = $('#feedback-preview');
+  const $ratingError = $('#rating-error');
+  const $ratingCaption = $('#rating-caption');
+  const $summary = $('#rating-summary');
   const $empty = $('#reviews-empty');
+  const $noMatch = $('#reviews-nomatch');
   const $list = $('#reviews-list');
+  const $sort = $('#sort-reviews');
 
-  /* The attributes required / minlength / maxlength stay in the HTML as the first line
-     of defence (they also work if this script fails to load). Because JS turns on
-     noValidate, our own per-field messages replace the browser bubbles. A browser check
-     never replaces a server check: anyone can edit the HTML, disable JS or send the
-     request directly, so the server must validate every value again. */
-  $form.prop('noValidate', true);
-  $visitDate.attr('max', toDateInputValue(getToday()));
+  $date.attr('max', toDateInputValue(getToday()));
 
-  /* ---------- filter / sort toolbar, created in code ---------- */
+  /* ---------- helpers ---------- */
 
-  const rating = jqLabeledControl('select', 'filter-rating', 'Rating', 'col-6 col-md-3');
-  jqAddOptions(rating.$control, [
-    { value: 'all', label: 'All ratings' },
-    { value: 'positive', label: '4–5 (positive)' },
-    { value: 'average', label: '3 (average)' },
-    { value: 'critical', label: '1–2 (critical)' }
-  ]);
-  const area = jqLabeledControl('select', 'filter-area', 'Area', 'col-6 col-md-3');
-  jqAddOptions(area.$control, [
-    { value: 'all', label: 'All areas' },
-    { value: 'gym', label: 'Gym' },
-    { value: 'pool', label: 'Pool' }
-  ]);
-  const sort = jqLabeledControl('select', 'sort-reviews', 'Sort', 'col-6 col-md-3');
-  jqAddOptions(sort.$control, [
-    { value: 'newest', label: 'Newest first' },
-    { value: 'oldest', label: 'Oldest first' },
-    { value: 'highest', label: 'Highest rating' },
-    { value: 'lowest', label: 'Lowest rating' }
-  ]);
-  const $reset = $('<button>', { type: 'button', class: 'btn btn-outline-light w-100', text: 'Reset' });
-  const $controls = $('<div>', { class: 'row g-2 align-items-end my-3' }).append(
-    rating.$wrapper, area.$wrapper, sort.$wrapper,
-    $('<div>', { class: 'col-6 col-md-3' }).append($reset)
-  );
-
-  const $count = $('<p>', { class: 'small', 'aria-live': 'polite' });
-  const $noMatch = $('<p>', { class: 'error hidden', text: 'No saved reviews match these filters. Use Reset to see all of them.' });
-  const $status = $('<p>', { class: 'success hidden', role: 'status' });
-  const $toolbar = $('<div>').append($controls, $count, $noMatch, $status).insertBefore($list);
-
-  /* ---------- filtering, sorting, rendering ---------- */
-
-  function matchesRating(value, filter) {
-    if (filter === 'positive') { return value >= 4; }
-    if (filter === 'average') { return value === 3; }
-    if (filter === 'critical') { return value <= 2; }
-    return true;
+  function createStars(value) {
+    const $stars = $('<span>', { class: 'stars', 'aria-hidden': 'true' });
+    for (let i = 1; i <= 5; i += 1) {
+      $('<span>', { class: i <= value ? '' : 'off', text: '★' }).appendTo($stars);
+    }
+    return $stars;
   }
 
-  function getVisibleReviews() {
-    const areaValue = area.$control.val();
-    const ratingValue = rating.$control.val();
-    // $.grep is jQuery's array filter
-    const visible = $.grep(reviews, function (review) {
-      return (areaValue === 'all' || review.area === areaValue) && matchesRating(review.rating, ratingValue);
-    });
+  function getAverage() {
+    if (reviews.length === 0) { return 0; }
+    let total = 0;
+    $.each(reviews, function (index, review) { total += review.rating; });
+    return total / reviews.length;
+  }
 
-    const order = sort.$control.val();
+  function getVisible() {
+    const visible = $.grep(reviews, function (review) {
+      return areaFilter === 'all' || review.area === areaFilter;
+    });
+    const order = $sort.val();
     return visible.sort(function (a, b) {
       if (order === 'highest') { return b.rating - a.rating || b.createdAt.localeCompare(a.createdAt); }
       if (order === 'lowest') { return a.rating - b.rating || b.createdAt.localeCompare(a.createdAt); }
-      if (order === 'oldest') { return a.createdAt.localeCompare(b.createdAt); }
       return b.createdAt.localeCompare(a.createdAt);
     });
   }
 
-  function getAverageRating() {
-    if (reviews.length === 0) { return 0; }
-    let total = 0;
-    $.each(reviews, function (index, review) { total += review.rating; });
-    return Math.round((total / reviews.length) * 10) / 10;
+  /* ---------- summary ---------- */
+
+  function renderSummary() {
+    $summary.empty();
+    const hasReviews = reviews.length > 0;
+    $('#summary-col').toggleClass('hidden', !hasReviews);
+    $('#gis-col').toggleClass('col-lg-5', hasReviews).toggleClass('col-lg-12', !hasReviews);
+    if (!hasReviews) { return; }
+
+    const average = getAverage();
+    const counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+    $.each(reviews, function (index, review) { counts[review.rating] += 1; });
+
+    const $score = $('<div>', { class: 'text-center text-md-start' }).append(
+      $('<p>', { class: 'rating-score mb-1', text: average.toFixed(1) }),
+      createStars(Math.round(average)).addClass('fs-5'),
+      $('<p>', { class: 'small text-white-50 mb-0 mt-1', text: reviews.length + (reviews.length === 1 ? ' review' : ' reviews') })
+    );
+
+    const $bars = $('<div>', { class: 'd-grid gap-1 flex-grow-1' });
+    for (let star = 5; star >= 1; star -= 1) {
+      const percent = Math.round((counts[star] / reviews.length) * 100);
+      $('<div>', { class: 'rating-bar' }).append(
+        $('<span>', { class: 'small', text: star + ' ★' }),
+        $('<div>', { class: 'progress', role: 'progressbar', 'aria-label': star + ' star reviews', 'aria-valuenow': percent, 'aria-valuemin': 0, 'aria-valuemax': 100 })
+          .append($('<div>', { class: 'progress-bar', style: 'width:' + percent + '%' })),
+        $('<span>', { class: 'small text-end', text: counts[star] })
+      ).appendTo($bars);
+    }
+
+    $summary.append($('<div>', { class: 'd-flex flex-column flex-md-row align-items-md-center gap-4' }).append($score, $bars));
   }
 
-  function createStars(value) {
-    return '★'.repeat(value) + '☆'.repeat(5 - value);
-  }
+  /* ---------- list ---------- */
 
-  // The card markup exists nowhere in reviews.html: it is built from the array of reviews.
   function createReviewCard(review) {
-    const meta = [review.rating + ' out of 5', reviewAreaLabels[review.area], visitTypeLabels[review.visitType]];
-    if (review.visitDate !== '') {
+    const meta = [];
+    if (areaLabels[review.area]) { meta.push(areaLabels[review.area]); }
+    if (review.visitDate) {
       meta.push('visited ' + parseDateValue(review.visitDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }));
     }
 
-    const $header = $('<div>', { class: 'd-flex flex-wrap justify-content-between gap-2' }).append(
-      $('<h3>', { class: 'h5 card-title mb-1', text: review.name }),
-      $('<p>', { class: 'mb-1', 'aria-hidden': 'true', text: createStars(review.rating) })
+    const $head = $('<div>', { class: 'd-flex align-items-center gap-3 mb-2' }).append(
+      $('<div>', { class: 'review-avatar', 'aria-hidden': 'true', text: review.name.charAt(0).toUpperCase() }),
+      $('<div>', { class: 'flex-grow-1' }).append(
+        $('<h3>', { class: 'h6 mb-0', text: review.name }),
+        $('<p>', { class: 'small text-white-50 mb-0', text: formatDateTime(review.createdAt) })
+      ),
+      $('<div>', { class: 'text-end' }).append(
+        createStars(review.rating),
+        $('<span>', { class: 'visually-hidden', text: review.rating + ' out of 5' })
+      )
     );
-    const $footer = $('<div>', { class: 'd-flex flex-wrap justify-content-between align-items-center gap-2' }).append(
-      $('<time>', { class: 'small text-white-50', datetime: review.createdAt, text: 'Saved on this device: ' + formatDateTime(review.createdAt) }),
-      $('<button>', {
-        type: 'button',
-        class: 'btn btn-outline-light btn-sm',
-        text: 'Remove',
-        'data-remove': review.id,
-        'aria-label': 'Remove the review by ' + review.name
-      })
+
+    const $card = $('<article>', { class: 'review-card' + (review.id === newestId ? ' is-new' : ''), 'data-id': review.id }).append($head);
+    if (meta.length > 0) { $card.append($('<p>', { class: 'small mb-2', text: meta.join(' · ') })); }
+    $card.append(
+      $('<p>', { class: 'mb-2', text: review.text }),
+      $('<button>', { type: 'button', class: 'btn btn-link btn-sm p-0 text-white-50', text: 'Remove', 'data-remove': review.id, 'aria-label': 'Remove the review by ' + review.name })
     );
-    const $body = $('<div>', { class: 'card-body' }).append(
-      $header,
-      $('<p>', { class: 'small mb-2', text: meta.join(' · ') }),
-      $('<p>', { class: 'card-text', text: review.text }),
-      $footer
-    );
-    return $('<article>', { class: 'card bg-dark text-white border-secondary mb-3', 'data-id': review.id }).append($body);
+    return $card;
   }
 
   function renderReviews() {
-    const visible = getVisibleReviews();
+    const visible = getVisible();
     $list.empty();
-    $.each(visible, function (index, review) {
-      createReviewCard(review).appendTo($list);
-    });
+    $.each(visible, function (index, review) { createReviewCard(review).appendTo($list); });
 
     const hasReviews = reviews.length > 0;
     $empty.toggleClass('hidden', hasReviews);
-    $toolbar.toggleClass('hidden', !hasReviews);
     $noMatch.toggleClass('hidden', !hasReviews || visible.length > 0);
-    $count.text('Showing ' + visible.length + ' of ' + reviews.length + ' review(s) saved on this device. Average rating: ' + getAverageRating() + ' / 5.');
+    $('.chip-group').closest('div.d-flex').toggleClass('hidden', !hasReviews);
+    renderSummary();
   }
 
-  function showListStatus(message) {
-    // Effect with a purpose: the "removed" notice fades in so the visitor notices it
-    $status.text(message).removeClass('hidden').hide().fadeIn(250).attr('tabindex', '-1').trigger('focus');
-  }
-
-  /* change event: re-render when any of the three selects changes */
-  $controls.on('change', 'select', renderReviews);
-
-  $reset.on('click', function () {
-    rating.$control.val('all');
-    area.$control.val('all');
-    sort.$control.val('newest');
+  $('[data-area]').on('click', function () {
+    areaFilter = $(this).attr('data-area');
+    $('[data-area]').each(function () {
+      const active = $(this).attr('data-area') === areaFilter;
+      $(this).toggleClass('btn-light', active).toggleClass('btn-outline-light', !active).attr('aria-pressed', String(active));
+    });
     renderReviews();
   });
+  $sort.on('change', renderReviews);
 
-  /* DELEGATED handler: bound once to #reviews-list, which already exists. Every card
-     (and its Remove button) is created later by renderReviews(), after the user submits
-     the form or changes a filter. A direct binding like $('button[data-remove]').on(...)
-     would only attach to the buttons that exist at that moment, so buttons created by
-     our own code afterwards would never react. With delegation the event bubbles up to
-     #reviews-list and jQuery checks whether the target matches the selector. */
   $list.on('click', 'button[data-remove]', function () {
-    const $button = $(this);
-    const id = $button.attr('data-remove');
-    const $card = $button.closest('article');
-    const removed = $.grep(reviews, function (review) { return review.id === id; })[0];
-    $button.prop('disabled', true);
-
-    // The data is changed in the callback, only after the card has finished fading out.
-    $card.fadeOut(300, function () {
+    const id = $(this).attr('data-remove');
+    $(this).closest('article').fadeOut(250, function () {
       reviews = $.grep(reviews, function (review) { return review.id !== id; });
       saveToStorage(REVIEWS_KEY, reviews);
       renderReviews();
-      showListStatus('The review by ' + removed.name + ' was removed from this device.');
+      RixFitSite.toast('Review removed.');
     });
   });
 
-  /* COMPARISON (feature: form validation, old version in old-js-version.js).
-     $field.val().trim(), jqValidateFields + jqShowFieldError ($field.addClass/.text/.removeClass)
-     replace getElementById, .value, classList and createElement/append lines. About the
-     same number of lines, but shorter per line and one consistent API, so slightly clearer;
-     the real gain is chaining (.empty().removeClass().addClass()) instead of separate statements. */
+  /* ---------- form ---------- */
 
-  /* ---------- form: character counter and checks ---------- */
-
-  function updateCharacterCounter() {
+  function updateCounter() {
     const length = $text.val().trim().length;
-    let message = 'Use 10–2,000 characters. ' + length + ' / ' + TEXT_MAX + ' used.';
-    if (length < TEXT_MIN) {
-      message += ' ' + (TEXT_MIN - length) + ' more needed.';
-    }
-    $help.text(message);
+    $help.text(length < TEXT_MIN
+      ? 'At least ' + TEXT_MIN + ' characters (' + (TEXT_MIN - length) + ' more). ' + length + ' / ' + TEXT_MAX
+      : length + ' / ' + TEXT_MAX);
   }
 
-  function checkVisitCount(value) {
-    if (value.trim() === '') { return ''; }
-    const count = Number(value);
-    if (!Number.isInteger(count) || count < 1 || count > 999) {
-      return 'Enter the number of visits as a whole number from 1 to 999.';
-    }
-    return '';
+  function selectedRating() {
+    return $form.find('input[name="rating"]:checked').val() || '';
   }
 
-  function checkVisitDate(value) {
+  function checkDate(value) {
     if (value === '') { return ''; }
     const date = parseDateValue(value);
-    if (date === null || daysFromToday(date) > 0) {
-      return 'The visit date cannot be in the future.';
-    }
-    return '';
+    return date === null || daysFromToday(date) > 0 ? 'The visit date cannot be in the future.' : '';
   }
 
-  function checkFeedbackText(value, ratingValue) {
+  function checkText(value) {
     const trimmed = value.trim();
-    if (trimmed.length < TEXT_MIN || trimmed.length > TEXT_MAX) {
-      return 'Enter feedback between 10 and 2,000 characters.';
-    }
-    if (ratingValue !== '' && Number(ratingValue) <= 2 && trimmed.length < LOW_RATING_MIN_TEXT) {
-      return 'For a rating of 1 or 2, explain what went wrong in at least ' + LOW_RATING_MIN_TEXT + ' characters.';
+    if (trimmed.length < TEXT_MIN) { return 'Write at least ' + TEXT_MIN + ' characters.'; }
+    if (trimmed.length > TEXT_MAX) { return 'Keep your review under ' + TEXT_MAX + ' characters.'; }
+    if (selectedRating() !== '' && Number(selectedRating()) <= 2 && trimmed.length < LOW_RATING_MIN_TEXT) {
+      return 'For 1 or 2 stars, please explain what went wrong (at least ' + LOW_RATING_MIN_TEXT + ' characters).';
     }
     return '';
   }
 
-  function validateFeedback() {
-    return jqValidateFields([
-      { $field: $name, check: function () { return checkPersonName($name.val(), 'name'); } },
-      { $field: $email, check: function () { return checkEmail($email.val()); } },
-      { $field: $phone, check: function () { return checkPhone($phone.val(), false); } },
-      { $field: $visitCount, check: function () { return checkVisitCount($visitCount.val()); } },
-      { $field: $visitDate, check: function () { return checkVisitDate($visitDate.val()); } },
-      { $field: $rating, check: function () { return $rating.val() === '' ? 'Choose a rating from 1 to 5.' : ''; } },
-      { $field: $text, check: function () { return checkFeedbackText($text.val(), $rating.val()); } },
-      // .prop('checked') is the live state; .attr('checked') would only return the initial HTML attribute
-      { $field: $permission, check: function () { return $permission.prop('checked') ? '' : 'Agree to display your name and feedback, or keep your notes private.'; } }
-    ]);
+  function showRatingError(message) {
+    $ratingError.text(message === '' ? '' : 'Error: ' + message).toggleClass('hidden', message === '');
   }
 
-  function createReviewFromForm() {
-    return {
+  function updateIdentity() {
+    const user = RixFitSite.getUser();
+    $nameGroup.toggleClass('hidden', user !== null);
+    $identity.empty();
+    if (user) {
+      $identity.append('Posting as ', $('<strong>', { text: user.name }), '.');
+    } else {
+      $identity.append('Have an account? ', $('<button>', { type: 'button', class: 'btn btn-link p-0 align-baseline small', id: 'identity-signin', text: 'Sign in' }), ' to post under your name.');
+    }
+  }
+  $identity.on('click', '#identity-signin', function () { RixFitSite.openAccount('in'); });
+  RixFitSite.onChange(updateIdentity);
+
+  $form.on('change', 'input[name="rating"]', function () {
+    showRatingError('');
+    $ratingCaption.text(ratingCaptions[selectedRating()]);
+    if ($text.hasClass('error')) { $text.trigger('blur'); }
+  });
+
+  $name.on('blur', function () {
+    if ($name.val() !== '') {
+      const message = checkPersonName($name.val(), 'name');
+      if (message !== '') { jqShowFieldError($name, message); } else { jqMarkFieldValid($name); }
+    }
+  });
+  $date.on('change', function () {
+    const message = checkDate($date.val());
+    if (message !== '') { jqShowFieldError($date, message); } else { jqClearFieldError($date); }
+  });
+  $text.on('input', function () {
+    updateCounter();
+    if ($text.hasClass('error') && checkText($text.val()) === '') { jqMarkFieldValid($text); }
+  });
+  $text.on('blur', function () {
+    if ($text.val() !== '') {
+      const message = checkText($text.val());
+      if (message !== '') { jqShowFieldError($text, message); } else { jqMarkFieldValid($text); }
+    }
+  });
+  $name.on('input', function () { if ($name.hasClass('error')) { jqClearFieldError($name); } });
+
+  $form.on('submit', function (event) {
+    event.preventDefault();
+    const user = RixFitSite.getUser();
+
+    const rules = [];
+    if (!user) { rules.push({ $field: $name, check: function () { return checkPersonName($name.val(), 'name'); } }); }
+    rules.push(
+      { $field: $date, check: function () { return checkDate($date.val()); } },
+      { $field: $text, check: function () { return checkText($text.val()); } }
+    );
+    const errors = jqValidateFields(rules);
+    const ratingMissing = selectedRating() === '';
+    showRatingError(ratingMissing ? 'Choose a rating from 1 to 5 stars.' : '');
+    if (ratingMissing && errors.length === 0) { $('#star-5').trigger('focus'); }
+    if (errors.length > 0 || ratingMissing) { return; }
+
+    const review = {
       id: 'review-' + Date.now(),
-      name: $name.val().trim(),
-      // selector by attribute + :checked filter; no radio chosen -> val() is undefined
+      name: user ? user.name : $name.val().trim(),
+      userEmail: user ? user.email : '',
       area: $form.find('input[name="area"]:checked').val() || '',
-      visitType: $visitType.val(),
-      rating: Number($rating.val()),
-      visitDate: $visitDate.val(),
+      rating: Number(selectedRating()),
+      visitDate: $date.val(),
       text: $text.val().trim(),
       createdAt: new Date().toISOString()
     };
-  }
-
-  function hideFeedbackResult() {
-    $confirmation.addClass('hidden');
-    jqHideMessage($errors);
-    $preview.empty();
-  }
-
-  $form.on('submit', function (event) {
-    /* Without preventDefault() the browser would submit the form (GET to
-       reviews.html#feedback-result), reload the page and throw away our checks, the
-       per-field messages and the review that was just built. */
-    event.preventDefault();
-    hideFeedbackResult();
-
-    const errors = validateFeedback();
-    if (errors.length > 0) {
-      jqShowMessage($errors, 'error', 'Your feedback was not saved. Please fix ' + errors.length + ' field(s):', errors);
-      $errors.hide().slideDown(250);
-      return;
-    }
-
-    const review = createReviewFromForm();
     reviews.push(review);
     const saved = saveToStorage(REVIEWS_KEY, reviews);
+    newestId = review.id;
 
-    $preview.append(
-      $('<p>', { class: 'fw-bold mt-2 mb-0', text: 'Summary' }),
-      jqSummaryList([
-        ['Name', review.name],
-        ['Rating', review.rating + ' out of 5'],
-        ['Area', reviewAreaLabels[review.area]],
-        ['Visit type', visitTypeLabels[review.visitType]],
-        ['Visits', $visitCount.val() === '' ? 'not given' : $visitCount.val()],
-        ['Feedback', review.text]
-      ])
-    );
-
-    // Success message appears only here, when every check has passed; focus moves after the fade ends.
-    $confirmation
-      .empty()
-      .append($('<p>', {
-        class: 'mb-0',
-        text: saved
-          ? 'Your review was saved on this device only and is shown in the review list above. It was not sent to RixFit or published online. Your email and phone were checked but not stored.'
-          : 'Your review is shown in the list above, but this browser blocked saving, so it will disappear after reloading. Nothing was sent to RixFit.'
-      }))
-      .removeClass('hidden')
-      .hide()
-      .fadeIn(400, function () {
-        $result.trigger('focus');
-      });
-
-    renderReviews();
-    $form[0].reset(); // jQuery has no .reset(): use the native form method on the raw element
+    $form[0].reset();
+    jqClearFormState($form);
+    $ratingCaption.text('');
+    updateCounter();
+    areaFilter = 'all';
+    $sort.val('newest');
+    $('[data-area="all"]').trigger('click');
+    RixFitSite.toast(saved ? 'Thank you! Your review is posted.' : 'Your review is posted, but this browser would not save it.');
+    const $card = $list.find('[data-id="' + review.id + '"]');
+    if ($card.length > 0) { $card[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); }
   });
 
   $form.on('reset', function () {
-    jqClearFormState($form);
-    setTimeout(updateCharacterCounter, 0);
+    setTimeout(function () {
+      jqClearFormState($form);
+      showRatingError('');
+      $ratingCaption.text('');
+      updateCounter();
+    }, 0);
   });
 
-  /* input event, delegated to the form: clears a field's error as soon as the visitor edits it */
-  $form.on('input', '.form-control, .form-select', function () {
-    jqClearFieldError($(this));
-  });
-  $text.on('input', updateCharacterCounter);
-  $permission.on('change', function () {
-    jqClearFieldError($(this));
-  });
-
-  updateCharacterCounter();
+  updateIdentity();
+  updateCounter();
   renderReviews();
 });
