@@ -146,8 +146,13 @@ form a::after {
 }
 
 .success {
-  color: var(--color-white);
+  color: var(--color-black);
   border-color: var(--color-black);
+}
+
+p.success {
+  color: var(--color-white);
+  border-color: var(--color-white);
 }
 
 div.error,
