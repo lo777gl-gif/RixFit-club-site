@@ -103,7 +103,6 @@ $(function () {
     const rules = [
         { $field: $('#userName'), check: function () { return checkPersonName(readBookingData().name, 'name'); } },
         { $field: $('#userEmail'), check: function () { return checkEmail(readBookingData().email); } },
-        { $field: $('#userPhone'), check: function () { return checkPhone(readBookingData().phone, true); } },
         { $field: $('#age'), check: function () { return ageError(readBookingData()); } },
         {
             $field: $form.find('input[name="gender"]').first(),
@@ -130,6 +129,57 @@ $(function () {
             check: function () { return readBookingData().agreed ? '' : 'You must agree with the club rules.'; }
         }
     ];
+
+    
+    const $phone = $('#userPhone'); 
+
+    $phone.on('focus', function () {
+        if ($(this).val() === '') {
+            $(this).val('+7 (');
+        }
+    });
+
+
+    $phone.on('blur', function () {
+        if ($(this).val() === '+7 (' || $(this).val() === '+7') {
+            $(this).val('');
+        }
+    });
+
+    $phone.on('input', function () {
+        let digits = $(this).val().replace(/\D/g, '');
+
+        if (digits.startsWith('8')) {
+            digits = '7' + digits.slice(1);
+        } else if (!digits.startsWith('7')) {
+            digits = '7' + digits;
+        }
+
+        digits = digits.substring(0, 11);
+
+        let formatted = '+7 (';
+
+        if (digits.length > 1) {
+            formatted += digits.substring(1, 4); 
+        }
+        if (digits.length > 4) {
+            formatted += ') ' + digits.substring(4, 7); 
+        }
+        if (digits.length > 7) {
+            formatted += '-' + digits.substring(7, 9); 
+        }
+        if (digits.length > 9) {
+            formatted += '-' + digits.substring(9, 11); 
+        }
+
+        $(this).val(formatted);
+    });
+
+    $phone.on('keydown', function (e) {
+        if (e.key === 'Backspace' && $(this).val().length <= 4) {
+            e.preventDefault();
+        }
+    });
 
     function renderSummary() {
         const data = readBookingData();

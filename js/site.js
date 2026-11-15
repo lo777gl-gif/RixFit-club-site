@@ -175,6 +175,64 @@ const RixFitSite = (function () {
     });
   }
 
+  /* Phone mask +7 (700) 123-45-67. Bound to the field itself, so it works for every mountAuth() copy. */
+  function applyPhoneMask($phone) {
+    $phone.on('focus', function () {
+      if ($(this).val() === '') {
+        $(this).val('+7 (');
+      }
+    });
+
+    $phone.on('blur', function () {
+      if ($(this).val() === '+7 (' || $(this).val() === '+7') {
+        $(this).val('');
+      }
+    });
+
+    $phone.on('input', function () {
+      let digits = $(this).val().replace(/\D/g, '');
+
+      if (digits.startsWith('8')) {
+        digits = '7' + digits.slice(1);
+      } else if (!digits.startsWith('7')) {
+        digits = '7' + digits;
+      }
+
+      digits = digits.substring(0, 11);
+
+      // Brackets and dashes are added only when more digits follow them, otherwise Backspace gets stuck on them
+      let formatted = '+7 (';
+
+      if (digits.length > 1) {
+        formatted += digits.substring(1, 4);
+      }
+      if (digits.length > 4) {
+        formatted += ') ' + digits.substring(4, 7);
+      }
+      if (digits.length > 7) {
+        formatted += '-' + digits.substring(7, 9);
+      }
+      if (digits.length > 9) {
+        formatted += '-' + digits.substring(9, 11);
+      }
+
+      $(this).val(formatted);
+    });
+
+    $phone.on('keydown', function (e) {
+      if (e.key === 'Backspace' && $(this).val().length <= 4) {
+        e.preventDefault();
+      }
+    });
+
+    // The phone is optional: if the visitor presses Enter while only "+7 (" is typed, send it as empty
+    $phone.closest('form').on('submit', function () {
+      if (/^\+7\s*\(?$/.test($phone.val().trim())) {
+        $phone.val('');
+      }
+    });
+  }
+
   function mountAuth($host, options) {
     options = options || {};
     fieldCounter += 1;
@@ -184,7 +242,7 @@ const RixFitSite = (function () {
     const up = {
       name: buildField(prefix + 'up-', 'name', 'Name', { type: 'text', autocomplete: 'name', maxlength: 80 }),
       email: buildField(prefix + 'up-', 'email', 'Email', { type: 'email', autocomplete: 'email', maxlength: 254, placeholder: 'name@example.com' }),
-      phone: buildField(prefix + 'up-', 'phone', 'Phone (optional)', { type: 'tel', autocomplete: 'tel', maxlength: 30, placeholder: '+7 700 000 00 00' }),
+      phone: buildField(prefix + 'up-', 'phone', 'Phone (optional)', { type: 'tel', autocomplete: 'tel', maxlength: 30, placeholder: '+7 (700) 000-00-00' }),
       password: buildField(prefix + 'up-', 'password', 'Password', { type: 'password', autocomplete: 'new-password', maxlength: 100 })
     };
     up.password.$group.append($('<p>', { class: 'small text-white-50 mb-0 mt-1', text: 'At least 8 characters, with a letter and a digit.' }));
@@ -213,6 +271,7 @@ const RixFitSite = (function () {
 
     bindLiveValidation($up);
     bindLiveValidation($in);
+    applyPhoneMask(up.phone.$input);
 
     $up.on('submit', async function (event) {
       event.preventDefault();

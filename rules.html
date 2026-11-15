@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/nuraly.css">
     <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="css/rules.css">
 </head>
 <body id="top" class="d-flex flex-column min-vh-100">
 
@@ -53,13 +54,16 @@
     </header>
 
     <main>
-        <div class="container">
+        <div class="container rules-page">
             <!-- container (not container-fluid): long-form rules text reads better at a fixed max-width -->
 
-            <p class="py-4">
-                <img class="float-start me-3 mb-2 rounded" src="images/gym-floor.webp" alt="RixFit gym floor with properly re-racked dumbbells" width="200">
-                <b>Please read before your first visit.</b> Quick links: <a href="#club-rules">gym rules</a> and <a href="#swimming-pool-rules">pool rules</a> below. Proper re-racking, like the RixFit gym floor pictured here, is the very first habit every member is expected to build from day one — weights go back on the numbered rack, plates get stacked by size, and barbells never lean against a wall.
-            </p>
+            <header class="rules-hero">
+                <img src="images/RixFit.jpg" alt="RixFit gym floor with properly re-racked dumbbells" width="240">
+                <div>
+                    <h1>Club Rules</h1>
+                    <p class="rules-lead"><b>Please read before your first visit.</b> Proper re-racking, like the RixFit gym floor pictured here, is the first habit every member builds from day one: weights go back on the numbered rack, plates get stacked by size, and barbells never lean against a wall.</p>
+                </div>
+            </header>
 
             <aside aria-label="Membership tip" class="membership-tip clearfix">
                 <h2 class="h5">Membership Tip</h2>
@@ -67,14 +71,14 @@
                 <p class="mb-0">Renew your locker rental at least <mark>3 days</mark> before it expires &mdash; spots are limited. Members holding an <abbr title="Annual Unlimited Pass">AUP</abbr> get priority renewal.</p>
             </aside>
 
-            <section id="club-rules" class="py-4">
+            <section id="club-rules" class="rules-section py-4">
                 <h2>Club Rules &amp; Regulations</h2>
 
-                <!-- Responsive grid: single column on phones, two columns from md up, three from lg up, using row-cols utilities instead of a hand-built float/flex layout -->
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-1">
+                <!-- Responsive grid: single column on phones, two columns from md up, three from lg up -->
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     <div class="col">
-                        <article>
-                            <h3>1. Dress Code &amp; Hygiene</h3>
+                        <article class="rule-card">
+                            <h3><span class="rule-num">1</span>Dress Code &amp; Hygiene</h3>
                             <ul>
                                 <li>Clean athletic shoes (sneakers) and appropriate workout attire are strictly required in all training areas.</li>
                                 <li>Using an individual sweat towel on exercise equipment and workout benches is mandatory.</li>
@@ -84,8 +88,8 @@
                     </div>
 
                     <div class="col">
-                        <article>
-                            <h3>2. Gym Floor Etiquette</h3>
+                        <article class="rule-card">
+                            <h3><span class="rule-num">2</span>Gym Floor Etiquette</h3>
                             <ul>
                                 <li>Return all equipment to its designated racks immediately: dumbbells by weight, plates by size, and barbells to stands.</li>
                                 <li>Do not drop weights, dumbbells, or barbells onto bare floors or non-lifting platforms.</li>
@@ -96,8 +100,8 @@
                     </div>
 
                     <div class="col">
-                        <article>
-                            <h3>3. Health &amp; Safety</h3>
+                        <article class="rule-card">
+                            <h3><span class="rule-num">3</span>Health &amp; Safety</h3>
                             <ul>
                                 <li>Assess workout intensity according to your <i>physical capabilities</i>; use spotters or ask an on-duty instructor when lifting heavy loads.</li>
                                 <li>Access to facilities is strictly prohibited for individuals under the influence of alcohol, drugs, or showing symptoms of infectious illnesses.</li>
@@ -107,10 +111,10 @@
                     </div>
 
                     <div class="col">
-                        <article>
-                            <h3>4. Locker Rooms &amp; Belongings</h3>
+                        <article class="rule-card">
+                            <h3><span class="rule-num">4</span>Locker Rooms &amp; Belongings</h3>
                             <ul>
-                                <!-- span used only as a generic inline wrapper for a phrase that will get a visual style later; no inline semantic tag (em/strong/mark) fits since it is not stress, importance, or highlighting -->
+                                <!-- span used only as a generic inline wrapper; no inline semantic tag (em/strong/mark) fits here -->
                                 <li>Store personal items in locked lockers during your visit. The club is not responsible for <span>unattended valuables</span>.</li>
                                 <li>Lockers must be cleared before the club closes; overnight storage is not allowed unless a long-term locker rental is active.</li>
                                 <li>Photography and video recording inside locker rooms and shower areas are strictly prohibited.</li>
@@ -119,8 +123,8 @@
                     </div>
 
                     <div class="col">
-                        <article>
-                            <h3>5. Membership &amp; Access Policy</h3>
+                        <article class="rule-card">
+                            <h3><span class="rule-num">5</span>Membership &amp; Access Policy</h3>
                             <ul>
                                 <li>Entry requires presenting a valid personal membership <abbr title="Identification">ID</abbr> card. Passes are non-transferable.</li>
                                 <li>Workouts must conclude, and training zones must be vacated at least 15 minutes before the facility's closing time.</li>
@@ -133,12 +137,12 @@
             </section>
 
             <hr>
-            <!-- hr marks a real thematic shift here, from gym-floor rules to pool rules, not just a visual line -->
+            <!-- hr marks a real thematic shift here, from gym-floor rules to pool rules -->
 
-            <section id="swimming-pool-rules" class="py-4">
+            <section id="swimming-pool-rules" class="rules-section py-4">
                 <h2>Swimming Pool Rules &amp; Regulations</h2>
-                <p>Pool water (H<sub>2</sub>O) is tested twice daily for chlorine and pH levels.</p>
-                <ol type="I">
+                <p class="pool-note mb-3">Pool water (H<sub>2</sub>O) is tested twice daily for chlorine and pH levels.</p>
+                <ol type="I" class="pool-rules">
                     <li>Entry into the pool area is strictly permitted only in pool slides or flip-flops.</li>
                     <li>Access to the pool is permitted only in swimwear or swim trunks (no other clothing is allowed).</li>
                     <li>A swim cap is mandatory &ndash; sauna hats or disposable plastic caps are strictly prohibited.</li>
@@ -150,13 +154,17 @@
                 </ol>
             </section>
 
-            <section id="glossary" class="py-4">
+            <section id="glossary" class="rules-section py-4">
                 <h2>Glossary of Terms</h2>
                 <dl class="glossary-list">
-                    <dt>Peak hours</dt>
-                    <dd>06:00-09:00 and 18:00-21:00, when the gym floor is busiest.</dd>
-                    <dt>Long-term locker rental</dt>
-                    <dd>A paid monthly subscription that lets a member keep the same locker overnight instead of clearing it daily.</dd>
+                    <div>
+                        <dt>Peak hours</dt>
+                        <dd>06:00-09:00 and 18:00-21:00, when the gym floor is busiest.</dd>
+                    </div>
+                    <div>
+                        <dt>Long-term locker rental</dt>
+                        <dd>A paid monthly subscription that lets a member keep the same locker overnight instead of clearing it daily.</dd>
+                    </div>
                 </dl>
             </section>
         </div>
@@ -210,6 +218,5 @@
     <script src="js/jq-helpers.js" defer></script>
     <script src="js/site.js" defer></script>
     <script src="js/nuraly-common.js" defer></script>
-    <script src="js/rules.js" defer></script>
 </body>
 </html>
