@@ -16,7 +16,12 @@ $(function() {
         panel.addClass('service-fact hidden');
         const message = $('<p>');
         message.attr('role', 'status');
-        const saved = loadFromStorage('rixfit-services', {})[area] || [];
+        const user = RixFitSite.getUser();
+        let saved = [];
+        if (user) {
+            const mine = loadFromStorage('rixfit-services', {})[user.email] || {};
+            saved = mine[area] || [];
+        }
 
         for (const service of services) {
             if (service.area === area) {
@@ -40,16 +45,24 @@ $(function() {
         saveButton.text('Save my choice');
 
         saveButton.on('click', () => {
-            const chosen = loadFromStorage('rixfit-services', {});
-            chosen[area] = panel.find('input:checked').map(function() {
+            const currentUser = RixFitSite.getUser();
+            if (!currentUser) {
+                message.removeClass('success').addClass('error');
+                message.text('Sign in to save your choice to My Account.');
+                return;
+            }
+            const everyone = loadFromStorage('rixfit-services', {});
+            const mine = everyone[currentUser.email] || {};
+            mine[area] = panel.find('input:checked').map(function() {
                 return $(this).val();
             }).get();
-            saveToStorage('rixfit-services', chosen);
-            message.addClass('success');
-            if (chosen[area].length === 0) {
+            everyone[currentUser.email] = mine;
+            saveToStorage('rixfit-services', everyone);
+            message.removeClass('error').addClass('success');
+            if (mine[area].length === 0) {
                 message.text('Choice cleared. Nothing saved for this area.');
             } else {
-                message.text(`Saved on this device: ${chosen[area].join(', ')}.`);
+                message.text(`Saved to My Account: ${mine[area].join(', ')}.`);
             }
         });
 
