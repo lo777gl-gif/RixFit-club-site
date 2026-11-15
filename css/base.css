@@ -175,3 +175,19 @@ textarea.form-control.success,
 select.form-select.success {
   border-color: var(--color-white);
 }
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh; 
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  margin-top: auto;
+}
