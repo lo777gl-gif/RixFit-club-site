@@ -33,6 +33,16 @@ const RixFitSite = (function () {
 
   /* ---------- data ---------- */
 
+  function currentPage() {
+    return window.location.pathname.split('/').pop() || 'index.html';
+  }
+
+  function authUrl(page) {
+    const here = currentPage();
+    if (here === 'login.html' || here === 'register.html') { return page + window.location.search; }
+    return page + '?next=' + encodeURIComponent(here);
+  }
+
   function uid() {
     return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
   }
@@ -56,7 +66,7 @@ const RixFitSite = (function () {
   function notify() {
     renderHeader();
     renderCartPanel();
-    renderAccountPanel();
+    if (profileHost) { renderProfile(profileHost); }
     $.each(listeners, function (index, callback) { callback(getUser()); });
   }
 
@@ -170,10 +180,6 @@ const RixFitSite = (function () {
     fieldCounter += 1;
     const prefix = 'auth' + fieldCounter + '-';
 
-    const $modeUp = $('<button>', { type: 'button', class: 'btn btn-sm', text: 'Create account' });
-    const $modeIn = $('<button>', { type: 'button', class: 'btn btn-sm', text: 'Sign in' });
-    const $modes = $('<div>', { class: 'btn-group w-100 mb-3', role: 'group', 'aria-label': 'Account options' }).append($modeUp, $modeIn);
-
     /* create account */
     const up = {
       name: buildField(prefix + 'up-', 'name', 'Name', { type: 'text', autocomplete: 'name', maxlength: 80 }),
@@ -200,14 +206,9 @@ const RixFitSite = (function () {
     );
 
     function setMode(mode) {
-      const signup = mode === 'up';
-      $up.toggleClass('hidden', !signup);
-      $in.toggleClass('hidden', signup);
-      $modeUp.toggleClass('btn-light', signup).toggleClass('btn-outline-light', !signup).attr('aria-pressed', String(signup));
-      $modeIn.toggleClass('btn-light', !signup).toggleClass('btn-outline-light', signup).attr('aria-pressed', String(!signup));
+      $up.toggleClass('hidden', mode !== 'up');
+      $in.toggleClass('hidden', mode !== 'in');
     }
-    $modeUp.on('click', function () { setMode('up'); });
-    $modeIn.on('click', function () { setMode('in'); });
     setMode(options.mode === 'in' ? 'in' : 'up');
 
     bindLiveValidation($up);
@@ -225,7 +226,7 @@ const RixFitSite = (function () {
 
       const email = up.email.$input.val().trim().toLowerCase();
       if ($.grep(users, function (user) { return user.email === email; }).length > 0) {
-        jqShowFieldError(up.email.$input, 'An account with this email already exists. Choose Sign in.');
+        jqShowFieldError(up.email.$input, 'An account with this email already exists. Sign in instead.');
         up.email.$input.trigger('focus');
         return;
       }
@@ -259,7 +260,7 @@ const RixFitSite = (function () {
       const email = inn.email.$input.val().trim().toLowerCase();
       const user = $.grep(users, function (entry) { return entry.email === email; })[0];
       if (!user) {
-        jqShowFieldError(inn.email.$input, 'No account with this email. Choose Create account.');
+        jqShowFieldError(inn.email.$input, 'No account with this email. Create an account first.');
         inn.email.$input.trigger('focus');
         return;
       }
@@ -275,7 +276,14 @@ const RixFitSite = (function () {
       if (options.onSuccess) { options.onSuccess(user); }
     });
 
-    $host.empty().append($modes, $up, $in);
+    const signup = options.mode !== 'in';
+    const next = new URLSearchParams(window.location.search).get('next');
+    const suffix = next ? '?next=' + encodeURIComponent(next) : '';
+    const $switch = $('<p>', { class: 'small text-center mt-3 mb-0' }).append(
+      signup ? 'Already have an account? ' : 'New to RixFit? ',
+      $('<a>', { href: (signup ? 'login.html' : 'register.html') + suffix, text: signup ? 'Sign in' : 'Create an account' })
+    );
+    $host.empty().append($up, $in, $switch);
   }
 
   /* ---------- panels ---------- */
@@ -293,7 +301,6 @@ const RixFitSite = (function () {
   }
 
   const cartPanel = createPanel('cart-panel', 'Your cart');
-  const accountPanel = createPanel('account-panel', 'Account');
 
   function showPanel(panel) {
     panel.offcanvas.show();
@@ -342,13 +349,13 @@ const RixFitSite = (function () {
     $body.append($list, $('<p>', { class: 'cart-total d-flex justify-content-between fw-bold' }).append($('<span>', { text: 'Total' }), $('<span>', { text: formatPrice(cartTotal()) })));
 
     if (!user) {
-      if (cartView === 'auth') {
-        const $auth = $('<div>', { class: 'panel-card' });
-        $body.append($('<h3>', { class: 'h5', text: 'Almost there — create an account' }), $('<p>', { class: 'small', text: 'It takes a few seconds and keeps your orders and reviews in one place.' }), $auth);
-        mountAuth($auth, { onSuccess: function () { cartView = 'items'; renderCartPanel(); } });
-      } else {
-        $body.append($('<button>', { type: 'button', class: 'btn btn-primary w-100', 'data-action': 'checkout', text: 'Checkout' }));
-      }
+      $body.append(
+        $('<p>', { class: 'small text-white-50', text: 'Sign in or create an account to place your order.' }),
+        $('<div>', { class: 'd-flex flex-wrap gap-2' }).append(
+          $('<a>', { class: 'btn btn-primary', href: authUrl('login.html'), text: 'Sign in' }),
+          $('<a>', { class: 'btn btn-outline-light', href: authUrl('register.html'), text: 'Create account' })
+        )
+      );
     } else {
       $body.append(
         $('<p>', { class: 'small text-white-50 mb-3', text: 'Ordering as ' + user.name + ' (' + user.email + ')' }),
@@ -367,12 +374,6 @@ const RixFitSite = (function () {
   });
 
   cartPanel.$body.on('click', 'button[data-action]', function () {
-    if ($(this).attr('data-action') === 'checkout') {
-      cartView = 'auth';
-      renderCartPanel();
-      cartPanel.$body.find('input').first().trigger('focus');
-      return;
-    }
     const user = getUser();
     lastOrder = { number: String(generateRefNumber()), email: user.email, name: user.name, items: cart.slice(), total: cartTotal(), createdAt: new Date().toISOString() };
     orders.push(lastOrder);
@@ -384,16 +385,20 @@ const RixFitSite = (function () {
 
   /* account */
 
-  let accountMode = 'up';
+  let profileHost = null;
 
-  function renderAccountPanel() {
-    const $body = accountPanel.$body.empty();
+  function renderProfile($body) {
+    $body.empty();
     const user = getUser();
 
     if (!user) {
-      const $auth = $('<div>');
-      $body.append($('<p>', { class: 'text-white-50', text: 'Create an account to keep your orders and reviews together.' }), $auth);
-      mountAuth($auth, { mode: accountMode, onSuccess: function () { accountPanel.offcanvas.hide(); } });
+      $body.append(
+        $('<p>', { class: 'lead', text: 'Sign in to see your details and orders.' }),
+        $('<div>', { class: 'd-flex flex-wrap gap-2' }).append(
+          $('<a>', { class: 'btn btn-primary', href: authUrl('login.html'), text: 'Sign in' }),
+          $('<a>', { class: 'btn btn-outline-light', href: authUrl('register.html'), text: 'Create account' })
+        )
+      );
       return;
     }
 
@@ -446,20 +451,56 @@ const RixFitSite = (function () {
     $body.append($('<button>', { type: 'button', class: 'btn btn-outline-light mt-4', 'data-action': 'signout', text: 'Sign out' }));
   }
 
-  accountPanel.$body.on('click', 'button[data-action="signout"]', function () {
+  $(document).on('click', 'button[data-action="signout"]', function () {
     signOut();
     toast('You have been signed out.');
   });
 
   $('#cart-button').on('click', function () { showPanel(cartPanel); });
-  function openAccount(mode) {
-    accountMode = mode || 'up';
-    renderAccountPanel();
-    showPanel(accountPanel);
+  /* Question list, same look and behaviour as the FAQ on programs-and-trainers.html */
+  function fillQuestionList($list, items, prefix) {
+    function createItem(item, index) {
+      const $question = $('<button>', {
+        type: 'button',
+        class: 'faq-question btn btn-outline-light w-100 text-start',
+        'aria-expanded': 'false',
+        'aria-controls': prefix + '-answer-' + index
+      }).text(item.question);
+      const $answer = $('<div>', { id: prefix + '-answer-' + index, class: 'faq-answer p-3' }).html(item.answer).hide();
+      return $('<div>', { class: 'faq-item mb-2' }).append($question, $answer);
+    }
+
+    $.each(items, function (index, item) { $list.append(createItem(item, index)); });
+
+    $list.on('click', '.faq-question', function () {
+      const $button = $(this);
+      const $item = $button.closest('.faq-item');
+      $item.siblings('.faq-item').removeClass('selected').find('.faq-answer').slideUp(200);
+      $item.siblings('.faq-item').find('.faq-question').attr('aria-expanded', 'false');
+      $item.toggleClass('selected');
+      $button.next('.faq-answer').slideToggle(300, function () {
+        $button.attr('aria-expanded', String($(this).css('display') !== 'none'));
+      });
+    });
+    return createItem;
   }
-  $('#nav-signin').on('click', function (event) { event.preventDefault(); openAccount('in'); });
-  $('#nav-signup').on('click', function (event) { event.preventDefault(); openAccount('up'); });
-  $('#nav-account').on('click', function (event) { event.preventDefault(); openAccount(getUser() ? 'up' : 'in'); });
+
+  function mountFaq(items, firstCount) {
+    const $list = $('<div>', { id: 'faq-list' });
+    const createItem = fillQuestionList($list, items.slice(0, firstCount), 'faq');
+    const $more = $('<button>', { type: 'button', id: 'faq-more', class: 'btn btn-outline-secondary mt-2' }).text('More questions');
+    $('<section>', { id: 'faq', class: 'mb-4' }).append($('<h2>').text('Frequently Asked Questions'), $list, $more).appendTo('main > .container');
+
+    $more.on('click', function () {
+      $.each(items.slice(firstCount), function (offset, item) {
+        createItem(item, firstCount + offset).hide().appendTo($list).slideDown(250);
+      });
+      $more.prop('disabled', true).text('All questions are shown');
+    });
+  }
+
+  $('#nav-signin').attr('href', authUrl('login.html'));
+  $('#nav-signup').attr('href', authUrl('register.html'));
 
   notify();
 
@@ -469,7 +510,10 @@ const RixFitSite = (function () {
     onChange: onChange,
     mountAuth: mountAuth,
     openCart: function () { showPanel(cartPanel); },
-    openAccount: openAccount,
+    mountProfile: function ($host) { profileHost = $host; renderProfile($host); },
+    authUrl: authUrl,
+    mountFaq: mountFaq,
+    mountTerms: function ($host, items) { fillQuestionList($host, items, 'term'); },
     toast: toast
   };
 }());
