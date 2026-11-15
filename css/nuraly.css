@@ -80,3 +80,175 @@
 article h4 {
   color: var(--color-white);
 }
+
+.rules-hero {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.75rem;
+  align-items: center;
+  padding: 2rem 0 1rem;
+}
+
+.rules-hero img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border-bottom: 4px solid var(--color-red);
+}
+
+.rules-hero h1 {
+  font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+  margin-bottom: 0.75rem;
+}
+
+.rules-hero p {
+  max-width: 65ch;
+  line-height: 1.6;
+}
+
+.rules-hero .rules-lead {
+  font-size: 1.1rem;
+}
+
+.rules-page hr {
+  border-color: var(--color-gray);
+  opacity: 0.35;
+  margin: 1rem 0;
+}
+
+.rules-section > h2 {
+  border-left: 4px solid var(--color-red);
+  padding-left: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Club rules: one card per category */
+.rule-card {
+  height: 100%;
+  background-color: var(--color-dark-gray);
+  border-top: 4px solid var(--color-red);
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.25rem 0.75rem;
+}
+
+.rule-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.rule-num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  font-size: 0.95rem;
+}
+
+.rule-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rule-card li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+.rule-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background-color: var(--color-red);
+}
+
+.rule-card p {
+  color: var(--color-gray);
+}
+
+/* Pool rules: a real sequence, so Roman numerals (ol type="I") are kept as tiles */
+.pool-note {
+  display: inline-block;
+  border: 1px solid var(--color-gray);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.pool-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 0.75rem;
+  counter-reset: pool;
+}
+
+.pool-rules li {
+  counter-increment: pool;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  background-color: var(--color-dark-gray);
+  border-left: 4px solid var(--color-red);
+  border-radius: 0.25rem;
+  padding: 0.9rem 1rem;
+  line-height: 1.5;
+}
+
+.pool-rules li::before {
+  content: counter(pool, upper-roman);
+  flex: none;
+  min-width: 2.4rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--color-red);
+}
+
+/* Glossary */
+.glossary-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+  margin: 0;
+}
+
+.glossary-list > div {
+  background-color: var(--color-dark-gray);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+}
+
+.glossary-list dt {
+  margin-top: 0;
+}
+
+.glossary-list dd {
+  margin: 0.25rem 0 0;
+  color: var(--color-white);
+}
+
+@media (max-width: 575.98px) {
+  .rules-hero {
+    grid-template-columns: 1fr;
+  }
+  .rules-hero img {
+    max-width: 260px;
+  }
+}

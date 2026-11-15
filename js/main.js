@@ -4,13 +4,14 @@
    Shared data and helpers for every RixFit page.
    Load order: main.js first, then the page script (e.g. nuraly.js, reviews.js).
    Contains: club data, reusable helpers (dates, prices, validation, field errors,
-   messages, storage) and the site-wide "Open now" badge in the footer. */
+   messages, storage) and the site-wide "Open now" badge in the footer.
+*/
 
-/* ---------- Shared club data ---------- */
+// Shared club data 
 
 const CLUB_TIMEZONE = 'Asia/Almaty';
-// Same hours as the footer and the services.html table
-const WORK_HOURS = {
+
+const WORK_HOURS = { // Same hours as the footer and the services.html table
     weekday: { open: 7, close: 23 },
     weekend: { open: 9, close: 22 }
 };
@@ -35,7 +36,7 @@ const TRAINERS = [
     { id: 't8', name: 'Samat', area: 'pool', role: 'Certified Swimming Coach' }
 ];
 
-/* ---------- Small helpers ---------- */
+// Small helpers 
 
 function onReady(callback) {
     if (document.readyState === 'loading') {
@@ -81,7 +82,7 @@ function pad2(number) {
     return String(number).padStart(2, '0');
 }
 
-/* ---------- Time and date helpers ---------- */
+/* Time and date helpers  */
 
 function timeToMinutes(time) {
     const parts = time.split(':');
@@ -133,7 +134,7 @@ function formatDateTime(isoString) {
         ', ' + date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 }
 
-/* ---------- Validators ---------- */
+/*  Validators  */
 
 const NAME_PATTERN = /^[\p{L}][\p{L}\s.'-]*$/u;
 
@@ -143,7 +144,7 @@ function isValidEmail(value) {
 
 function isValidPhone(value) {
     const digits = value.replace(/\D/g, '');
-    return /^\+?[0-9\s()-]+$/.test(value.trim()) && digits.length >= 10 && digits.length <= 15;
+    return /^\+7[0-9\s()-]+$/.test(value.trim()) && digits.length >= 10 && digits.length <= 15;
 }
 
 function isValidKzPhone(value) {
@@ -195,7 +196,7 @@ function checkPhone(value, isRequired) {
     return '';
 }
 
-/* ---------- Form controls built with DOM methods ---------- */
+/*  Form controls built with DOM methods  */
 
 function createLabeledControl(tagName, id, labelText, wrapperClasses) {
     const wrapper = createElement('div', wrapperClasses);
@@ -224,7 +225,7 @@ function addDescribedBy(field, id) {
     }
 }
 
-/* ---------- Field-level errors (shown beside the field, not in an alert) ---------- */
+/*  Field-level errors (shown beside the field, not in an alert)  */
 
 // Reuses a prepared "<id>-error" element when the page has one, otherwise creates it
 function getErrorElement(field, anchor) {
@@ -303,7 +304,7 @@ function validateFields(rules) {
     return errors;
 }
 
-/* ---------- Result messages ---------- */
+// Result messages 
 
 // type is 'success' or 'error'; lines is an optional list of strings
 function showMessage(container, type, title, lines) {
@@ -336,7 +337,7 @@ function createSummaryList(pairs) {
     return list;
 }
 
-/* ---------- Device storage (only non-sensitive data) ---------- */
+/*  Device storage (only non-sensitive data)  */
 
 function loadFromStorage(key, fallbackValue) {
     try {
@@ -356,7 +357,7 @@ function saveToStorage(key, value) {
     }
 }
 
-/* ---------- "Open now" badge in the footer (site-wide) ---------- */
+/*  "Open now" badge in the footer (site-wide)  */
 
 function getHoursFor(dayIndex) {
     return dayIndex === 0 || dayIndex === 6 ? WORK_HOURS.weekend : WORK_HOURS.weekday;
