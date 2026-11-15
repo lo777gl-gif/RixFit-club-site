@@ -23,7 +23,7 @@ a.site-actions, button.site-actions { display: inline-flex; align-items: center;
 }
 .member-pages .panel-card p { max-width: none; }
 
-.eyebrow { color: #ff9ba5; font-weight: 700; margin-bottom: 0.5rem; }
+.eyebrow { color: var(--color-red); font-weight: 700; margin-bottom: 0.5rem; }
 
 /* toast */
 .site-toast {
@@ -80,7 +80,7 @@ a.site-actions, button.site-actions { display: inline-flex; align-items: center;
   width: 2.75rem; height: 2.75rem; flex: none;
   display: grid; place-items: center;
   border-radius: 50%;
-  background-color: #b82433;
+  background-color: var(--color-red);
   font-weight: 700;
 }
 .empty-state { border: 1px dashed #666; border-radius: 0.75rem; padding: 2rem 1.5rem; text-align: center; }
@@ -91,7 +91,7 @@ a.site-actions, button.site-actions { display: inline-flex; align-items: center;
 .equip-card { height: 100%; background-color: var(--color-dark-gray); border: 1px solid #4a4a4a; border-radius: 0.75rem; overflow: hidden; display: flex; flex-direction: column; }
 .equip-card img { width: 100%; height: 150px; object-fit: cover; }
 .equip-card .body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
-.badge-area { align-self: flex-start; background-color: #b82433; color: var(--color-white); font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; }
+.badge-area { align-self: flex-start; background-color: var(--color-red); color: var(--color-white); font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; }
 .pass-card { height: 100%; display: flex; flex-direction: column; gap: 0.5rem; }
 .pass-price { font-family: var(--font-heading); font-size: 1.6rem; }
 
@@ -101,7 +101,7 @@ a.site-actions, button.site-actions { display: inline-flex; align-items: center;
   content: counter(step);
   position: absolute; top: 1rem; left: 1.25rem;
   width: 2rem; height: 2rem; display: grid; place-items: center;
-  border-radius: 50%; background-color: #b82433; font-weight: 700;
+  border-radius: 50%; background-color: var(--color-red); font-weight: 700;
 }
 .steps strong { display: block; margin-bottom: 0.25rem; }
 
@@ -120,3 +120,8 @@ a.site-actions, button.site-actions { display: inline-flex; align-items: center;
   .site-header .navbar-nav .nav-link { padding-inline: 0.4rem; font-size: 0.9rem; }
   .site-header .site-actions { font-size: 0.85rem; padding-inline: 0.5rem; }
 }
+
+.site-header .hidden, .offcanvas .hidden, .site-toast.hidden { display: none !important; }
+.offcanvas .form-control.success, .offcanvas .form-select.success, .panel-card .form-control.success { color: var(--bs-body-color); }
+.offcanvas .form-control, .offcanvas .form-select, .panel-card .form-control, .panel-card .form-select { color-scheme: dark; }
+.panel-card .error, .offcanvas .error { color: #ffb4bc; }

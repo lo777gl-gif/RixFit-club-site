@@ -196,10 +196,9 @@ $(function () {
     if (user) {
       $identity.append('Posting as ', $('<strong>', { text: user.name }), '.');
     } else {
-      $identity.append('Have an account? ', $('<button>', { type: 'button', class: 'btn btn-link p-0 align-baseline small', id: 'identity-signin', text: 'Sign in' }), ' to post under your name.');
+      $identity.append('Have an account? ', $('<a>', { href: RixFitSite.authUrl('login.html'), text: 'Sign in' }), ' to post under your name.');
     }
   }
-  $identity.on('click', '#identity-signin', function () { RixFitSite.openAccount('in'); });
   RixFitSite.onChange(updateIdentity);
 
   $form.on('change', 'input[name="rating"]', function () {
@@ -280,6 +279,33 @@ $(function () {
       updateCounter();
     }, 0);
   });
+
+  RixFitSite.mountFaq([
+    {
+      question: 'Who can leave a review?',
+      answer: 'Anyone who has visited the club. Please write only about your <strong>own experience</strong> and do not include personal details of other people.'
+    },
+    {
+      question: 'Do I need an account to post a review?',
+      answer: 'No. As a guest you only enter your name. If you <a href="login.html?next=reviews.html">sign in</a>, the review is posted under your account name.'
+    },
+    {
+      question: 'Why do 1 and 2 star reviews need more text?',
+      answer: 'For a rating of 1 or 2 stars we ask for at least <strong>30 characters</strong>, so the club can understand what went wrong and fix it.'
+    },
+    {
+      question: 'Can I remove my review?',
+      answer: 'Yes. Use the <strong>Remove</strong> button under the review card.'
+    },
+    {
+      question: 'Where can I read independent reviews?',
+      answer: 'On the public directory: <a href="https://2gis.kz/astana/search/RixFit" target="_blank" rel="noopener noreferrer">RixFit on 2GIS</a>. Compare the dates and the number of ratings.'
+    },
+    {
+      question: 'I have a complaint, not a review. Who do I contact?',
+      answer: 'Call the club on <a href="tel:+77754385471">+7 775 438 54 71</a> or write to <a href="mailto:rixfitastana@gmail.com">rixfitastana@gmail.com</a>.'
+    }
+  ], 4);
 
   updateIdentity();
   updateCounter();

@@ -16,12 +16,6 @@ $(function () {
   ];
   const areaLabels = { all: 'All', cardio: 'Cardio', strength: 'Strength', pool: 'Pool' };
 
-  const passes = [
-    { key: 'lose_weight', description: 'A gym visit with a trainer focused on fat loss.' },
-    { key: 'gain_muscle', description: 'A gym visit with a trainer focused on strength and muscle.' },
-    { key: 'pool_swimming', description: 'A pool visit with a swimming coach.' }
-  ];
-
   let areaFilter = 'all';
 
   const $filters = $('#equipment-filters');
@@ -72,62 +66,39 @@ $(function () {
     renderEquipment();
   });
 
-  /* ---------- trainer sessions (cart) ---------- */
+  RixFitSite.mountTerms($('#terms-list'), [
+    { question: 'Cardio', answer: 'Exercise that keeps the body moving continuously to train endurance.' },
+    { question: 'Resistance', answer: 'The load that the muscles work against, such as a plate, cable or dumbbell.' },
+    { question: 'Range of motion (ROM)', answer: 'The controlled distance a joint travels during an exercise.' },
+    { question: 'Sets and reps (3 × 10)', answer: 'A plan written as 3 × 10 means three sets of ten repetitions, with a short rest between sets.' }
+  ]);
 
-  $.each(passes, function (index, pass) {
-    const service = $.grep(SERVICES, function (entry) { return entry.key === pass.key; })[0];
-    const item = { id: service.key, name: service.label + ' session', price: service.price };
-    $('<div>', { class: 'col-12 col-sm-6 col-xl-4' }).append(
-      $('<article>', { class: 'panel-card pass-card' }).append(
-        $('<h3>', { class: 'h5 mb-0', text: service.label }),
-        $('<p>', { class: 'mb-0 flex-grow-1', text: pass.description }),
-        $('<p>', { class: 'pass-price mb-0', text: formatPrice(service.price) }),
-        $('<button>', { type: 'button', class: 'btn btn-primary', text: 'Add to cart', 'data-pass': service.key }).data('item', item)
-      )
-    ).appendTo('#pass-list');
-  });
-
-  $('#pass-list').on('click', 'button[data-pass]', function () {
-    RixFitSite.addToCart($(this).data('item'));
-  });
-
-  /* ---------- sign-up right here ---------- */
-
-  const $join = $('#join-panel');
-
-  let renderedFor;
-
-  function renderJoin() {
-    const user = RixFitSite.getUser();
-    const key = user ? user.id + user.name : '';
-    if (key === renderedFor) { return; }
-    renderedFor = key;
-    $join.empty();
-    if (user) {
-      $join.append(
-        $('<h3>', { class: 'h5', text: 'Hi, ' + user.name.split(' ')[0] + '!' }),
-        $('<p>', { text: 'You are signed in. Add a session to your cart and place your order — no extra steps.' }),
-        $('<div>', { class: 'd-flex flex-wrap gap-2' }).append(
-          $('<button>', { type: 'button', class: 'btn btn-primary', 'data-open': 'cart', text: 'Open cart' }),
-          $('<button>', { type: 'button', class: 'btn btn-outline-light', 'data-open': 'account', text: 'My account' })
-        )
-      );
-      return;
+  RixFitSite.mountFaq([
+    {
+      question: 'Do I need experience to use the equipment?',
+      answer: 'No. Follow the steps in <strong>Before your first set</strong> and ask a trainer to show you the setup of any unfamiliar machine.'
+    },
+    {
+      question: 'What equipment does the club have?',
+      answer: 'Cardio machines (treadmills, bikes, ellipticals, rowing), strength equipment (Technogym machines, dumbbells, platform, benches) and a swimming pool. The list is based on an archived 2024 offer, so ask the club about current availability.'
+    },
+    {
+      question: 'Can a trainer show me how to train?',
+      answer: 'Yes. Send an application with the <strong>Booking form</strong> on the <a href="index.html#booking">main page</a> and choose Weight Loss or Muscle Gain with a coach.'
+    },
+    {
+      question: 'What should I bring?',
+      answer: 'Clean sports shoes and your own towel for the gym. For the pool bring swimwear and a swim cap, and shower first. Details are in the <a href="rules.html">club rules</a>.'
+    },
+    {
+      question: 'How do I try the club before buying a pass?',
+      answer: 'Use the <a href="index.html#booking">Booking form</a> on the main page or call <a href="tel:+77754385471">+7 775 438 54 71</a>. The club tells you the time to come by email or phone.'
+    },
+    {
+      question: 'When is the club open?',
+      answer: 'Workdays from <strong>07:00 to 23:00</strong>, weekends from <strong>09:00 to 22:00</strong>.'
     }
-    const $auth = $('<div>');
-    $join.append(
-      $('<h3>', { class: 'h5', text: 'Create your account' }),
-      $('<p>', { class: 'small text-white-50', text: 'Sign up here to order sessions and post reviews under your name.' }),
-      $auth
-    );
-    RixFitSite.mountAuth($auth, {});
-  }
+  ], 4);
 
-  $join.on('click', 'button[data-open]', function () {
-    if ($(this).attr('data-open') === 'cart') { RixFitSite.openCart(); } else { RixFitSite.openAccount(); }
-  });
-
-  RixFitSite.onChange(renderJoin);
-  renderJoin();
   renderEquipment();
 });

@@ -8,25 +8,27 @@
     <!-- Author: Muratov Anuar from group SE-2534 -->
     <meta name="author" content="Muratov Anuar, SE-2534">
     <!--Services are a different page simply because of how many different sections and recreation zones the gym offers-->
-    <title>RixFit - Services</title>
+    <title>RixFit — Services</title>
+    <link rel="icon" href="images/Logo.jpg" type="image/jpeg">
     <!--Bootstrap 5.3.8 (CDN)-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/anuar.css">
+    <link rel="stylesheet" href="css/site.css">
 </head>
 
 <body id="top" class="d-flex flex-column min-vh-100">
 
     <!--Navigation will be the same across all pages so it is best to keep them as a separate section here-->
     <header class="site-header">
-        <nav class="navbar navbar-expand-lg" data-bs-theme="dark" aria-label="main-nav">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html"><img class="logo" src="images/Logo.jpg" alt="RixFit Fitness Club"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteMenu" aria-controls="siteMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <button id="navigation-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="siteMenu">
+                <div class="collapse navbar-collapse" id="navbar-nav">
                     <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 gap-lg-3" aria-label="main-nav">
                         <li class="nav-item"><a class="nav-link" href="index.html">Main page</a></li>
                         <li class="nav-item"><a class="nav-link" href="programs-and-trainers.html">Programs and Trainers</a></li>
@@ -36,10 +38,17 @@
                         <li class="nav-item"><a class="nav-link" href="gym-equipment.html">Gym Equipment Guide</a></li>
                         <li class="nav-item"><a class="nav-link" href="nutrition-and-supplements.html">Nutrition and Supplements</a></li>
                     </ul>
-                    <ul class="navbar-nav" aria-label="auth-nav">
-                        <li class="nav-item"><a class="nav-link" href="login.html">Sign in</a></li>
-                        <li class="nav-item"><a class="nav-link" href="register.html">Sign up</a></li>
-                        <li class="nav-item"><a class="nav-link" href="account.html">My account</a></li>
+                    <ul class="navbar-nav align-items-lg-center gap-2 mt-2 mt-lg-0" aria-label="auth-nav">
+                        <li class="nav-item" id="nav-signin-item"><a id="nav-signin" class="btn btn-outline-light btn-sm site-actions" href="login.html">Sign in</a></li>
+                        <li class="nav-item" id="nav-signup-item"><a id="nav-signup" class="btn btn-outline-light btn-sm site-actions" href="register.html">Sign up</a></li>
+                        <li class="nav-item"><a id="nav-account" class="btn btn-outline-light btn-sm site-actions" href="account.html">My account</a></li>
+                        <li class="nav-item">
+                            <button id="cart-button" type="button" class="btn btn-outline-light btn-sm site-actions">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6"/></svg>
+                                <span>Cart</span>
+                                <span id="cart-badge" class="cart-badge hidden" aria-label="items in cart">0</span>
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -231,7 +240,7 @@
                             <a href="https://api.whatsapp.com/send/?phone=77074926104" target="_blank" rel="noopener noreferrer"><img src="images/whatsapp-logo.webp" alt="Whatsapp" width="75"></a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer"><img src="images/instagram-logo.png" alt="Instragram" width="75"></a>
+                            <a href="https://www.instagram.com/rixfitastana" target="_blank" rel="noopener noreferrer"><img src="images/instagram-logo.png" alt="Instagram" width="75"></a>
                         </li>
                     </ul>
                 </section>
@@ -244,6 +253,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
     <script src="js/main.js" defer></script>
+    <script src="js/jq-helpers.js" defer></script>
+    <script src="js/site.js" defer></script>
     <script src="js/services.js" defer></script>
 </body>
 </html>
