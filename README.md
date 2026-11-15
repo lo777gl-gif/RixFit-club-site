@@ -28,7 +28,7 @@ The Real RixFit has no real own web Site, Address: **Turan Avenue 37/9**.
 * `js/main.js` — common JS file with behavior for the all pages.
 * `js/account.js, equipment.js, jq-helpers.js, reviews.js`' — Yeren Yedige's Java script + jQuery files
 * `js/index.js, nuraly-common.js, programs.js, register.js, rules.js`' — Auyelkhan Nuraly's Java script + jQuery files
-* `js/services.js, nutrition.js`' — Anuar Muratov's Java script + jQuery files
+* `js/services.js, nutrition.js, account-services.js`' — Anuar Muratov's Java script + jQuery files
 * `js/jq-helpers.js` - shared jQuery form helpers (field errors, messages, labeled controls) for the equipment, reviews and account pages.
 * `js/equipment.js`, `js/reviews.js`, `js/account.js` - rewritten with jQuery (delegated events, effects with duration and callbacks, per-field validation). Nutrition and services use `js/nutrition.js` and `js/services.js`.
 * `old-js-version.js` - the previous plain-JavaScript versions kept for comparison (not linked to any page). Each jQuery section carries a `COMPARISON` comment.
@@ -41,7 +41,7 @@ Plain JavaScript and jQuery are kept in separate files; a feature uses one or th
 | --- | --- | --- | --- | --- |
 | Shared value checks (email, phone, name, time helpers) | all pages | plain JavaScript | `js/main.js` | team |
 | Home page, programs, register, rules | `index.html`, `programs-and-trainers.html`, `register.html`, `rules.html` | plain JavaScript | `js/index.js`, `js/programs.js`, `js/register.js`, `js/rules.js`, `js/nuraly-common.js` | Auyelkhan Nuraly |
-| Nutrition and services | `nutrition-and-supplements.html`, `services.html` | jQuery | `js/nutrition.js`, `js/services.js` | Anuar Muratov |
+| Nutrition and services | `nutrition-and-supplements.html`, `services.html` | jQuery | `js/nutrition.js`, `js/services.js` | plain Javascript | `account-services.js` | Anuar Muratov |
 | Login form (validation, show/hide password, attempt limit) | `login.html` | plain JavaScript | `js/login.js` | Yeren Yedige |
 | Equipment inventory and session builder | `gym-equipment.html` | jQuery | `js/equipment.js`, `js/jq-helpers.js` | Yeren Yedige |
 | Reviews list, filters and feedback form | `reviews.html` | jQuery | `js/reviews.js`, `js/jq-helpers.js` | Yeren Yedige |
