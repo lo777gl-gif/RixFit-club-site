@@ -60,4 +60,4 @@ positioned cert badge, the dark-input colour fix).
 | `.facilities-table` width, borders, spacing and zebra rules | `.table.table-dark.table-bordered.table-striped.align-middle` inside `.table-responsive` |
 | `.site-header h1` and `position: static` on the service title | Removed because the old header element/layout no longer uses them; no replacement needed |
 
-Kept intentionally: `.bar-table` styling preserves the image-filled cells and RixFit colours. `.table-responsive` adds overflow handling but does **not** replace those visual rules. Image sizing, card colours and the warning design also remain as page-specific styling.
+Kept intentionally: `.bar-table` styling preserves the image-filled cells and RixFit colours. `.table-responsive` adds overflow handling but does not replace those visual rules. Image sizing, card colours and the warning design also remain as page-specific styling.
