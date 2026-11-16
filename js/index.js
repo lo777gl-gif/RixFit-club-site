@@ -130,15 +130,13 @@ $(function () {
         }
     ];
 
-    
-    const $phone = $('#userPhone'); 
+    const $phone = $('#userPhone');
 
     $phone.on('focus', function () {
         if ($(this).val() === '') {
             $(this).val('+7 (');
         }
     });
-
 
     $phone.on('blur', function () {
         if ($(this).val() === '+7 (' || $(this).val() === '+7') {
@@ -160,16 +158,16 @@ $(function () {
         let formatted = '+7 (';
 
         if (digits.length > 1) {
-            formatted += digits.substring(1, 4); 
+            formatted += digits.substring(1, 4);
         }
         if (digits.length > 4) {
-            formatted += ') ' + digits.substring(4, 7); 
+            formatted += ') ' + digits.substring(4, 7);
         }
         if (digits.length > 7) {
-            formatted += '-' + digits.substring(7, 9); 
+            formatted += '-' + digits.substring(7, 9);
         }
         if (digits.length > 9) {
-            formatted += '-' + digits.substring(9, 11); 
+            formatted += '-' + digits.substring(9, 11);
         }
 
         $(this).val(formatted);
@@ -208,7 +206,6 @@ $(function () {
         $summary.append($('<small>', { 'class': 'd-block text-muted' }).text('Estimate only: the final price is confirmed by the club.'));
     }
 
-
     $service.on('change', function () {
         fillTrainerOptions(getService($(this).val()), true);
     });
@@ -243,7 +240,30 @@ $(function () {
         }
     });
 
-    
+    function saveBookedServiceForAccount(data, itemName) {
+        const allServices = loadFromStorage('rixfit-services', {});
+        const emails = [];
+        if (data.email) {
+            emails.push(data.email.toLowerCase());
+        }
+        if (typeof RixFitSite !== 'undefined' && RixFitSite.getUser) {
+            const currentUser = RixFitSite.getUser();
+            if (currentUser && currentUser.email && emails.indexOf(currentUser.email) === -1) {
+                emails.push(currentUser.email);
+            }
+        }
+        $.each(emails, function (_, email) {
+            const userServices = allServices[email] || {};
+            const areaList = userServices[data.service.area] || [];
+            if (areaList.indexOf(itemName) === -1) {
+                areaList.push(itemName);
+            }
+            userServices[data.service.area] = areaList;
+            allServices[email] = userServices;
+        });
+        saveToStorage('rixfit-services', allServices);
+    }
+
     $form.on('submit', function (event) {
         // Without preventDefault() the browser would send the form: the page would reload (action="#" with
         // method GET adds the field values to the address) and every message below would disappear at once
@@ -259,16 +279,33 @@ $(function () {
         $errorBox.empty();
         const data = readBookingData();
         const trainer = getTrainer(data.trainerId);
+        const coachText = data.service.needsTrainer && trainer ? trainer.name : 'not required';
+        const itemName = data.service.needsTrainer && trainer
+            ? data.service.label + ' (Coach: ' + trainer.name + ')'
+            : data.service.label;
+        const itemId = 'booking-' + data.service.key + (data.service.needsTrainer && trainer ? '-' + trainer.id : '');
+
+        saveBookedServiceForAccount(data, itemName);
+
+        if (typeof RixFitSite !== 'undefined' && RixFitSite.addToCart) {
+            RixFitSite.addToCart({
+                id: itemId,
+                name: itemName,
+                price: data.service.price,
+                qty: data.guests
+            });
+        }
+
         const lines = [
             'Client: ' + data.name + ' | Guests: ' + data.guests,
-            'Service: ' + data.service.label + ' | Coach: ' + (data.service.needsTrainer ? trainer.name : 'not required'),
+            'Service: ' + data.service.label + ' | Coach: ' + coachText,
             'Estimated total: ' + formatPrice(data.service.price * data.guests),
-            'Demo mode: no data was sent to a server. No real booking, payment or order was created.'
+            'Added to your cart! You can check your cart on any page or in My Account.'
         ];
 
         // Reset first (its handler clears both boxes), then show the confirmation built from the saved data
         $form.get(0).reset();
-        RixFitUI.showMessage($confirmBox, 'success', 'Request #' + generateRefNumber() + ' received!', lines);
+        RixFitUI.showMessage($confirmBox, 'success', 'Request #' + generateRefNumber() + ' added to cart!', lines);
         RixFitUI.scrollToBox($confirmBox);
     });
 

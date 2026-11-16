@@ -74,6 +74,16 @@ const RixFitSite = (function () {
     listeners.push(callback);
   }
 
+  /* Re-reads accounts, session, cart and orders from localStorage.
+     A page keeps them in variables, so after "Back", or when another tab changes them, the variables are stale.
+     Called on those events and before every action, so an old page never overwrites newer data. */
+  function syncFromStorage() {
+    users = loadFromStorage(USERS_KEY, []);
+    sessionEmail = loadFromStorage(SESSION_KEY, null);
+    cart = loadFromStorage(CART_KEY, []);
+    orders = loadFromStorage(ORDERS_KEY, []);
+  }
+
   function signIn(email) {
     sessionEmail = email;
     saveToStorage(SESSION_KEY, sessionEmail);
@@ -105,11 +115,13 @@ const RixFitSite = (function () {
   }
 
   function addToCart(item) {
+    syncFromStorage();
+    const qtyToAdd = item.qty && Number(item.qty) > 0 ? Number(item.qty) : 1;
     const line = $.grep(cart, function (entry) { return entry.id === item.id; })[0];
     if (line) {
-      line.qty = Math.min(line.qty + 1, 20);
+      line.qty = Math.min(line.qty + qtyToAdd, 20);
     } else {
-      cart.push({ id: item.id, name: item.name, price: item.price, qty: 1 });
+      cart.push({ id: item.id, name: item.name, price: item.price, qty: Math.min(qtyToAdd, 20) });
     }
     cartView = 'items';
     saveCart();
@@ -284,6 +296,7 @@ const RixFitSite = (function () {
       if (errors.length > 0) { return; }
 
       const email = up.email.$input.val().trim().toLowerCase();
+      syncFromStorage();
       if ($.grep(users, function (user) { return user.email === email; }).length > 0) {
         jqShowFieldError(up.email.$input, 'An account with this email already exists. Sign in instead.');
         up.email.$input.trigger('focus');
@@ -299,6 +312,7 @@ const RixFitSite = (function () {
         hash: await hashPassword(up.password.$input.val(), salt),
         createdAt: new Date().toISOString()
       };
+      syncFromStorage();
       users.push(user);
       saveToStorage(USERS_KEY, users);
       $up[0].reset();
@@ -317,6 +331,7 @@ const RixFitSite = (function () {
       if (errors.length > 0) { return; }
 
       const email = inn.email.$input.val().trim().toLowerCase();
+      syncFromStorage();
       const user = $.grep(users, function (entry) { return entry.email === email; })[0];
       if (!user) {
         jqShowFieldError(inn.email.$input, 'No account with this email. Create an account first.');
@@ -426,14 +441,18 @@ const RixFitSite = (function () {
   cartPanel.$body.on('click', 'button[data-qty]', function () {
     const id = $(this).attr('data-id');
     const delta = Number($(this).attr('data-qty'));
+    syncFromStorage();
     const line = $.grep(cart, function (entry) { return entry.id === id; })[0];
+    if (!line) { notify(); return; }
     line.qty = Math.min(line.qty + delta, 20);
     if (line.qty <= 0) { cart = $.grep(cart, function (entry) { return entry.id !== id; }); }
     saveCart();
   });
 
   cartPanel.$body.on('click', 'button[data-action]', function () {
+    syncFromStorage();
     const user = getUser();
+    if (!user || cart.length === 0) { notify(); return; }
     lastOrder = { number: String(generateRefNumber()), email: user.email, name: user.name, items: cart.slice(), total: cartTotal(), createdAt: new Date().toISOString() };
     orders.push(lastOrder);
     saveToStorage(ORDERS_KEY, orders);
@@ -446,6 +465,40 @@ const RixFitSite = (function () {
 
   let profileHost = null;
 
+  function buildAccountCartSection() {
+    const $section = $('<div>', { class: 'my-cart mt-4' }).append(
+      $('<h3>', { class: 'h5', text: 'Your cart' })
+    );
+
+    if (cart.length === 0) {
+      $section.append($('<p>', { class: 'small text-white-50 mb-0', text: 'Your cart is empty.' }));
+      return $section;
+    }
+
+    const $list = $('<ul>', { class: 'list-unstyled mb-2' });
+    $.each(cart, function (index, line) {
+      $('<li>', { class: 'd-flex justify-content-between align-items-center small py-1 border-bottom border-secondary' }).append(
+        $('<span>', { text: line.name + ' × ' + line.qty }),
+        $('<span>', { class: 'fw-bold', text: formatPrice(line.qty * line.price) })
+      ).appendTo($list);
+    });
+
+    const $total = $('<p>', { class: 'd-flex justify-content-between small fw-bold mt-2 mb-2' }).append(
+      $('<span>', { text: 'Total' }),
+      $('<span>', { text: formatPrice(cartTotal()) })
+    );
+
+    const $openBtn = $('<button>', {
+      type: 'button',
+      class: 'btn btn-outline-light btn-sm',
+      'data-action': 'open-cart',
+      text: 'Open cart'
+    });
+
+    $section.append($list, $total, $openBtn);
+    return $section;
+  }
+
   function renderProfile($body) {
     $body.empty();
     const user = getUser();
@@ -456,7 +509,8 @@ const RixFitSite = (function () {
         $('<div>', { class: 'd-flex flex-wrap gap-2' }).append(
           $('<a>', { class: 'btn btn-primary', href: authUrl('login.html'), text: 'Sign in' }),
           $('<a>', { class: 'btn btn-outline-light', href: authUrl('register.html'), text: 'Create account' })
-        )
+        ),
+        buildAccountCartSection()
       );
       return;
     }
@@ -490,19 +544,35 @@ const RixFitSite = (function () {
     });
 
     const $stats = $('<div>', { class: 'row g-2 mb-4' }).append(
-      $('<div>', { class: 'col-6' }).append($('<div>', { class: 'panel-card text-center' }).append($('<p>', { class: 'h3 mb-0', text: myOrders.length }), $('<p>', { class: 'small mb-0', text: 'Orders' }))),
-      $('<div>', { class: 'col-6' }).append($('<div>', { class: 'panel-card text-center' }).append($('<p>', { class: 'h3 mb-0', text: myReviews.length }), $('<p>', { class: 'small mb-0', text: 'Reviews' })))
+      $('<div>', { class: 'col-4' }).append($('<div>', { class: 'panel-card text-center' }).append($('<p>', { class: 'h3 mb-0', text: myOrders.length }), $('<p>', { class: 'small mb-0', text: 'Orders' }))),
+      $('<div>', { class: 'col-4' }).append($('<div>', { class: 'panel-card text-center' }).append($('<p>', { class: 'h3 mb-0', text: cartCount() }), $('<p>', { class: 'small mb-0', text: 'In cart' }))),
+      $('<div>', { class: 'col-4' }).append($('<div>', { class: 'panel-card text-center' }).append($('<p>', { class: 'h3 mb-0', text: myReviews.length }), $('<p>', { class: 'small mb-0', text: 'Reviews' })))
     );
 
-    $body.append($('<p>', { class: 'mb-3' }).append('Signed in as ', $('<strong>', { text: user.name })), $stats, $('<h3>', { class: 'h5', text: 'Your details' }), $form);
+    $body.append(
+      $('<p>', { class: 'mb-3' }).append('Signed in as ', $('<strong>', { text: user.name })),
+      $stats,
+      $('<h3>', { class: 'h5', text: 'Your details' }),
+      $form,
+      buildAccountCartSection()
+    );
 
     if (myOrders.length > 0) {
       const $orders = $('<ul>', { class: 'list-unstyled mb-0' });
       $.each(myOrders.slice(-3).reverse(), function (index, order) {
-        $('<li>', { class: 'd-flex justify-content-between small py-1 border-bottom border-secondary' }).append(
-          $('<span>', { text: '#' + order.number + ' · ' + formatDateTime(order.createdAt) }),
-          $('<span>', { text: formatPrice(order.total) })
-        ).appendTo($orders);
+        const itemSummary = $.map(order.items || [], function (item) {
+          return item.name + ' × ' + item.qty;
+        }).join(', ');
+        const $li = $('<li>', { class: 'small py-1 border-bottom border-secondary' }).append(
+          $('<div>', { class: 'd-flex justify-content-between' }).append(
+            $('<span>', { text: '#' + order.number + ' · ' + formatDateTime(order.createdAt) }),
+            $('<span>', { class: 'fw-bold', text: formatPrice(order.total) })
+          )
+        );
+        if (itemSummary) {
+          $li.append($('<div>', { class: 'text-white-50', text: itemSummary }));
+        }
+        $li.appendTo($orders);
       });
       $body.append($('<h3>', { class: 'h5 mt-4', text: 'Recent orders' }), $orders);
     }
@@ -513,6 +583,10 @@ const RixFitSite = (function () {
   $(document).on('click', 'button[data-action="signout"]', function () {
     signOut();
     toast('You have been signed out.');
+  });
+
+  $(document).on('click', 'button[data-action="open-cart"]', function () {
+    showPanel(cartPanel);
   });
 
   $('#cart-button').on('click', function () { showPanel(cartPanel); });
@@ -560,6 +634,14 @@ const RixFitSite = (function () {
 
   $('#nav-signin').attr('href', authUrl('login.html'));
   $('#nav-signup').attr('href', authUrl('register.html'));
+
+  window.addEventListener('storage', function (event) {
+    const mine = [USERS_KEY, SESSION_KEY, CART_KEY, ORDERS_KEY];
+    if (event.key === null || mine.indexOf(event.key) !== -1) { syncFromStorage(); notify(); }
+  });
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) { syncFromStorage(); notify(); }
+  });
 
   notify();
 
